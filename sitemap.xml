@@ -119,13 +119,6 @@
 
   
   <url>
-    <loc>https://vanillaholic.github.io/tags/demo/</loc>
-    <lastmod>2025-02-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://vanillaholic.github.io/tags/%E5%A3%B0%E7%BA%B3/</loc>
     <lastmod>2025-02-24</lastmod>
     <changefreq>weekly</changefreq>
@@ -139,17 +132,24 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://vanillaholic.github.io/tags/demo/</loc>
+    <lastmod>2025-02-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
-    <loc>https://vanillaholic.github.io/categories/Demo/</loc>
+    <loc>https://vanillaholic.github.io/categories/Docs%E6%96%87%E6%AA%94/</loc>
     <lastmod>2025-02-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://vanillaholic.github.io/categories/Docs%E6%96%87%E6%AA%94/</loc>
+    <loc>https://vanillaholic.github.io/categories/Demo/</loc>
     <lastmod>2025-02-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
