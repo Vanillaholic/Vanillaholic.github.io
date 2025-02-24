@@ -3,11 +3,11 @@
   <title>Zane&#39;s Blog</title>
   
   <subtitle>Welcome to my blog , Leave a footprint.</subtitle>
-  <link href="https://butterfly.js.org/atom.xml" rel="self"/>
+  <link href="https://vanillaholic.github.io/atom.xml" rel="self"/>
   
-  <link href="https://butterfly.js.org/"/>
+  <link href="https://vanillaholic.github.io/"/>
   <updated>2025-02-24T04:00:01.589Z</updated>
-  <id>https://butterfly.js.org/</id>
+  <id>https://vanillaholic.github.io/</id>
   
   <author>
     <name>Zane</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Butterfly 5.3 更新日誌</title>
-    <link href="https://butterfly.js.org/posts/5-3-rlease-notes/"/>
-    <id>https://butterfly.js.org/posts/5-3-rlease-notes/</id>
+    <link href="https://vanillaholic.github.io/posts/5-3-rlease-notes/"/>
+    <id>https://vanillaholic.github.io/posts/5-3-rlease-notes/</id>
     <published>2025-01-10T10:47:26.000Z</published>
     <updated>2025-02-24T04:00:01.589Z</updated>
     
@@ -37,23 +37,23 @@
     
     
     
-    <category term="更新日誌" scheme="https://butterfly.js.org/categories/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
+    <category term="更新日誌" scheme="https://vanillaholic.github.io/categories/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
     
     
-    <category term="教程" scheme="https://butterfly.js.org/tags/%E6%95%99%E7%A8%8B/"/>
+    <category term="教程" scheme="https://vanillaholic.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
-    <category term="Hexo" scheme="https://butterfly.js.org/tags/Hexo/"/>
+    <category term="Hexo" scheme="https://vanillaholic.github.io/tags/Hexo/"/>
     
-    <category term="更新日誌" scheme="https://butterfly.js.org/tags/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
+    <category term="更新日誌" scheme="https://vanillaholic.github.io/tags/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
     
-    <category term="butterfly" scheme="https://butterfly.js.org/tags/butterfly/"/>
+    <category term="butterfly" scheme="https://vanillaholic.github.io/tags/butterfly/"/>
     
   </entry>
   
   <entry>
     <title>Butterfly 5.2 更新日誌</title>
-    <link href="https://butterfly.js.org/posts/5-2-rlease-notes/"/>
-    <id>https://butterfly.js.org/posts/5-2-rlease-notes/</id>
+    <link href="https://vanillaholic.github.io/posts/5-2-rlease-notes/"/>
+    <id>https://vanillaholic.github.io/posts/5-2-rlease-notes/</id>
     <published>2024-11-02T10:47:26.000Z</published>
     <updated>2025-02-24T03:59:57.544Z</updated>
     
@@ -71,23 +71,23 @@
     
     
     
-    <category term="更新日誌" scheme="https://butterfly.js.org/categories/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
+    <category term="更新日誌" scheme="https://vanillaholic.github.io/categories/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
     
     
-    <category term="教程" scheme="https://butterfly.js.org/tags/%E6%95%99%E7%A8%8B/"/>
+    <category term="教程" scheme="https://vanillaholic.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
-    <category term="Hexo" scheme="https://butterfly.js.org/tags/Hexo/"/>
+    <category term="Hexo" scheme="https://vanillaholic.github.io/tags/Hexo/"/>
     
-    <category term="更新日誌" scheme="https://butterfly.js.org/tags/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
+    <category term="更新日誌" scheme="https://vanillaholic.github.io/tags/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
     
-    <category term="butterfly" scheme="https://butterfly.js.org/tags/butterfly/"/>
+    <category term="butterfly" scheme="https://vanillaholic.github.io/tags/butterfly/"/>
     
   </entry>
   
   <entry>
     <title>Butterfly 5.1 更新日誌</title>
-    <link href="https://butterfly.js.org/posts/5-1-release-notes/"/>
-    <id>https://butterfly.js.org/posts/5-1-release-notes/</id>
+    <link href="https://vanillaholic.github.io/posts/5-1-release-notes/"/>
+    <id>https://vanillaholic.github.io/posts/5-1-release-notes/</id>
     <published>2024-10-20T09:27:48.000Z</published>
     <updated>2025-02-24T03:59:53.679Z</updated>
     
@@ -104,23 +104,23 @@
     
     
     
-    <category term="更新日誌" scheme="https://butterfly.js.org/categories/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
+    <category term="更新日誌" scheme="https://vanillaholic.github.io/categories/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
     
     
-    <category term="教程" scheme="https://butterfly.js.org/tags/%E6%95%99%E7%A8%8B/"/>
+    <category term="教程" scheme="https://vanillaholic.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
-    <category term="Hexo" scheme="https://butterfly.js.org/tags/Hexo/"/>
+    <category term="Hexo" scheme="https://vanillaholic.github.io/tags/Hexo/"/>
     
-    <category term="更新日誌" scheme="https://butterfly.js.org/tags/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
+    <category term="更新日誌" scheme="https://vanillaholic.github.io/tags/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
     
-    <category term="butterfly" scheme="https://butterfly.js.org/tags/butterfly/"/>
+    <category term="butterfly" scheme="https://vanillaholic.github.io/tags/butterfly/"/>
     
   </entry>
   
   <entry>
     <title>Butterfly 5.0 更新日誌</title>
-    <link href="https://butterfly.js.org/posts/5-0-release-notes/"/>
-    <id>https://butterfly.js.org/posts/5-0-release-notes/</id>
+    <link href="https://vanillaholic.github.io/posts/5-0-release-notes/"/>
+    <id>https://vanillaholic.github.io/posts/5-0-release-notes/</id>
     <published>2024-07-16T18:09:49.000Z</published>
     <updated>2025-02-24T03:59:49.696Z</updated>
     
@@ -134,23 +134,23 @@
     
     
     
-    <category term="更新日誌" scheme="https://butterfly.js.org/categories/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
+    <category term="更新日誌" scheme="https://vanillaholic.github.io/categories/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
     
     
-    <category term="教程" scheme="https://butterfly.js.org/tags/%E6%95%99%E7%A8%8B/"/>
+    <category term="教程" scheme="https://vanillaholic.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
-    <category term="Hexo" scheme="https://butterfly.js.org/tags/Hexo/"/>
+    <category term="Hexo" scheme="https://vanillaholic.github.io/tags/Hexo/"/>
     
-    <category term="更新日誌" scheme="https://butterfly.js.org/tags/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
+    <category term="更新日誌" scheme="https://vanillaholic.github.io/tags/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
     
-    <category term="butterfly" scheme="https://butterfly.js.org/tags/butterfly/"/>
+    <category term="butterfly" scheme="https://vanillaholic.github.io/tags/butterfly/"/>
     
   </entry>
   
   <entry>
     <title>Butterfly 4.13 更新日誌</title>
-    <link href="https://butterfly.js.org/posts/4-13-release-notes/"/>
-    <id>https://butterfly.js.org/posts/4-13-release-notes/</id>
+    <link href="https://vanillaholic.github.io/posts/4-13-release-notes/"/>
+    <id>https://vanillaholic.github.io/posts/4-13-release-notes/</id>
     <published>2024-02-22T08:54:12.000Z</published>
     <updated>2025-02-24T03:59:35.216Z</updated>
     
@@ -168,23 +168,23 @@
     
     
     
-    <category term="更新日誌" scheme="https://butterfly.js.org/categories/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
+    <category term="更新日誌" scheme="https://vanillaholic.github.io/categories/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
     
     
-    <category term="教程" scheme="https://butterfly.js.org/tags/%E6%95%99%E7%A8%8B/"/>
+    <category term="教程" scheme="https://vanillaholic.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
-    <category term="Hexo" scheme="https://butterfly.js.org/tags/Hexo/"/>
+    <category term="Hexo" scheme="https://vanillaholic.github.io/tags/Hexo/"/>
     
-    <category term="更新日誌" scheme="https://butterfly.js.org/tags/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
+    <category term="更新日誌" scheme="https://vanillaholic.github.io/tags/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
     
-    <category term="butterfly" scheme="https://butterfly.js.org/tags/butterfly/"/>
+    <category term="butterfly" scheme="https://vanillaholic.github.io/tags/butterfly/"/>
     
   </entry>
   
   <entry>
     <title>Butterfly 4.12 更新日誌</title>
-    <link href="https://butterfly.js.org/posts/4-12-release-notes/"/>
-    <id>https://butterfly.js.org/posts/4-12-release-notes/</id>
+    <link href="https://vanillaholic.github.io/posts/4-12-release-notes/"/>
+    <id>https://vanillaholic.github.io/posts/4-12-release-notes/</id>
     <published>2023-12-29T15:07:43.000Z</published>
     <updated>2025-02-24T03:59:23.184Z</updated>
     
@@ -201,23 +201,23 @@
     
     
     
-    <category term="更新日誌" scheme="https://butterfly.js.org/categories/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
+    <category term="更新日誌" scheme="https://vanillaholic.github.io/categories/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
     
     
-    <category term="教程" scheme="https://butterfly.js.org/tags/%E6%95%99%E7%A8%8B/"/>
+    <category term="教程" scheme="https://vanillaholic.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
-    <category term="Hexo" scheme="https://butterfly.js.org/tags/Hexo/"/>
+    <category term="Hexo" scheme="https://vanillaholic.github.io/tags/Hexo/"/>
     
-    <category term="更新日誌" scheme="https://butterfly.js.org/tags/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
+    <category term="更新日誌" scheme="https://vanillaholic.github.io/tags/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
     
-    <category term="butterfly" scheme="https://butterfly.js.org/tags/butterfly/"/>
+    <category term="butterfly" scheme="https://vanillaholic.github.io/tags/butterfly/"/>
     
   </entry>
   
   <entry>
     <title>Butterfly 4.11 更新日誌</title>
-    <link href="https://butterfly.js.org/posts/4-11-release-notes/"/>
-    <id>https://butterfly.js.org/posts/4-11-release-notes/</id>
+    <link href="https://vanillaholic.github.io/posts/4-11-release-notes/"/>
+    <id>https://vanillaholic.github.io/posts/4-11-release-notes/</id>
     <published>2023-11-24T06:33:25.000Z</published>
     <updated>2025-02-24T03:59:24.786Z</updated>
     
@@ -234,23 +234,23 @@
     
     
     
-    <category term="更新日誌" scheme="https://butterfly.js.org/categories/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
+    <category term="更新日誌" scheme="https://vanillaholic.github.io/categories/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
     
     
-    <category term="教程" scheme="https://butterfly.js.org/tags/%E6%95%99%E7%A8%8B/"/>
+    <category term="教程" scheme="https://vanillaholic.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
-    <category term="Hexo" scheme="https://butterfly.js.org/tags/Hexo/"/>
+    <category term="Hexo" scheme="https://vanillaholic.github.io/tags/Hexo/"/>
     
-    <category term="更新日誌" scheme="https://butterfly.js.org/tags/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
+    <category term="更新日誌" scheme="https://vanillaholic.github.io/tags/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
     
-    <category term="butterfly" scheme="https://butterfly.js.org/tags/butterfly/"/>
+    <category term="butterfly" scheme="https://vanillaholic.github.io/tags/butterfly/"/>
     
   </entry>
   
   <entry>
     <title>Butterfly 4.10 更新日誌</title>
-    <link href="https://butterfly.js.org/posts/4-10-release-notes/"/>
-    <id>https://butterfly.js.org/posts/4-10-release-notes/</id>
+    <link href="https://vanillaholic.github.io/posts/4-10-release-notes/"/>
+    <id>https://vanillaholic.github.io/posts/4-10-release-notes/</id>
     <published>2023-10-08T15:22:40.000Z</published>
     <updated>2025-02-24T03:59:26.677Z</updated>
     
@@ -266,23 +266,23 @@
     
     
     
-    <category term="更新日誌" scheme="https://butterfly.js.org/categories/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
+    <category term="更新日誌" scheme="https://vanillaholic.github.io/categories/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
     
     
-    <category term="教程" scheme="https://butterfly.js.org/tags/%E6%95%99%E7%A8%8B/"/>
+    <category term="教程" scheme="https://vanillaholic.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
-    <category term="Hexo" scheme="https://butterfly.js.org/tags/Hexo/"/>
+    <category term="Hexo" scheme="https://vanillaholic.github.io/tags/Hexo/"/>
     
-    <category term="更新日誌" scheme="https://butterfly.js.org/tags/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
+    <category term="更新日誌" scheme="https://vanillaholic.github.io/tags/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AA%8C/"/>
     
-    <category term="butterfly" scheme="https://butterfly.js.org/tags/butterfly/"/>
+    <category term="butterfly" scheme="https://vanillaholic.github.io/tags/butterfly/"/>
     
   </entry>
   
   <entry>
     <title>自定義側邊欄</title>
-    <link href="https://butterfly.js.org/posts/ea33ab97/"/>
-    <id>https://butterfly.js.org/posts/ea33ab97/</id>
+    <link href="https://vanillaholic.github.io/posts/ea33ab97/"/>
+    <id>https://vanillaholic.github.io/posts/ea33ab97/</id>
     <published>2020-12-30T13:48:10.000Z</published>
     <updated>2025-02-24T02:52:13.968Z</updated>
     
@@ -293,23 +293,23 @@
     
     
     
-    <category term="進階教程" scheme="https://butterfly.js.org/categories/%E9%80%B2%E9%9A%8E%E6%95%99%E7%A8%8B/"/>
+    <category term="進階教程" scheme="https://vanillaholic.github.io/categories/%E9%80%B2%E9%9A%8E%E6%95%99%E7%A8%8B/"/>
     
     
-    <category term="教程" scheme="https://butterfly.js.org/tags/%E6%95%99%E7%A8%8B/"/>
+    <category term="教程" scheme="https://vanillaholic.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
-    <category term="Hexo" scheme="https://butterfly.js.org/tags/Hexo/"/>
+    <category term="Hexo" scheme="https://vanillaholic.github.io/tags/Hexo/"/>
     
-    <category term="butterfly" scheme="https://butterfly.js.org/tags/butterfly/"/>
+    <category term="butterfly" scheme="https://vanillaholic.github.io/tags/butterfly/"/>
     
-    <category term="主題" scheme="https://butterfly.js.org/tags/%E4%B8%BB%E9%A1%8C/"/>
+    <category term="主題" scheme="https://vanillaholic.github.io/tags/%E4%B8%BB%E9%A1%8C/"/>
     
   </entry>
   
   <entry>
     <title>當設置 top_img 為 false 時</title>
-    <link href="https://butterfly.js.org/posts/c9711c19/"/>
-    <id>https://butterfly.js.org/posts/c9711c19/</id>
+    <link href="https://vanillaholic.github.io/posts/c9711c19/"/>
+    <id>https://vanillaholic.github.io/posts/c9711c19/</id>
     <published>2020-10-28T06:15:34.000Z</published>
     <updated>2025-02-24T02:52:13.967Z</updated>
     
@@ -320,19 +320,19 @@
     
     
     
-    <category term="Demo" scheme="https://butterfly.js.org/categories/Demo/"/>
+    <category term="Demo" scheme="https://vanillaholic.github.io/categories/Demo/"/>
     
     
-    <category term="butterfly" scheme="https://butterfly.js.org/tags/butterfly/"/>
+    <category term="butterfly" scheme="https://vanillaholic.github.io/tags/butterfly/"/>
     
-    <category term="top_img" scheme="https://butterfly.js.org/tags/top-img/"/>
+    <category term="top_img" scheme="https://vanillaholic.github.io/tags/top-img/"/>
     
   </entry>
   
   <entry>
     <title>Butterfly添加全局吸底Aplayer教程</title>
-    <link href="https://butterfly.js.org/posts/507c070f/"/>
-    <id>https://butterfly.js.org/posts/507c070f/</id>
+    <link href="https://vanillaholic.github.io/posts/507c070f/"/>
+    <id>https://vanillaholic.github.io/posts/507c070f/</id>
     <published>2020-07-31T11:02:28.000Z</published>
     <updated>2025-02-24T04:01:13.776Z</updated>
     
@@ -343,25 +343,25 @@
     
     
     
-    <category term="進階教程" scheme="https://butterfly.js.org/categories/%E9%80%B2%E9%9A%8E%E6%95%99%E7%A8%8B/"/>
+    <category term="進階教程" scheme="https://vanillaholic.github.io/categories/%E9%80%B2%E9%9A%8E%E6%95%99%E7%A8%8B/"/>
     
     
-    <category term="教程" scheme="https://butterfly.js.org/tags/%E6%95%99%E7%A8%8B/"/>
+    <category term="教程" scheme="https://vanillaholic.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
-    <category term="Hexo" scheme="https://butterfly.js.org/tags/Hexo/"/>
+    <category term="Hexo" scheme="https://vanillaholic.github.io/tags/Hexo/"/>
     
-    <category term="butterfly" scheme="https://butterfly.js.org/tags/butterfly/"/>
+    <category term="butterfly" scheme="https://vanillaholic.github.io/tags/butterfly/"/>
     
-    <category term="主題" scheme="https://butterfly.js.org/tags/%E4%B8%BB%E9%A1%8C/"/>
+    <category term="主題" scheme="https://vanillaholic.github.io/tags/%E4%B8%BB%E9%A1%8C/"/>
     
-    <category term="Aplayer" scheme="https://butterfly.js.org/tags/Aplayer/"/>
+    <category term="Aplayer" scheme="https://vanillaholic.github.io/tags/Aplayer/"/>
     
   </entry>
   
   <entry>
     <title>自定義代碼配色</title>
-    <link href="https://butterfly.js.org/posts/b37b5fe3/"/>
-    <id>https://butterfly.js.org/posts/b37b5fe3/</id>
+    <link href="https://vanillaholic.github.io/posts/b37b5fe3/"/>
+    <id>https://vanillaholic.github.io/posts/b37b5fe3/</id>
     <published>2020-06-13T12:41:59.000Z</published>
     <updated>2025-02-24T02:52:13.968Z</updated>
     
@@ -372,23 +372,23 @@
     
     
     
-    <category term="進階教程" scheme="https://butterfly.js.org/categories/%E9%80%B2%E9%9A%8E%E6%95%99%E7%A8%8B/"/>
+    <category term="進階教程" scheme="https://vanillaholic.github.io/categories/%E9%80%B2%E9%9A%8E%E6%95%99%E7%A8%8B/"/>
     
     
-    <category term="教程" scheme="https://butterfly.js.org/tags/%E6%95%99%E7%A8%8B/"/>
+    <category term="教程" scheme="https://vanillaholic.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
-    <category term="Hexo" scheme="https://butterfly.js.org/tags/Hexo/"/>
+    <category term="Hexo" scheme="https://vanillaholic.github.io/tags/Hexo/"/>
     
-    <category term="butterfly" scheme="https://butterfly.js.org/tags/butterfly/"/>
+    <category term="butterfly" scheme="https://vanillaholic.github.io/tags/butterfly/"/>
     
-    <category term="主題" scheme="https://butterfly.js.org/tags/%E4%B8%BB%E9%A1%8C/"/>
+    <category term="主題" scheme="https://vanillaholic.github.io/tags/%E4%B8%BB%E9%A1%8C/"/>
     
   </entry>
   
   <entry>
     <title>Butterfly 打賞</title>
-    <link href="https://butterfly.js.org/posts/6ad51b4/"/>
-    <id>https://butterfly.js.org/posts/6ad51b4/</id>
+    <link href="https://vanillaholic.github.io/posts/6ad51b4/"/>
+    <id>https://vanillaholic.github.io/posts/6ad51b4/</id>
     <published>2020-05-28T14:42:48.000Z</published>
     <updated>2025-02-24T04:01:21.529Z</updated>
     
@@ -399,19 +399,19 @@
     
     
     
-    <category term="Thx" scheme="https://butterfly.js.org/categories/Thx/"/>
+    <category term="Thx" scheme="https://vanillaholic.github.io/categories/Thx/"/>
     
     
-    <category term="butterfly" scheme="https://butterfly.js.org/tags/butterfly/"/>
+    <category term="butterfly" scheme="https://vanillaholic.github.io/tags/butterfly/"/>
     
-    <category term="打賞" scheme="https://butterfly.js.org/tags/%E6%89%93%E8%B3%9E/"/>
+    <category term="打賞" scheme="https://vanillaholic.github.io/tags/%E6%89%93%E8%B3%9E/"/>
     
   </entry>
   
   <entry>
     <title>Butterfly 更新日誌</title>
-    <link href="https://butterfly.js.org/posts/198a4240/"/>
-    <id>https://butterfly.js.org/posts/198a4240/</id>
+    <link href="https://vanillaholic.github.io/posts/198a4240/"/>
+    <id>https://vanillaholic.github.io/posts/198a4240/</id>
     <published>2020-05-28T14:41:59.000Z</published>
     <updated>2025-02-24T02:52:13.965Z</updated>
     
@@ -422,23 +422,23 @@
     
     
     
-    <category term="Docs文檔" scheme="https://butterfly.js.org/categories/Docs%E6%96%87%E6%AA%94/"/>
+    <category term="Docs文檔" scheme="https://vanillaholic.github.io/categories/Docs%E6%96%87%E6%AA%94/"/>
     
     
-    <category term="教程" scheme="https://butterfly.js.org/tags/%E6%95%99%E7%A8%8B/"/>
+    <category term="教程" scheme="https://vanillaholic.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
-    <category term="Hexo" scheme="https://butterfly.js.org/tags/Hexo/"/>
+    <category term="Hexo" scheme="https://vanillaholic.github.io/tags/Hexo/"/>
     
-    <category term="butterfly" scheme="https://butterfly.js.org/tags/butterfly/"/>
+    <category term="butterfly" scheme="https://vanillaholic.github.io/tags/butterfly/"/>
     
-    <category term="主題" scheme="https://butterfly.js.org/tags/%E4%B8%BB%E9%A1%8C/"/>
+    <category term="主題" scheme="https://vanillaholic.github.io/tags/%E4%B8%BB%E9%A1%8C/"/>
     
   </entry>
   
   <entry>
     <title>Butterfly 文檔(六) 進階教程</title>
-    <link href="https://butterfly.js.org/posts/4073eda/"/>
-    <id>https://butterfly.js.org/posts/4073eda/</id>
+    <link href="https://vanillaholic.github.io/posts/4073eda/"/>
+    <id>https://vanillaholic.github.io/posts/4073eda/</id>
     <published>2020-05-28T14:39:25.000Z</published>
     <updated>2025-02-24T04:00:48.595Z</updated>
     
@@ -449,50 +449,50 @@
     
     
     
-    <category term="Docs文檔" scheme="https://butterfly.js.org/categories/Docs%E6%96%87%E6%AA%94/"/>
+    <category term="Docs文檔" scheme="https://vanillaholic.github.io/categories/Docs%E6%96%87%E6%AA%94/"/>
     
     
-    <category term="教程" scheme="https://butterfly.js.org/tags/%E6%95%99%E7%A8%8B/"/>
+    <category term="教程" scheme="https://vanillaholic.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
-    <category term="Hexo" scheme="https://butterfly.js.org/tags/Hexo/"/>
+    <category term="Hexo" scheme="https://vanillaholic.github.io/tags/Hexo/"/>
     
-    <category term="butterfly" scheme="https://butterfly.js.org/tags/butterfly/"/>
+    <category term="butterfly" scheme="https://vanillaholic.github.io/tags/butterfly/"/>
     
-    <category term="主題" scheme="https://butterfly.js.org/tags/%E4%B8%BB%E9%A1%8C/"/>
+    <category term="主題" scheme="https://vanillaholic.github.io/tags/%E4%B8%BB%E9%A1%8C/"/>
     
   </entry>
   
   <entry>
     <title>Butterfly 文檔(五) 主題問答</title>
-    <link href="https://butterfly.js.org/posts/98d20436/"/>
-    <id>https://butterfly.js.org/posts/98d20436/</id>
+    <link href="https://vanillaholic.github.io/posts/98d20436/"/>
+    <id>https://vanillaholic.github.io/posts/98d20436/</id>
     <published>2020-05-28T14:38:21.000Z</published>
     <updated>2025-02-24T04:01:01.194Z</updated>
     
-    <content type="html"><![CDATA[<div class="note green icon-padding flat"><i class="note-icon fas fa-rocket"></i><p>📚 文檔目錄</p><p><a href="/posts/21cfbf15/" title="Butterfly 文檔(一) 快速開始">🚀 快速開始</a> - <a href="/posts/dc584b87/" title="Butterfly 文檔(二) 主題頁面">📑 主題頁面</a> - <a href="/posts/4aa8abbe/" title="Butterfly 文檔(三) 主題配置">📌 主題配置</a> - <a href="/posts/ceeb73f/" title="Butterfly 文檔(四) 標簽外挂">⚔️ 標簽外掛</a> - <a href="/posts/98d20436/" title="Butterfly 文檔(五) 主題問答">❓ 主題問答</a> - <a href="/posts/4073eda/" title="Butterfly 文檔(六) 進階教程">⚡️ 進階教程</a></p></div><div class="note orange icon-padding flat"><i class="note-icon fas fa-magic"></i><p>你可以通過右下角的 <strong>簡</strong> 按鈕切換為簡體顯示</p></div><hr><p>以下是一些網友在安裝的過程中出現的問題。在提問題之前，先看有沒有解決方法。</p><h3 id="運行後網頁顯示代碼"><a href="#運行後網頁顯示代碼" class="headerlink" title="運行後網頁顯示代碼"></a>運行後網頁顯示代碼</h3><p>頁面只顯示 <code>extends includes/layout.pug block content #recent-posts.recent-posts include includes/recent-posts.pug include includes/pagination.pug #aside_content.aside_content include includes/aside.pug</code></p><blockquote><p>請下載安裝：<code>npm install hexo-renderer-pug hexo-renderer-stylus --save</code> or <code>yarn add hexo-renderer-pug hexo-renderer-stylus</code></p></blockquote><h3 id="配置友情鏈接報錯"><a href="#配置友情鏈接報錯" class="headerlink" title="配置友情鏈接報錯"></a>配置友情鏈接報錯</h3><p>配置友情鏈接頁面時出現報錯</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">ERROR D:\Desktop\orxing-blog\themes\Butterfly\layout\flink.pug:2</span><br><span class="line">    1| .flink</span><br><span class="line">  &gt; 2|   each i in site.data.link</span><br><span class="line">    3|     p.comment-word= i.class_name</span><br><span class="line">    4|     .post-cards</span><br><span class="line">    5|       ul.md-links</span><br><span class="line"></span><br><span class="line">Cannot read property &amp;#39;length&amp;#39; of undefined</span><br><span class="line">TypeError: D:\Desktop\orxing-blog\themes\Butterfly\layout\flink.pug:2</span><br><span class="line">    1| .flink</span><br><span class="line">  &gt; 2|   each i in site.data.link</span><br><span class="line">    3|     p.comment-word= i.class_name</span><br><span class="line">    4|     .post-cards</span><br><span class="line">    5|       ul.md-links</span><br><span class="line"></span><br><span class="line">Cannot read property &amp;#39;length&amp;#39; of undefined</span><br><span class="line">    at eval (eval at wrap (D:\Desktop\orxing-blog\node_modules\pug-runtime\wrap.js:6:10), &lt;anonymous&gt;:1890:32)</span><br><span class="line">    at eval (eval at wrap (D:\Desktop\orxing-blog\node_modules\pug-runtime\wrap.js:6:10), &lt;anonymous&gt;:2017:4)</span><br><span class="line">    at template (eval at wrap (D:\Desktop\orxing-blog\node_modules\pug-runtime\wrap.js:6:10), &lt;anonymous&gt;:10152:72)</span><br><span class="line">    at Theme._View.View._compiled (D:\Desktop\orxing-blog\node_modules\hexo\lib\theme\view.js:123:48)</span><br><span class="line">    at Theme._View.View.View.render (D:\Desktop\orxing-blog\node_modules\hexo\lib\theme\view.js:29:15)</span><br><span class="line">    at D:\Desktop\orxing-blog\node_modules\hexo\lib\hexo\index.js:349:21</span><br><span class="line">    at tryCatcher (D:\Desktop\orxing-blog\node_modules\bluebird\js\release\util.js:16:23)</span><br><span class="line">    at D:\Desktop\orxing-blog\node_modules\bluebird\js\release\method.js:15:34</span><br><span class="line">    at RouteStream._read (D:\Desktop\orxing-blog\node_modules\hexo\lib\hexo\router.js:123:3)</span><br><span class="line">    at RouteStream.Readable.read (_stream_readable.js:457:10)</span><br><span class="line">    at resume_ (_stream_readable.js:936:12)</span><br><span class="line">    at processTicksAndRejections (internal/process/task_queues.js:84:9)</span><br></pre></td></tr></table></figure><blockquote><p>請檢查 <code>link.yml</code>文檔內代碼的空格</p></blockquote><h3 id="升級最新版後運行報錯"><a href="#升級最新版後運行報錯" class="headerlink" title="升級最新版後運行報錯"></a>升級最新版後運行報錯</h3><p>升級最新版本 hexo g 後報錯</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">INFO  Deleted database.</span><br><span class="line">INFO  Start processing</span><br><span class="line">FATAL Something&amp;#39;s wrong. Maybe you can find the solution here: https://hexo.io/docs/troubleshooting.html</span><br><span class="line">TypeError: Cannot read property &amp;#39;enable&amp;#39; of undefined</span><br><span class="line">    at Hexo.&lt;anonymous&gt; (/Users/qinkangdeid/Nextcloud/work/codes/personal/github/personal/qinkangdeid.github.io/themes/Butterfly/scripts/post-lazyload.js:5:23)</span><br><span class="line">    at Hexo.tryCatcher (/Users/qinkangdeid/Nextcloud/work/codes/personal/github/personal/qinkangdeid.github.io/node_modules/bluebird/js/release/util.js:16:23)</span><br><span class="line">    at Hexo.&lt;anonymous&gt; (/Users/qinkangdeid/Nextcloud/work/codes/personal/github/personal/qinkangdeid.github.io/node_modules/bluebird/js/release/method.js:15:34)</span><br><span class="line">    at /Users/qinkangdeid/Nextcloud/work/codes/personal/github/personal/qinkangdeid.github.io/node_modules/hexo/lib/extend/filter.js:60:50</span><br><span class="line">    at tryCatcher (/Users/qinkangdeid/Nextcloud/work/codes/personal/github/personal/qinkangdeid.github.io/node_modules/bluebird/js/release/util.js:16:23)</span><br><span class="line">    at Object.gotValue (/Users/qinkangdeid/Nextcloud/work/codes/personal/github/personal/qinkangdeid.github.io/node_modules/bluebird/js/release/reduce.js:155:18)</span><br><span class="line">    at Object.gotAccum (/Users/qinkangdeid/Nextcloud/work/codes/personal/github/personal/qinkangdeid.github.io/node_modules/bluebird/js/release/reduce.js:144:25)</span><br><span class="line">    at Object.tryCatcher (/Users/qinkangdeid/Nextcloud/work/codes/personal/github/personal/qinkangdeid.github.io/node_modules/bluebird/js/release/util.js:16:23)</span><br><span class="line">    at Promise._settlePromiseFromHandler (/Users/qinkangdeid/Nextcloud/work/codes/personal/github/personal/qinkangdeid.github.io/node_modules/bluebird/js/release/promise.js:517:31)</span><br><span class="line">    at Promise._settlePromise (/Users/qinkangdeid/Nextcloud/work/codes/personal/github/personal/qinkangdeid.github.io/node_modules/bluebird/js/release/promise.js:574:18)</span><br><span class="line">    at Promise._settlePromiseCtx (/Users/qinkangdeid/Nextcloud/work/codes/personal/github/personal/qinkangdeid.github.io/node_modules/bluebird/js/release/promise.js:611:10)</span><br><span class="line">    at _drainQueueStep (/Users/qinkangdeid/Nextcloud/work/codes/personal/github/personal/qinkangdeid.github.io/node_modules/bluebird/js/release/async.js:142:12)</span><br><span class="line">    at _drainQueue (/Users/qinkangdeid/Nextcloud/work/codes/personal/github/personal/qinkangdeid.github.io/node_modules/bluebird/js/release/async.js:131:9)</span><br><span class="line">    at Async._drainQueues (/Users/qinkangdeid/Nextcloud/work/codes/personal/github/personal/qinkangdeid.github.io/node_modules/bluebird/js/release/async.js:147:5)</span><br><span class="line">    at Immediate.Async.drainQueues [as _onImmediate] (/Users/qinkangdeid/Nextcloud/work/codes/personal/github/personal/qinkangdeid.github.io/node_modules/bluebird/js/release/async.js:17:14)</span><br><span class="line">    at processImmediate (internal/timers.js:439:21)</span><br></pre></td></tr></table></figure><blockquote><p>請參照最新版的_config.yml, 比對後，把缺的配置複製到主題配置文件中去</p></blockquote><h3 id="wordcount-is-not-a-function-totalcount-is-not-a-function"><a href="#wordcount-is-not-a-function-totalcount-is-not-a-function" class="headerlink" title="wordcount is not a function &#x2F; totalcount is not a function"></a>wordcount is not a function &#x2F; totalcount is not a function</h3><p>報錯<code>wordcount is not a function</code></p><blockquote><p>請檢查是否安裝了 wordcount 插件 <code>npm i --save hexo-wordcount</code></p></blockquote><h3 id="升級-2-0-0-後運行報錯"><a href="#升級-2-0-0-後運行報錯" class="headerlink" title="升級 2.0.0 後運行報錯"></a>升級 2.0.0 後運行報錯</h3><p>舊版本升級到 2.0.0 後報錯</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">INFO Start processing</span><br><span class="line">FATAL Something’s wrong. Maybe you can find the solution here: https://hexo.io/docs/troubleshooting.html</span><br><span class="line">Template render error: (unknown path)</span><br><span class="line">unexpected end of file</span><br><span class="line">at Object.prettifyError (F:\hexo\nodemodules\nunjucks\src\lib.js:36:11)</span><br><span class="line">at Template.render (F:\hexo\node_modules\nunjucks\src\environment.js:542:21)</span><br><span class="line">at Environment.renderString (F:\hexo\node_modules\nunjucks\src\environment.js:380:17)</span><br><span class="line">at Promise.fromCallback.cb (F:\hexo\node_modules\hexo\lib\extend\tag.js:123:48)</span><br><span class="line">at tryCatcher (F:\hexo\node_modules\bluebird\js\release\util.js:16:23)</span><br><span class="line">at Function.Promise.fromNode.Promise.fromCallback (F:\hexo\node_modules\bluebird\js\release\promise.js:185:30)</span><br><span class="line">at Tag.render (F:\hexo\node_modules\hexo\lib\extend\tag.js:123:18)</span><br><span class="line">at Object.onRenderEnd (F:\hexo\node_modules\hexo\lib\hexo\post.js:280:20)</span><br><span class="line">at Promise.then.then.result (F:\hexo\node_modules\hexo\lib\hexo\render.js:64:19)</span><br><span class="line">at tryCatcher (F:\hexo\node_modules\bluebird\js\release\util.js:16:23)</span><br><span class="line">at Promise.settlePromiseFromHandler (F:\hexo\nodemodules\bluebird\js\release\promise.js:517:31)</span><br><span class="line"></span><br></pre></td></tr></table></figure><blockquote><p>2.0.0 版本以上刪掉了 gallery，而引入新的 gallery。所以如果有使用舊版，需刪掉或者更改寫法。</p></blockquote><h3 id="代碼渲染與實際不同"><a href="#代碼渲染與實際不同" class="headerlink" title="代碼渲染與實際不同"></a>代碼渲染與實際不同</h3><p>2.1.0 以下版本會出現的問題</p><p>代碼渲染與實際不同</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;aaa&lt;/div&gt;</span><br></pre></td></tr></table></figure><p>渲染結果:</p><p><img src="https://oss.012700.xyz/butterfly/2024/09/73515338-e6874d80-442f-11ea-9d07-725d37002985.png" alt="73515338-e6874d80-442f-11ea-9d07-725d37002985.png"></p><blockquote><p>cheerio 版本錯誤，請安裝 0.22.0 版本</p><p>npm install <a href="mailto:&#x63;&#104;&#101;&#x65;&#x72;&#105;&#111;&#64;&#x30;&#x2e;&#50;&#x32;&#x2e;&#48;">cheerio@0.22.0</a> --save</p></blockquote><h3 id="搜索欄在底部"><a href="#搜索欄在底部" class="headerlink" title="搜索欄在底部"></a>搜索欄在底部</h3><p>hexo deploy 後搜索欄在頁面底部</p><blockquote><p>生成前先 hexo clean</p></blockquote><h3 id="本地可以正常運行，但是-push-上去後出錯-缺失-無效"><a href="#本地可以正常運行，但是-push-上去後出錯-缺失-無效" class="headerlink" title="本地可以正常運行，但是 push 上去後出錯&#x2F;缺失&#x2F;無效"></a>本地可以正常運行，但是 push 上去後出錯&#x2F;缺失&#x2F;無效</h3><blockquote><ol><li>清理瀏覽器緩存</li><li>如果 1 無效，請確認上傳時是否有運行 hexo clean</li></ol></blockquote><h3 id="已在-Hexo-的配置文件設置了語言，為什麼導航欄仍然是英文"><a href="#已在-Hexo-的配置文件設置了語言，為什麼導航欄仍然是英文" class="headerlink" title="已在 Hexo 的配置文件設置了語言，為什麼導航欄仍然是英文"></a>已在 Hexo 的配置文件設置了語言，為什麼導航欄仍然是英文</h3><blockquote><p>請在導航的配置裏，自己修改成想要的中文</p></blockquote><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">首頁:</span> <span class="string">/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-home</span></span><br><span class="line"><span class="string">時間軸:</span> <span class="string">/archives/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-archive</span></span><br><span class="line"><span class="string">標籤:</span> <span class="string">/tags/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-tags</span></span><br><span class="line"><span class="string">分類:</span> <span class="string">/categories/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-folder-open</span></span><br></pre></td></tr></table></figure><h3 id="運行報錯-Cannot-read-property-bind-of-undefined-full-url-for-is-not-function"><a href="#運行報錯-Cannot-read-property-bind-of-undefined-full-url-for-is-not-function" class="headerlink" title="運行報錯 Cannot read property &#39;bind&#39; of undefined&#x2F;full_url_for is not function"></a>運行報錯 Cannot read property &#39;bind&#39; of undefined&#x2F;full_url_for is not function</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TypeError: Cannot read property <span class="string">&#x27;bind&#x27;</span> of undefined</span><br></pre></td></tr></table></figure><blockquote><p>把 Hexo 升級到 4.0 以上版本</p></blockquote><h3 id="Cannot-read-property-appId-of-undefined"><a href="#Cannot-read-property-appId-of-undefined" class="headerlink" title="Cannot read property &#39;appId&#39; of undefined"></a>Cannot read property &#39;appId&#39; of undefined</h3><p>報錯</p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">  &gt; <span class="number">1</span>| -</span><br><span class="line">    <span class="number">2</span>|   var algolia = <span class="string">&#x27;undefined&#x27;</span>;</span><br><span class="line">    <span class="number">3</span>|   var env = process.env;</span><br><span class="line">    <span class="number">4</span>|   <span class="keyword">if</span> (theme.algolia_search.enable) &#123;</span><br><span class="line"></span><br><span class="line">Cannot read property <span class="string">&#x27;appId&#x27;</span> of undefined</span><br><span class="line">    at eval (eval at wrap (F:\github\Blog\blog\node_modules\pug<span class="literal">-runtime</span>\wrap.js:<span class="number">6</span>:<span class="number">10</span>), &lt;anonymous&gt;:<span class="number">8</span>:<span class="number">49</span>)</span><br><span class="line">    at template (eval at wrap (F:\github\Blog\blog\node_modules\pug<span class="literal">-runtime</span>\wrap.js:<span class="number">6</span>:<span class="number">10</span>), &lt;anonymous&gt;:<span class="number">329</span>:<span class="number">53</span>)</span><br><span class="line">    at _View._compiledSync (F:\github\Blog\blog\node_modules\hexo\lib\theme\view.js:<span class="number">132</span>:<span class="number">24</span>)</span><br><span class="line">    at _View.renderSync (F:\github\Blog\blog\node_modules\hexo\lib\theme\view.js:<span class="number">59</span>:<span class="number">25</span>)</span><br><span class="line">    at F:\github\Blog\blog\node_modules\hexo\lib\plugins\helper\partial.js:<span class="number">31</span>:<span class="number">52</span></span><br><span class="line">    at Cache.apply (F:\github\Blog\blog\node_modules\hexo\node_modules\hexo<span class="literal">-util</span>\lib\cache.js:<span class="number">27</span>:<span class="number">46</span>)</span><br><span class="line">    at Object.fragmentCache (F:\github\Blog\blog\node_modules\hexo\lib\plugins\helper\fragment_cache.js:<span class="number">11</span>:<span class="number">34</span>)</span><br><span class="line">    at Object.partial (F:\github\Blog\blog\node_modules\hexo\lib\plugins\helper\partial.js:<span class="number">31</span>:<span class="number">17</span>)</span><br><span class="line">    at eval (eval at wrap (F:\github\Blog\blog\node_modules\pug<span class="literal">-runtime</span>\wrap.js:<span class="number">6</span>:<span class="number">10</span>), &lt;anonymous&gt;:<span class="number">149</span>:<span class="number">46</span>)</span><br><span class="line">    at template (eval at wrap (F:\github\Blog\blog\node_modules\pug<span class="literal">-runtime</span>\wrap.js:<span class="number">6</span>:<span class="number">10</span>), &lt;anonymous&gt;:<span class="number">5213</span>:<span class="number">93</span>)</span><br><span class="line">    at _View._compiled (F:\github\Blog\blog\node_modules\hexo\lib\theme\view.js:<span class="number">136</span>:<span class="number">50</span>)</span><br><span class="line">    at _View.render (F:\github\Blog\blog\node_modules\hexo\lib\theme\view.js:<span class="number">39</span>:<span class="number">17</span>)</span><br><span class="line">    at F:\github\Blog\blog\node_modules\hexo\lib\hexo\index.js:<span class="number">64</span>:<span class="number">21</span></span><br><span class="line">    at tryCatcher (F:\github\Blog\blog\node_modules\hexo\node_modules\bluebird\js\release\util.js:<span class="number">16</span>:<span class="number">23</span>)</span><br><span class="line">    at F:\github\Blog\blog\node_modules\hexo\node_modules\bluebird\js\release\method.js:<span class="number">15</span>:<span class="number">34</span></span><br><span class="line">    at RouteStream._read (F:\github\Blog\blog\node_modules\hexo\lib\hexo\router.js:<span class="number">30</span>:<span class="number">5</span>)</span><br><span class="line">    at RouteStream.Readable.read (_stream_readable.js:<span class="number">490</span>:<span class="number">10</span>)</span><br><span class="line">    at resume_ (_stream_readable.js:<span class="number">975</span>:<span class="number">12</span>)</span><br><span class="line">    at processTicksAndRejections (internal/<span class="keyword">process</span>/task_queues.js:<span class="number">80</span>:<span class="number">21</span>) &#123;</span><br><span class="line">  path: <span class="string">&#x27;F:\\github\\Blog\\blog\\themes\\Butterfly\\layout\\includes\\head.pug&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p>algolia 插件安裝後還需要配置<br>查看插件文檔配置</p></blockquote><h3 id="頂部出現-Loading"><a href="#頂部出現-Loading" class="headerlink" title="頂部出現 Loading"></a>頂部出現 Loading</h3><blockquote><p>生成前先 hexo clean</p></blockquote><h3 id="點擊中文目錄報錯的問題"><a href="#點擊中文目錄報錯的問題" class="headerlink" title="點擊中文目錄報錯的問題"></a>點擊中文目錄報錯的問題</h3><p>這種情況出現在主題為 <code>3.0.0</code>以下版本，升級主題就行</p><h3 id="Uncaught-ReferenceError-regeneratorRuntime-is-not-defined"><a href="#Uncaught-ReferenceError-regeneratorRuntime-is-not-defined" class="headerlink" title="Uncaught ReferenceError: regeneratorRuntime is not defined"></a>Uncaught ReferenceError: regeneratorRuntime is not defined</h3><p>這是因為使用 babel 壓縮代碼而出現的報錯，具體解決方法查看 <a href="https://github.com/babel/gulp-babel#runtime">babel&#x2F;gulp-babel</a></p><a class="btn-beautify block orange right larger" href="/posts/4073eda/" title="⚡️ Butterfly 文檔(六) 進階教程"><i class="far fa-hand-point-right"></i><span>⚡️ Butterfly 文檔(六) 進階教程</span></a>]]></content>
+    <content type="html"><![CDATA[<div class="note green icon-padding flat"><i class="note-icon fas fa-rocket"></i><p>📚 文檔目錄</p><p><a href="/posts/21cfbf15/" title="Butterfly 文檔(一) 快速開始">🚀 快速開始</a> - <a href="/posts/dc584b87/" title="Butterfly 文檔(二) 主題頁面">📑 主題頁面</a> - <a href="/posts/4aa8abbe/" title="Butterfly 文檔(三) 主題配置">📌 主題配置</a> - <a href="/posts/ceeb73f/" title="Butterfly 文檔(四) 標簽外挂">⚔️ 標簽外掛</a> - <a href="/posts/98d20436/" title="Butterfly 文檔(五) 主題問答">❓ 主題問答</a> - <a href="/posts/4073eda/" title="Butterfly 文檔(六) 進階教程">⚡️ 進階教程</a></p></div><div class="note orange icon-padding flat"><i class="note-icon fas fa-magic"></i><p>你可以通過右下角的 <strong>簡</strong> 按鈕切換為簡體顯示</p></div><hr><p>以下是一些網友在安裝的過程中出現的問題。在提問題之前，先看有沒有解決方法。</p><h3 id="運行後網頁顯示代碼"><a href="#運行後網頁顯示代碼" class="headerlink" title="運行後網頁顯示代碼"></a>運行後網頁顯示代碼</h3><p>頁面只顯示 <code>extends includes/layout.pug block content #recent-posts.recent-posts include includes/recent-posts.pug include includes/pagination.pug #aside_content.aside_content include includes/aside.pug</code></p><blockquote><p>請下載安裝：<code>npm install hexo-renderer-pug hexo-renderer-stylus --save</code> or <code>yarn add hexo-renderer-pug hexo-renderer-stylus</code></p></blockquote><h3 id="配置友情鏈接報錯"><a href="#配置友情鏈接報錯" class="headerlink" title="配置友情鏈接報錯"></a>配置友情鏈接報錯</h3><p>配置友情鏈接頁面時出現報錯</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">ERROR D:\Desktop\orxing-blog\themes\Butterfly\layout\flink.pug:2</span><br><span class="line">    1| .flink</span><br><span class="line">  &gt; 2|   each i in site.data.link</span><br><span class="line">    3|     p.comment-word= i.class_name</span><br><span class="line">    4|     .post-cards</span><br><span class="line">    5|       ul.md-links</span><br><span class="line"></span><br><span class="line">Cannot read property &amp;#39;length&amp;#39; of undefined</span><br><span class="line">TypeError: D:\Desktop\orxing-blog\themes\Butterfly\layout\flink.pug:2</span><br><span class="line">    1| .flink</span><br><span class="line">  &gt; 2|   each i in site.data.link</span><br><span class="line">    3|     p.comment-word= i.class_name</span><br><span class="line">    4|     .post-cards</span><br><span class="line">    5|       ul.md-links</span><br><span class="line"></span><br><span class="line">Cannot read property &amp;#39;length&amp;#39; of undefined</span><br><span class="line">    at eval (eval at wrap (D:\Desktop\orxing-blog\node_modules\pug-runtime\wrap.js:6:10), &lt;anonymous&gt;:1890:32)</span><br><span class="line">    at eval (eval at wrap (D:\Desktop\orxing-blog\node_modules\pug-runtime\wrap.js:6:10), &lt;anonymous&gt;:2017:4)</span><br><span class="line">    at template (eval at wrap (D:\Desktop\orxing-blog\node_modules\pug-runtime\wrap.js:6:10), &lt;anonymous&gt;:10152:72)</span><br><span class="line">    at Theme._View.View._compiled (D:\Desktop\orxing-blog\node_modules\hexo\lib\theme\view.js:123:48)</span><br><span class="line">    at Theme._View.View.View.render (D:\Desktop\orxing-blog\node_modules\hexo\lib\theme\view.js:29:15)</span><br><span class="line">    at D:\Desktop\orxing-blog\node_modules\hexo\lib\hexo\index.js:349:21</span><br><span class="line">    at tryCatcher (D:\Desktop\orxing-blog\node_modules\bluebird\js\release\util.js:16:23)</span><br><span class="line">    at D:\Desktop\orxing-blog\node_modules\bluebird\js\release\method.js:15:34</span><br><span class="line">    at RouteStream._read (D:\Desktop\orxing-blog\node_modules\hexo\lib\hexo\router.js:123:3)</span><br><span class="line">    at RouteStream.Readable.read (_stream_readable.js:457:10)</span><br><span class="line">    at resume_ (_stream_readable.js:936:12)</span><br><span class="line">    at processTicksAndRejections (internal/process/task_queues.js:84:9)</span><br></pre></td></tr></table></figure><blockquote><p>請檢查 <code>link.yml</code>文檔內代碼的空格</p></blockquote><h3 id="升級最新版後運行報錯"><a href="#升級最新版後運行報錯" class="headerlink" title="升級最新版後運行報錯"></a>升級最新版後運行報錯</h3><p>升級最新版本 hexo g 後報錯</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">INFO  Deleted database.</span><br><span class="line">INFO  Start processing</span><br><span class="line">FATAL Something&amp;#39;s wrong. Maybe you can find the solution here: https://hexo.io/docs/troubleshooting.html</span><br><span class="line">TypeError: Cannot read property &amp;#39;enable&amp;#39; of undefined</span><br><span class="line">    at Hexo.&lt;anonymous&gt; (/Users/qinkangdeid/Nextcloud/work/codes/personal/github/personal/qinkangdeid.github.io/themes/Butterfly/scripts/post-lazyload.js:5:23)</span><br><span class="line">    at Hexo.tryCatcher (/Users/qinkangdeid/Nextcloud/work/codes/personal/github/personal/qinkangdeid.github.io/node_modules/bluebird/js/release/util.js:16:23)</span><br><span class="line">    at Hexo.&lt;anonymous&gt; (/Users/qinkangdeid/Nextcloud/work/codes/personal/github/personal/qinkangdeid.github.io/node_modules/bluebird/js/release/method.js:15:34)</span><br><span class="line">    at /Users/qinkangdeid/Nextcloud/work/codes/personal/github/personal/qinkangdeid.github.io/node_modules/hexo/lib/extend/filter.js:60:50</span><br><span class="line">    at tryCatcher (/Users/qinkangdeid/Nextcloud/work/codes/personal/github/personal/qinkangdeid.github.io/node_modules/bluebird/js/release/util.js:16:23)</span><br><span class="line">    at Object.gotValue (/Users/qinkangdeid/Nextcloud/work/codes/personal/github/personal/qinkangdeid.github.io/node_modules/bluebird/js/release/reduce.js:155:18)</span><br><span class="line">    at Object.gotAccum (/Users/qinkangdeid/Nextcloud/work/codes/personal/github/personal/qinkangdeid.github.io/node_modules/bluebird/js/release/reduce.js:144:25)</span><br><span class="line">    at Object.tryCatcher (/Users/qinkangdeid/Nextcloud/work/codes/personal/github/personal/qinkangdeid.github.io/node_modules/bluebird/js/release/util.js:16:23)</span><br><span class="line">    at Promise._settlePromiseFromHandler (/Users/qinkangdeid/Nextcloud/work/codes/personal/github/personal/qinkangdeid.github.io/node_modules/bluebird/js/release/promise.js:517:31)</span><br><span class="line">    at Promise._settlePromise (/Users/qinkangdeid/Nextcloud/work/codes/personal/github/personal/qinkangdeid.github.io/node_modules/bluebird/js/release/promise.js:574:18)</span><br><span class="line">    at Promise._settlePromiseCtx (/Users/qinkangdeid/Nextcloud/work/codes/personal/github/personal/qinkangdeid.github.io/node_modules/bluebird/js/release/promise.js:611:10)</span><br><span class="line">    at _drainQueueStep (/Users/qinkangdeid/Nextcloud/work/codes/personal/github/personal/qinkangdeid.github.io/node_modules/bluebird/js/release/async.js:142:12)</span><br><span class="line">    at _drainQueue (/Users/qinkangdeid/Nextcloud/work/codes/personal/github/personal/qinkangdeid.github.io/node_modules/bluebird/js/release/async.js:131:9)</span><br><span class="line">    at Async._drainQueues (/Users/qinkangdeid/Nextcloud/work/codes/personal/github/personal/qinkangdeid.github.io/node_modules/bluebird/js/release/async.js:147:5)</span><br><span class="line">    at Immediate.Async.drainQueues [as _onImmediate] (/Users/qinkangdeid/Nextcloud/work/codes/personal/github/personal/qinkangdeid.github.io/node_modules/bluebird/js/release/async.js:17:14)</span><br><span class="line">    at processImmediate (internal/timers.js:439:21)</span><br></pre></td></tr></table></figure><blockquote><p>請參照最新版的_config.yml, 比對後，把缺的配置複製到主題配置文件中去</p></blockquote><h3 id="wordcount-is-not-a-function-totalcount-is-not-a-function"><a href="#wordcount-is-not-a-function-totalcount-is-not-a-function" class="headerlink" title="wordcount is not a function &#x2F; totalcount is not a function"></a>wordcount is not a function &#x2F; totalcount is not a function</h3><p>報錯<code>wordcount is not a function</code></p><blockquote><p>請檢查是否安裝了 wordcount 插件 <code>npm i --save hexo-wordcount</code></p></blockquote><h3 id="升級-2-0-0-後運行報錯"><a href="#升級-2-0-0-後運行報錯" class="headerlink" title="升級 2.0.0 後運行報錯"></a>升級 2.0.0 後運行報錯</h3><p>舊版本升級到 2.0.0 後報錯</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">INFO Start processing</span><br><span class="line">FATAL Something’s wrong. Maybe you can find the solution here: https://hexo.io/docs/troubleshooting.html</span><br><span class="line">Template render error: (unknown path)</span><br><span class="line">unexpected end of file</span><br><span class="line">at Object.prettifyError (F:\hexo\nodemodules\nunjucks\src\lib.js:36:11)</span><br><span class="line">at Template.render (F:\hexo\node_modules\nunjucks\src\environment.js:542:21)</span><br><span class="line">at Environment.renderString (F:\hexo\node_modules\nunjucks\src\environment.js:380:17)</span><br><span class="line">at Promise.fromCallback.cb (F:\hexo\node_modules\hexo\lib\extend\tag.js:123:48)</span><br><span class="line">at tryCatcher (F:\hexo\node_modules\bluebird\js\release\util.js:16:23)</span><br><span class="line">at Function.Promise.fromNode.Promise.fromCallback (F:\hexo\node_modules\bluebird\js\release\promise.js:185:30)</span><br><span class="line">at Tag.render (F:\hexo\node_modules\hexo\lib\extend\tag.js:123:18)</span><br><span class="line">at Object.onRenderEnd (F:\hexo\node_modules\hexo\lib\hexo\post.js:280:20)</span><br><span class="line">at Promise.then.then.result (F:\hexo\node_modules\hexo\lib\hexo\render.js:64:19)</span><br><span class="line">at tryCatcher (F:\hexo\node_modules\bluebird\js\release\util.js:16:23)</span><br><span class="line">at Promise.settlePromiseFromHandler (F:\hexo\nodemodules\bluebird\js\release\promise.js:517:31)</span><br><span class="line"></span><br></pre></td></tr></table></figure><blockquote><p>2.0.0 版本以上刪掉了 gallery，而引入新的 gallery。所以如果有使用舊版，需刪掉或者更改寫法。</p></blockquote><h3 id="代碼渲染與實際不同"><a href="#代碼渲染與實際不同" class="headerlink" title="代碼渲染與實際不同"></a>代碼渲染與實際不同</h3><p>2.1.0 以下版本會出現的問題</p><p>代碼渲染與實際不同</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;aaa&lt;/div&gt;</span><br></pre></td></tr></table></figure><p>渲染結果:</p><p><img src="https://oss.012700.xyz/butterfly/2024/09/73515338-e6874d80-442f-11ea-9d07-725d37002985.png" alt="73515338-e6874d80-442f-11ea-9d07-725d37002985.png"></p><blockquote><p>cheerio 版本錯誤，請安裝 0.22.0 版本</p><p>npm install <a href="mailto:&#99;&#x68;&#x65;&#x65;&#114;&#x69;&#111;&#64;&#48;&#46;&#50;&#x32;&#46;&#48;">cheerio@0.22.0</a> --save</p></blockquote><h3 id="搜索欄在底部"><a href="#搜索欄在底部" class="headerlink" title="搜索欄在底部"></a>搜索欄在底部</h3><p>hexo deploy 後搜索欄在頁面底部</p><blockquote><p>生成前先 hexo clean</p></blockquote><h3 id="本地可以正常運行，但是-push-上去後出錯-缺失-無效"><a href="#本地可以正常運行，但是-push-上去後出錯-缺失-無效" class="headerlink" title="本地可以正常運行，但是 push 上去後出錯&#x2F;缺失&#x2F;無效"></a>本地可以正常運行，但是 push 上去後出錯&#x2F;缺失&#x2F;無效</h3><blockquote><ol><li>清理瀏覽器緩存</li><li>如果 1 無效，請確認上傳時是否有運行 hexo clean</li></ol></blockquote><h3 id="已在-Hexo-的配置文件設置了語言，為什麼導航欄仍然是英文"><a href="#已在-Hexo-的配置文件設置了語言，為什麼導航欄仍然是英文" class="headerlink" title="已在 Hexo 的配置文件設置了語言，為什麼導航欄仍然是英文"></a>已在 Hexo 的配置文件設置了語言，為什麼導航欄仍然是英文</h3><blockquote><p>請在導航的配置裏，自己修改成想要的中文</p></blockquote><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">首頁:</span> <span class="string">/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-home</span></span><br><span class="line"><span class="string">時間軸:</span> <span class="string">/archives/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-archive</span></span><br><span class="line"><span class="string">標籤:</span> <span class="string">/tags/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-tags</span></span><br><span class="line"><span class="string">分類:</span> <span class="string">/categories/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-folder-open</span></span><br></pre></td></tr></table></figure><h3 id="運行報錯-Cannot-read-property-bind-of-undefined-full-url-for-is-not-function"><a href="#運行報錯-Cannot-read-property-bind-of-undefined-full-url-for-is-not-function" class="headerlink" title="運行報錯 Cannot read property &#39;bind&#39; of undefined&#x2F;full_url_for is not function"></a>運行報錯 Cannot read property &#39;bind&#39; of undefined&#x2F;full_url_for is not function</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TypeError: Cannot read property <span class="string">&#x27;bind&#x27;</span> of undefined</span><br></pre></td></tr></table></figure><blockquote><p>把 Hexo 升級到 4.0 以上版本</p></blockquote><h3 id="Cannot-read-property-appId-of-undefined"><a href="#Cannot-read-property-appId-of-undefined" class="headerlink" title="Cannot read property &#39;appId&#39; of undefined"></a>Cannot read property &#39;appId&#39; of undefined</h3><p>報錯</p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">  &gt; <span class="number">1</span>| -</span><br><span class="line">    <span class="number">2</span>|   var algolia = <span class="string">&#x27;undefined&#x27;</span>;</span><br><span class="line">    <span class="number">3</span>|   var env = process.env;</span><br><span class="line">    <span class="number">4</span>|   <span class="keyword">if</span> (theme.algolia_search.enable) &#123;</span><br><span class="line"></span><br><span class="line">Cannot read property <span class="string">&#x27;appId&#x27;</span> of undefined</span><br><span class="line">    at eval (eval at wrap (F:\github\Blog\blog\node_modules\pug<span class="literal">-runtime</span>\wrap.js:<span class="number">6</span>:<span class="number">10</span>), &lt;anonymous&gt;:<span class="number">8</span>:<span class="number">49</span>)</span><br><span class="line">    at template (eval at wrap (F:\github\Blog\blog\node_modules\pug<span class="literal">-runtime</span>\wrap.js:<span class="number">6</span>:<span class="number">10</span>), &lt;anonymous&gt;:<span class="number">329</span>:<span class="number">53</span>)</span><br><span class="line">    at _View._compiledSync (F:\github\Blog\blog\node_modules\hexo\lib\theme\view.js:<span class="number">132</span>:<span class="number">24</span>)</span><br><span class="line">    at _View.renderSync (F:\github\Blog\blog\node_modules\hexo\lib\theme\view.js:<span class="number">59</span>:<span class="number">25</span>)</span><br><span class="line">    at F:\github\Blog\blog\node_modules\hexo\lib\plugins\helper\partial.js:<span class="number">31</span>:<span class="number">52</span></span><br><span class="line">    at Cache.apply (F:\github\Blog\blog\node_modules\hexo\node_modules\hexo<span class="literal">-util</span>\lib\cache.js:<span class="number">27</span>:<span class="number">46</span>)</span><br><span class="line">    at Object.fragmentCache (F:\github\Blog\blog\node_modules\hexo\lib\plugins\helper\fragment_cache.js:<span class="number">11</span>:<span class="number">34</span>)</span><br><span class="line">    at Object.partial (F:\github\Blog\blog\node_modules\hexo\lib\plugins\helper\partial.js:<span class="number">31</span>:<span class="number">17</span>)</span><br><span class="line">    at eval (eval at wrap (F:\github\Blog\blog\node_modules\pug<span class="literal">-runtime</span>\wrap.js:<span class="number">6</span>:<span class="number">10</span>), &lt;anonymous&gt;:<span class="number">149</span>:<span class="number">46</span>)</span><br><span class="line">    at template (eval at wrap (F:\github\Blog\blog\node_modules\pug<span class="literal">-runtime</span>\wrap.js:<span class="number">6</span>:<span class="number">10</span>), &lt;anonymous&gt;:<span class="number">5213</span>:<span class="number">93</span>)</span><br><span class="line">    at _View._compiled (F:\github\Blog\blog\node_modules\hexo\lib\theme\view.js:<span class="number">136</span>:<span class="number">50</span>)</span><br><span class="line">    at _View.render (F:\github\Blog\blog\node_modules\hexo\lib\theme\view.js:<span class="number">39</span>:<span class="number">17</span>)</span><br><span class="line">    at F:\github\Blog\blog\node_modules\hexo\lib\hexo\index.js:<span class="number">64</span>:<span class="number">21</span></span><br><span class="line">    at tryCatcher (F:\github\Blog\blog\node_modules\hexo\node_modules\bluebird\js\release\util.js:<span class="number">16</span>:<span class="number">23</span>)</span><br><span class="line">    at F:\github\Blog\blog\node_modules\hexo\node_modules\bluebird\js\release\method.js:<span class="number">15</span>:<span class="number">34</span></span><br><span class="line">    at RouteStream._read (F:\github\Blog\blog\node_modules\hexo\lib\hexo\router.js:<span class="number">30</span>:<span class="number">5</span>)</span><br><span class="line">    at RouteStream.Readable.read (_stream_readable.js:<span class="number">490</span>:<span class="number">10</span>)</span><br><span class="line">    at resume_ (_stream_readable.js:<span class="number">975</span>:<span class="number">12</span>)</span><br><span class="line">    at processTicksAndRejections (internal/<span class="keyword">process</span>/task_queues.js:<span class="number">80</span>:<span class="number">21</span>) &#123;</span><br><span class="line">  path: <span class="string">&#x27;F:\\github\\Blog\\blog\\themes\\Butterfly\\layout\\includes\\head.pug&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p>algolia 插件安裝後還需要配置<br>查看插件文檔配置</p></blockquote><h3 id="頂部出現-Loading"><a href="#頂部出現-Loading" class="headerlink" title="頂部出現 Loading"></a>頂部出現 Loading</h3><blockquote><p>生成前先 hexo clean</p></blockquote><h3 id="點擊中文目錄報錯的問題"><a href="#點擊中文目錄報錯的問題" class="headerlink" title="點擊中文目錄報錯的問題"></a>點擊中文目錄報錯的問題</h3><p>這種情況出現在主題為 <code>3.0.0</code>以下版本，升級主題就行</p><h3 id="Uncaught-ReferenceError-regeneratorRuntime-is-not-defined"><a href="#Uncaught-ReferenceError-regeneratorRuntime-is-not-defined" class="headerlink" title="Uncaught ReferenceError: regeneratorRuntime is not defined"></a>Uncaught ReferenceError: regeneratorRuntime is not defined</h3><p>這是因為使用 babel 壓縮代碼而出現的報錯，具體解決方法查看 <a href="https://github.com/babel/gulp-babel#runtime">babel&#x2F;gulp-babel</a></p><a class="btn-beautify block orange right larger" href="/posts/4073eda/" title="⚡️ Butterfly 文檔(六) 進階教程"><i class="far fa-hand-point-right"></i><span>⚡️ Butterfly 文檔(六) 進階教程</span></a>]]></content>
     
     
     <summary type="html">Butterfly安裝文檔-主題問答</summary>
     
     
     
-    <category term="Docs文檔" scheme="https://butterfly.js.org/categories/Docs%E6%96%87%E6%AA%94/"/>
+    <category term="Docs文檔" scheme="https://vanillaholic.github.io/categories/Docs%E6%96%87%E6%AA%94/"/>
     
     
-    <category term="教程" scheme="https://butterfly.js.org/tags/%E6%95%99%E7%A8%8B/"/>
+    <category term="教程" scheme="https://vanillaholic.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
-    <category term="Hexo" scheme="https://butterfly.js.org/tags/Hexo/"/>
+    <category term="Hexo" scheme="https://vanillaholic.github.io/tags/Hexo/"/>
     
-    <category term="butterfly" scheme="https://butterfly.js.org/tags/butterfly/"/>
+    <category term="butterfly" scheme="https://vanillaholic.github.io/tags/butterfly/"/>
     
-    <category term="主題" scheme="https://butterfly.js.org/tags/%E4%B8%BB%E9%A1%8C/"/>
+    <category term="主題" scheme="https://vanillaholic.github.io/tags/%E4%B8%BB%E9%A1%8C/"/>
     
   </entry>
   
   <entry>
     <title>Butterfly 文檔(四) 標簽外挂</title>
-    <link href="https://butterfly.js.org/posts/ceeb73f/"/>
-    <id>https://butterfly.js.org/posts/ceeb73f/</id>
+    <link href="https://vanillaholic.github.io/posts/ceeb73f/"/>
+    <id>https://vanillaholic.github.io/posts/ceeb73f/</id>
     <published>2020-05-28T14:38:11.000Z</published>
     <updated>2025-02-24T04:00:57.736Z</updated>
     
@@ -503,23 +503,23 @@
     
     
     
-    <category term="Docs文檔" scheme="https://butterfly.js.org/categories/Docs%E6%96%87%E6%AA%94/"/>
+    <category term="Docs文檔" scheme="https://vanillaholic.github.io/categories/Docs%E6%96%87%E6%AA%94/"/>
     
     
-    <category term="教程" scheme="https://butterfly.js.org/tags/%E6%95%99%E7%A8%8B/"/>
+    <category term="教程" scheme="https://vanillaholic.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
-    <category term="Hexo" scheme="https://butterfly.js.org/tags/Hexo/"/>
+    <category term="Hexo" scheme="https://vanillaholic.github.io/tags/Hexo/"/>
     
-    <category term="butterfly" scheme="https://butterfly.js.org/tags/butterfly/"/>
+    <category term="butterfly" scheme="https://vanillaholic.github.io/tags/butterfly/"/>
     
-    <category term="主題" scheme="https://butterfly.js.org/tags/%E4%B8%BB%E9%A1%8C/"/>
+    <category term="主題" scheme="https://vanillaholic.github.io/tags/%E4%B8%BB%E9%A1%8C/"/>
     
   </entry>
   
   <entry>
     <title>Butterfly 文檔(三) 主題配置</title>
-    <link href="https://butterfly.js.org/posts/4aa8abbe/"/>
-    <id>https://butterfly.js.org/posts/4aa8abbe/</id>
+    <link href="https://vanillaholic.github.io/posts/4aa8abbe/"/>
+    <id>https://vanillaholic.github.io/posts/4aa8abbe/</id>
     <published>2020-05-28T14:36:02.000Z</published>
     <updated>2025-02-24T04:00:53.376Z</updated>
     
@@ -530,23 +530,23 @@
     
     
     
-    <category term="Docs文檔" scheme="https://butterfly.js.org/categories/Docs%E6%96%87%E6%AA%94/"/>
+    <category term="Docs文檔" scheme="https://vanillaholic.github.io/categories/Docs%E6%96%87%E6%AA%94/"/>
     
     
-    <category term="教程" scheme="https://butterfly.js.org/tags/%E6%95%99%E7%A8%8B/"/>
+    <category term="教程" scheme="https://vanillaholic.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
-    <category term="Hexo" scheme="https://butterfly.js.org/tags/Hexo/"/>
+    <category term="Hexo" scheme="https://vanillaholic.github.io/tags/Hexo/"/>
     
-    <category term="butterfly" scheme="https://butterfly.js.org/tags/butterfly/"/>
+    <category term="butterfly" scheme="https://vanillaholic.github.io/tags/butterfly/"/>
     
-    <category term="主題" scheme="https://butterfly.js.org/tags/%E4%B8%BB%E9%A1%8C/"/>
+    <category term="主題" scheme="https://vanillaholic.github.io/tags/%E4%B8%BB%E9%A1%8C/"/>
     
   </entry>
   
   <entry>
     <title>Butterfly 文檔(二) 主題頁面</title>
-    <link href="https://butterfly.js.org/posts/dc584b87/"/>
-    <id>https://butterfly.js.org/posts/dc584b87/</id>
+    <link href="https://vanillaholic.github.io/posts/dc584b87/"/>
+    <id>https://vanillaholic.github.io/posts/dc584b87/</id>
     <published>2020-05-28T14:34:41.000Z</published>
     <updated>2025-02-24T04:00:44.183Z</updated>
     
@@ -557,23 +557,23 @@
     
     
     
-    <category term="Docs文檔" scheme="https://butterfly.js.org/categories/Docs%E6%96%87%E6%AA%94/"/>
+    <category term="Docs文檔" scheme="https://vanillaholic.github.io/categories/Docs%E6%96%87%E6%AA%94/"/>
     
     
-    <category term="教程" scheme="https://butterfly.js.org/tags/%E6%95%99%E7%A8%8B/"/>
+    <category term="教程" scheme="https://vanillaholic.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
-    <category term="Hexo" scheme="https://butterfly.js.org/tags/Hexo/"/>
+    <category term="Hexo" scheme="https://vanillaholic.github.io/tags/Hexo/"/>
     
-    <category term="butterfly" scheme="https://butterfly.js.org/tags/butterfly/"/>
+    <category term="butterfly" scheme="https://vanillaholic.github.io/tags/butterfly/"/>
     
-    <category term="主題" scheme="https://butterfly.js.org/tags/%E4%B8%BB%E9%A1%8C/"/>
+    <category term="主題" scheme="https://vanillaholic.github.io/tags/%E4%B8%BB%E9%A1%8C/"/>
     
   </entry>
   
   <entry>
     <title>Butterfly 文檔(一) 快速開始</title>
-    <link href="https://butterfly.js.org/posts/21cfbf15/"/>
-    <id>https://butterfly.js.org/posts/21cfbf15/</id>
+    <link href="https://vanillaholic.github.io/posts/21cfbf15/"/>
+    <id>https://vanillaholic.github.io/posts/21cfbf15/</id>
     <published>2020-05-28T14:31:46.000Z</published>
     <updated>2025-02-24T04:01:05.306Z</updated>
     
@@ -584,23 +584,23 @@
     
     
     
-    <category term="Docs文檔" scheme="https://butterfly.js.org/categories/Docs%E6%96%87%E6%AA%94/"/>
+    <category term="Docs文檔" scheme="https://vanillaholic.github.io/categories/Docs%E6%96%87%E6%AA%94/"/>
     
     
-    <category term="教程" scheme="https://butterfly.js.org/tags/%E6%95%99%E7%A8%8B/"/>
+    <category term="教程" scheme="https://vanillaholic.github.io/tags/%E6%95%99%E7%A8%8B/"/>
     
-    <category term="Hexo" scheme="https://butterfly.js.org/tags/Hexo/"/>
+    <category term="Hexo" scheme="https://vanillaholic.github.io/tags/Hexo/"/>
     
-    <category term="butterfly" scheme="https://butterfly.js.org/tags/butterfly/"/>
+    <category term="butterfly" scheme="https://vanillaholic.github.io/tags/butterfly/"/>
     
-    <category term="主題" scheme="https://butterfly.js.org/tags/%E4%B8%BB%E9%A1%8C/"/>
+    <category term="主題" scheme="https://vanillaholic.github.io/tags/%E4%B8%BB%E9%A1%8C/"/>
     
   </entry>
   
   <entry>
     <title>沒有封面</title>
-    <link href="https://butterfly.js.org/posts/913b2502/"/>
-    <id>https://butterfly.js.org/posts/913b2502/</id>
+    <link href="https://vanillaholic.github.io/posts/913b2502/"/>
+    <id>https://vanillaholic.github.io/posts/913b2502/</id>
     <published>2020-03-09T19:45:41.000Z</published>
     <updated>2025-02-24T02:52:13.967Z</updated>
     
@@ -615,17 +615,17 @@
     
     
     
-    <category term="Demo" scheme="https://butterfly.js.org/categories/Demo/"/>
+    <category term="Demo" scheme="https://vanillaholic.github.io/categories/Demo/"/>
     
     
-    <category term="demo" scheme="https://butterfly.js.org/tags/demo/"/>
+    <category term="demo" scheme="https://vanillaholic.github.io/tags/demo/"/>
     
   </entry>
   
   <entry>
     <title>標籤外掛(Tag Plugins)</title>
-    <link href="https://butterfly.js.org/posts/2df239ce/"/>
-    <id>https://butterfly.js.org/posts/2df239ce/</id>
+    <link href="https://vanillaholic.github.io/posts/2df239ce/"/>
+    <id>https://vanillaholic.github.io/posts/2df239ce/</id>
     <published>2020-01-05T13:41:03.000Z</published>
     <updated>2025-02-24T04:00:05.920Z</updated>
     
@@ -636,17 +636,17 @@
     
     
     
-    <category term="Demo" scheme="https://butterfly.js.org/categories/Demo/"/>
+    <category term="Demo" scheme="https://vanillaholic.github.io/categories/Demo/"/>
     
     
-    <category term="標籤外掛" scheme="https://butterfly.js.org/tags/%E6%A8%99%E7%B1%A4%E5%A4%96%E6%8E%9B/"/>
+    <category term="標籤外掛" scheme="https://vanillaholic.github.io/tags/%E6%A8%99%E7%B1%A4%E5%A4%96%E6%8E%9B/"/>
     
   </entry>
   
   <entry>
     <title>Markdown Style test</title>
-    <link href="https://butterfly.js.org/posts/89757140/"/>
-    <id>https://butterfly.js.org/posts/89757140/</id>
+    <link href="https://vanillaholic.github.io/posts/89757140/"/>
+    <id>https://vanillaholic.github.io/posts/89757140/</id>
     <published>2018-07-24T15:31:06.000Z</published>
     <updated>2025-02-24T02:52:13.967Z</updated>
     
@@ -657,12 +657,12 @@
     
     
     
-    <category term="Markdown" scheme="https://butterfly.js.org/categories/Markdown/"/>
+    <category term="Markdown" scheme="https://vanillaholic.github.io/categories/Markdown/"/>
     
     
-    <category term="highlight" scheme="https://butterfly.js.org/tags/highlight/"/>
+    <category term="highlight" scheme="https://vanillaholic.github.io/tags/highlight/"/>
     
-    <category term="Bar" scheme="https://butterfly.js.org/tags/Bar/"/>
+    <category term="Bar" scheme="https://vanillaholic.github.io/tags/Bar/"/>
     
   </entry>
   
