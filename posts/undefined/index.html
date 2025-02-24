@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://vanillaholic.github.io/image/CFAR/2d-cfar.png">
 <meta property="article:published_time" content="2025-02-24T11:26:50.000Z">
-<meta property="article:modified_time" content="2025-02-24T11:53:59.516Z">
+<meta property="article:modified_time" content="2025-02-24T12:04:12.591Z">
 <meta property="article:author" content="Zane">
 <meta property="article:tag" content="声纳">
 <meta property="article:tag" content="信号处理">
@@ -19,7 +19,7 @@
   "url": "https://vanillaholic.github.io/posts/undefined/",
   "image": "https://vanillaholic.github.io/image/CFAR/2d-cfar.png",
   "datePublished": "2025-02-24T11:26:50.000Z",
-  "dateModified": "2025-02-24T11:53:59.516Z",
+  "dateModified": "2025-02-24T12:04:12.591Z",
   "author": [
     {
       "@type": "Person",
@@ -140,7 +140,7 @@
   algolia: undefined,
   localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
   translate: {"defaultEncoding":1,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
-  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
   copy: {
     success: '复制成功',
     error: '复制失败',
@@ -215,17 +215,17 @@
 </tr>
 </tbody></table>
 <p>一维CFAR检测流程图如下所示</p>
-<p><img src= "/img/loading.gif" data-lazy-src="/./image/CFAR/1d-cafr.png" alt="一维CFAR检测图">{width&#x3D;67%}</p>
+<p><img src= "/img/loading.gif" data-lazy-src="/./image/CFAR/1d-cafr.png" alt="一维CFAR检测图"></p>
 <h2 id="二、距离多普勒矩阵（Range-Doppler-Matrix，RDM"><a href="#二、距离多普勒矩阵（Range-Doppler-Matrix，RDM" class="headerlink" title="二、距离多普勒矩阵（Range-Doppler Matrix，RDM)"></a>二、距离多普勒矩阵（Range-Doppler Matrix，RDM)</h2><p>在检测过程中，除了要知道到目标的距离信息以外，还要知道目标的速度信息，因此1D-CFAR不再满足我们的要求，而是需要采用2D-CAFR。而2D-CAFR处理的对象就是距离多普勒矩阵（Range-Doppler Matrix），RDM的形成过程如下所示</p>
-<p><img src= "/img/loading.gif" data-lazy-src="/./image/CFAR/RDM.png" alt="RDM图的形成">{width&#x3D;60%}</p>
+<p><img src= "/img/loading.gif" data-lazy-src="/./image/CFAR/RDM.png" alt="RDM图的形成"></p>
 <p>2D-CFAR是对两个维度同时检测，</p>
-<p><img src= "/img/loading.gif" data-lazy-src="/./image/CFAR/2d-cfar.png" alt="第一种2D-CFAR检测">{width&#x3D;60%}</p>
+<p><img src= "/img/loading.gif" data-lazy-src="/./image/CFAR/2d-cfar.png" alt="第一种2D-CFAR检测"></p>
 <p>还有一种方法是两次CFAR，即先对某一个维度做一次，然后又对另一个维度做一次，总共两次CFAR。比如先对速度维做一次CA-CFAR，然后对距离维做一次OS-CFAR，如图7所示。这样做的目的可以减少计算量，节约计算时间。因为当检测出具有速度的目标后，只针对动目标检测要比检测全部元素点要快速。</p>
-<p><img src= "/img/loading.gif" data-lazy-src="/./image/CFAR/2d-cfar2.png" alt="第二种2D-CFAR检测">{width&#x3D;50%}</p>
+<p><img src= "/img/loading.gif" data-lazy-src="/./image/CFAR/2d-cfar2.png" alt="第二种2D-CFAR检测"></p>
 <h2 id="三、二维CFAR（2D-CFAR）算法原理与仿真"><a href="#三、二维CFAR（2D-CFAR）算法原理与仿真" class="headerlink" title="三、二维CFAR（2D-CFAR）算法原理与仿真"></a>三、二维CFAR（2D-CFAR）算法原理与仿真</h2><p>前面阐述了一些概念性内容，下面是本文的核心部分。</p>
 <p>如图所示，是2D-CFAR的原理模型。我们可以设计一个循环程序，通过在参考单元和保护单元的边缘提供边距，使 CUT 在距离多普勒图上滑动。对于每次迭代，求所有参考单元中所有信号电平的和并取平均。接下来，将 CUT （被检测单元）下的信号与此阈值进行比较。如果CUT &gt; 阈值，则认为是目标信号，并为其分配值 1，否则认为是噪声信号，并将其置为0。（类似神经网络里的conv2D有木有？）</p>
 <p>上述过程将生成一个阈值块，如图中绿色和红色组成的区域。因为 CUT 不能位于RDM谱矩阵的边缘，故而该阈值块小于距离多普勒图， 因此存在一部分点不会被检测到，但需要对这部分未检测到的点进行处理，关于这个问题后面会讨论。</p>
-<p><img src= "/img/loading.gif" data-lazy-src="/./image/CFAR/image-20250224175810961.png" alt="2D-CFAR原理">{width&#x3D;50%}</p>
+<p><img src= "/img/loading.gif" data-lazy-src="/./image/CFAR/image-20250224175810961.png" alt="2D-CFAR原理"></p>
 <h2 id="四、仿真"><a href="#四、仿真" class="headerlink" title="四、仿真"></a>四、仿真</h2><ol>
 <li>生成FMCW信号</li>
 </ol>
