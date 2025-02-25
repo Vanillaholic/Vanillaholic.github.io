@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://vanillaholic.github.io/2024/05/20/hello-world/</loc>
+    <loc>https://vanillaholic.github.io/2025/02/25/DL-CFAR%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/</loc>
     
     <lastmod>2025-02-25</lastmod>
     
@@ -12,6 +12,24 @@
   
   <url>
     <loc>https://vanillaholic.github.io/2024/05/21/mdhelp/</loc>
+    
+    <lastmod>2025-02-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://vanillaholic.github.io/2025/02/25/%E5%9B%9B%E7%A7%8D%E9%80%9A%E4%BF%A1%E5%BA%8F%E5%88%97/</loc>
+    
+    <lastmod>2025-02-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://vanillaholic.github.io/2024/05/20/hello-world/</loc>
     
     <lastmod>2025-02-25</lastmod>
     
@@ -30,24 +48,6 @@
   
   <url>
     <loc>https://vanillaholic.github.io/2025/02/24/2D-CFAR%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/</loc>
-    
-    <lastmod>2025-02-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://vanillaholic.github.io/2025/02/25/DL-CFAR%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/</loc>
-    
-    <lastmod>2025-02-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://vanillaholic.github.io/2025/02/25/%E5%9B%9B%E7%A7%8D%E9%80%9A%E4%BF%A1%E5%BA%8F%E5%88%97/</loc>
     
     <lastmod>2025-02-25</lastmod>
     
@@ -159,14 +159,14 @@
   </url>
   
   <url>
-    <loc>https://vanillaholic.github.io/categories/%E6%95%99%E5%AD%A6/%E5%8F%91%E5%B8%83%E5%8D%9A%E5%AE%A2/</loc>
+    <loc>https://vanillaholic.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2025-02-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://vanillaholic.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>https://vanillaholic.github.io/categories/%E6%95%99%E5%AD%A6/%E5%8F%91%E5%B8%83%E5%8D%9A%E5%AE%A2/</loc>
     <lastmod>2025-02-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
