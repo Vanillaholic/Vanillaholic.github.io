@@ -1,0 +1,590 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>DL-CFAR检测算法 | Zane's Blog</title><meta name="author" content="Zane"><meta name="copyright" content="Zane"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="利用深度学习进行CFAR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DL-CFAR检测算法">
+<meta property="og:url" content="https://vanillaholic.github.io/2025/02/25/DL-CFAR%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="Zane&#39;s Blog">
+<meta property="og:description" content="利用深度学习进行CFAR">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.helloimg.com/i/2025/02/26/67be7bf9d8d64.png">
+<meta property="article:published_time" content="2025-02-25T09:54:06.000Z">
+<meta property="article:modified_time" content="2025-02-28T18:25:23.777Z">
+<meta property="article:author" content="Zane">
+<meta property="article:tag" content="雷达&#x2F;声纳">
+<meta property="article:tag" content="信号处理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.helloimg.com/i/2025/02/26/67be7bf9d8d64.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "DL-CFAR检测算法",
+  "url": "https://vanillaholic.github.io/2025/02/25/DL-CFAR%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/",
+  "image": "https://www.helloimg.com/i/2025/02/26/67be7bf9d8d64.png",
+  "datePublished": "2025-02-25T09:54:06.000Z",
+  "dateModified": "2025-02-28T18:25:23.777Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Zane",
+      "url": "https://vanillaholic.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/liu13.png"><link rel="canonical" href="https://vanillaholic.github.io/2025/02/25/DL-CFAR%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/index.html"><link rel="preconnect" href="https://jsd.012700.xyz"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><meta name="google-site-verification" content="NdIUXAOVyGnnBhcrip0ksCawbdAzT0hlBZDE9u4jx6k"/><meta name="msvalidate.01" content="567E47D75E8DCF1282B9623AD914701E"/><meta name="baidu-site-verification" content="code-pE5rnuxcfD"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://jsd.012700.xyz/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://jsd.012700.xyz/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+          
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            mediaQueryDark.addEventListener('change', () => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":1,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Zane","link":"链接: ","source":"来源: Zane's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://jsd.012700.xyz/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'DL-CFAR检测算法',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="preconnect" href="https://jsd.012700.xyz"><link href="/self/btf.css" rel="stylesheet"><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Zane's Blog" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load', preloader.endLoading)
+
+  if (true) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "/img/loading.gif" data-lazy-src="/img/liu13.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-compass"></i><span> 页面</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/talking/"><i class="fa-fw fas fa-comment-dots"></i><span> 说说</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-thumbs-up"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 文档</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/posts/4aa8abbe/"><span> 📌自我介绍</span></a></li><li><a class="site-page child" href="/posts/dc584b87/"><span> 📑知识分享</span></a></li><li><a class="site-page child" href="/posts/4aa8abbe/"><span> 🛠工具分享</span></a></li><li><a class="site-page child" href="/posts/3574d402/"><span> 🖋文章投稿</span></a></li><li><a class="site-page child" href="/posts/98d20436/"><span> ❓问题互助</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-language"></i><span> 语言</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/en/"><i class="fa-fw fas fa-e"></i><span> English(in building...)</span></a></li><li><a class="site-page child" href="/"><i class="fa-fw fas fa-c"></i><span> 中文</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://img3.wallspic.com/crops/2/9/8/1/7/171892/171892-lu_xing-cheng_shi-li_cheng_bei-cheng_shi_jing_guan-3840x2160.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "/img/loading.gif" data-lazy-src="/./img/liu13.png" alt="Logo"><span class="site-name">Zane's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">DL-CFAR检测算法</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-compass"></i><span> 页面</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/talking/"><i class="fa-fw fas fa-comment-dots"></i><span> 说说</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-thumbs-up"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 文档</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/posts/4aa8abbe/"><span> 📌自我介绍</span></a></li><li><a class="site-page child" href="/posts/dc584b87/"><span> 📑知识分享</span></a></li><li><a class="site-page child" href="/posts/4aa8abbe/"><span> 🛠工具分享</span></a></li><li><a class="site-page child" href="/posts/3574d402/"><span> 🖋文章投稿</span></a></li><li><a class="site-page child" href="/posts/98d20436/"><span> ❓问题互助</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-language"></i><span> 语言</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/en/"><i class="fa-fw fas fa-e"></i><span> English(in building...)</span></a></li><li><a class="site-page child" href="/"><i class="fa-fw fas fa-c"></i><span> 中文</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">DL-CFAR检测算法<a class="post-edit-link" href="https://github.com/vanillaholic/Blog-demo/edit/main/source/_posts/DL-CFAR检测算法.md" rel="external nofollow noreferrer" title="编辑" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2025-02-25T09:54:06.000Z" title="发表于 2025-02-25 17:54:06">2025-02-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/">信号处理</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/CFAR/">CFAR</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="umamiPV" data-path="/2025/02/25/DL-CFAR%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="论文随笔-利用深度学习进行恒虚警检测">论文随笔-利用深度学习进行恒虚警检测</h2>
+<h2 id="引言">引言</h2>
+<p>之前已经提及，常用的CFAR一共有四种方法，但是都有一定的限制，CA-CFAR[1] 利用参考单元功率的算术平均值作为噪声水平估计值。它的一个变种，即单元平均恒定虚警率（GOCA-CFAR）[2]，可以提高原始方案的虚警率。虽然这两种方案在同质场景中表现良好，但在多目标场景中，它们的性能会因错误的噪声水平估计而下降。为了提高多目标场景下的性能，有人提出了最小单元平均 CFAR（SOCA-CFAR）[3]。然而，它在密集多目标场景中并不能显著提高性能。有序统计 CFAR（OS-CFAR）[4] 可以处理这类问题，但它带来了显著的计算复杂性.</p>
+<h2 id="一、复习">一、复习</h2>
+<h3 id="1-RDM的获取">1.RDM的获取</h3>
+<p>以 FMCW 雷达为例，发射一个由 M 个啁啾（啁啾是频率随时间线性增加的正弦波）组成的帧，然后以逐个啁啾的方式将发射和接收的啁啾混合成 M 个中频（IF）信号。然后，我们在每个啁啾信号中提取 N 个中频信号样本，并使用预定的采样周期。如图所示，CCM 由这些逐个啁啾采样的级联列构成。</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://www.helloimg.com/i/2025/02/26/67be7bf99ac06.png" alt="RDM生成.png"></p>
+<p>对信道系数矩阵CCM进行二维FFT，就能获得RDM图。公式如下</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>RDM</mtext><mo stretchy="false">(</mo><mi>n</mi><mo separator="true">,</mo><mi>m</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mrow><mo fence="true">∣</mo><mn>2</mn><mtext>D FFT</mtext><mo stretchy="false">(</mo><mi mathvariant="bold">H</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>n</mi><mo separator="true">,</mo><mi>m</mi><mo stretchy="false">)</mo><mo fence="true">∣</mo></mrow><mn>2</mn></msup><mspace linebreak="newline"></mspace><mo>=</mo><msup><mrow><mo fence="true">∣</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></munderover><munderover><mo>∑</mo><mrow><mi>l</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>M</mi><mo>−</mo><mn>1</mn></mrow></munderover><mo stretchy="false">(</mo><mi mathvariant="bold">H</mi><msub><mo stretchy="false">)</mo><mrow><mi>k</mi><mo separator="true">,</mo><mi>l</mi></mrow></msub><msup><mi>e</mi><mrow><mi>j</mi><mn>2</mn><mi>π</mi><mi>l</mi><mi>m</mi><mi mathvariant="normal">/</mi><mi>M</mi></mrow></msup><msup><mi>e</mi><mrow><mi>j</mi><mn>2</mn><mi>π</mi><mi>k</mi><mi>n</mi><mi mathvariant="normal">/</mi><mi>N</mi></mrow></msup><mo fence="true">∣</mo></mrow><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\text{RDM}(n,m) = \left| 2\text{D FFT}(\mathbf{H})(n,m) \right|^2 \\= \left| \sum_{k=0}^{N-1} \sum_{l=0}^{M-1} (\mathbf{H})_{k,l} e^{j2\pi lm/M} e^{j2\pi kn/N} \right|^2
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">RDM</span></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">m</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.204em;vertical-align:-0.25em;"></span><span class="minner"><span class="minner"><span class="mopen delimcenter" style="top:0em;">∣</span><span class="mord">2</span><span class="mord text"><span class="mord">D FFT</span></span><span class="mopen">(</span><span class="mord mathbf">H</span><span class="mclose">)</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">m</span><span class="mclose">)</span><span class="mclose delimcenter" style="top:0em;">∣</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.954em;"><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:3.3345em;vertical-align:-1.3021em;"></span><span class="minner"><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.75em;"><span style="top:-3.75em;"><span class="pstrut" style="height:5em;"></span><span style="width:0.333em;height:3.000em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.333em" height="3.000em" viewBox="0 0 333 3000"><path d="M145 15 v585 v1800 v585 c2.667,10,9.667,15,21,15
+c10,0,16.667,-5,20,-15 v-585 v-1800 v-585 c-2.667,-10,-9.667,-15,-21,-15
+c-10,0,-16.667,5,-20,15z M188 15 H145 v585 v1800 v585 h43z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.25em;"><span></span></span></span></span></span></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8283em;"><span style="top:-1.8479em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.3021em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8283em;"><span style="top:-1.8479em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">M</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.3021em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathbf">H</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.938em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span><span class="mord mtight">2</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">π</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">m</span><span class="mord mtight">/</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">M</span></span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.938em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span><span class="mord mtight">2</span><span class="mord mathnormal mtight">πkn</span><span class="mord mtight">/</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span></span></span></span></span></span></span></span></span><span class="mclose"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.75em;"><span style="top:-3.75em;"><span class="pstrut" style="height:5em;"></span><span style="width:0.333em;height:3.000em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.333em" height="3.000em" viewBox="0 0 333 3000"><path d="M145 15 v585 v1800 v585 c2.667,10,9.667,15,21,15
+c10,0,16.667,-5,20,-15 v-585 v-1800 v-585 c-2.667,-10,-9.667,-15,-21,-15
+c-10,0,-16.667,5,-20,15z M188 15 H145 v585 v1800 v585 h43z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.25em;"><span></span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:2.0323em;"><span style="top:-4.2812em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p>在进行RDM处理后，会获取<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mi>l</mi><mi>o</mi><mi>g</mi><mn>10</mn><mo stretchy="false">(</mo><mi>N</mi><mo>×</mo><mi>M</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">10log10(N\times M)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">10</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord">10</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mclose">)</span></span></span></span>的增益，以便于识别目标 。</p>
+<h3 id="2-CFAR">2.CFAR</h3>
+<p>一种判断是否存在目标，而2D-CFAR不仅能获取方位信息，还能同时获取速度信息</p>
+<h2 id="二、DL-CFAR介绍">二、DL-CFAR介绍</h2>
+<p>设要处理的RDM大小是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>N</mi><mi>w</mi></msub><mo>×</mo><msub><mi>M</mi><mi>w</mi></msub></mrow><annotation encoding="application/x-tex">{N_w}\times{M_w}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02691em;">w</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02691em;">w</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>,首先将RDM截断(此处可以看作目标+噪声)，然后输入进网络，要注意的是，神经网络并不是进行目标识别，而是估计出所截断的RDM的噪声水平。</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://www.helloimg.com/i/2025/02/26/67be7bf9d8d64.png" alt="DL模型.png"></p>
+<h2 id="三、实现过程">三、实现过程</h2>
+<h3 id="1-数据预处理">1.数据预处理</h3>
+<p>截断处理原因：由于归一化的原因，噪声接近于0</p>
+<h3 id="2-网络结构">2. 网络结构</h3>
+<p>如图所示，自定义的残差块+自定义的残差块+全连接层+全连接层+激活函数ReLU</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://www.helloimg.com/i/2025/02/26/67be7bf967233.png" alt="网络结构.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">DLCFAR</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>(DLCFAR, <span class="variable language_">self</span>).__init__()</span><br><span class="line">        <span class="variable language_">self</span>.res_block1 = ResidualBlock(<span class="number">1</span>)</span><br><span class="line">        <span class="variable language_">self</span>.res_block2 = ResidualBlock(<span class="number">1</span>)</span><br><span class="line">        <span class="variable language_">self</span>.flatten = nn.Flatten()</span><br><span class="line">        <span class="variable language_">self</span>.fc1 = nn.Linear(<span class="number">16</span> * <span class="number">16</span> * <span class="number">1</span>, <span class="number">512</span>)  <span class="comment"># Assuming input size is (16, 16, 1)</span></span><br><span class="line">        <span class="variable language_">self</span>.fc2 = nn.Linear(<span class="number">512</span>, <span class="number">256</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = <span class="variable language_">self</span>.res_block1(x)</span><br><span class="line">        x = F.prelu(x)  <span class="comment"># PReLU activation</span></span><br><span class="line">        x = <span class="variable language_">self</span>.res_block2(x)</span><br><span class="line">        x = F.prelu(x)  <span class="comment"># PReLU activation</span></span><br><span class="line">        x = <span class="variable language_">self</span>.flatten(x)</span><br><span class="line">        x = <span class="variable language_">self</span>.fc1(x)</span><br><span class="line">        x = F.relu(x)</span><br><span class="line">        x = <span class="variable language_">self</span>.fc2(x)</span><br><span class="line">        <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+<p>该网络特点：设计神经网络时不包含任何池化层，因为希望保留 RDM的所有信息，以精确估计噪声水平。</p>
+<h3 id="3-训练方式">3.训练方式</h3>
+<ul>
+<li>损失函数：MSE</li>
+<li>优化器：Adam</li>
+<li>初始学习率：0.00005</li>
+<li>batch_size:128</li>
+<li>训练次数：500</li>
+<li>训练数据集的样本数为 40000 ，验证和测试数据集的样本数均为 200000</li>
+</ul>
+<h3 id="4-性能">4.性能</h3>
+<p>在较高信噪比和较低信噪比的时候，性能会有所下降。下图为测试结果偏差和标准差，加粗的是该组中性能能好的。</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://www.helloimg.com/i/2025/02/26/67be7c0d1a430.png" alt="性能.png"></p>
+<p>代码：（原作者<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Vanillaholic/DL_CFAR_data/commits?author=paulchen2713">paulchen2713</a>）</p>
+<p>数据生成：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Vanillaholic/DL_CFAR_data">https://github.com/Vanillaholic/DL_CFAR_data</a></p>
+<p>目标检测：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Vanillaholic/DL_CFAR">https://github.com/Vanillaholic/DL_CFAR</a></p>
+<p>参考文献:</p>
+<p>[1] C. R. Barrett, Adaptive thresholding and automatic detection.Boston, MA: Springer US, 1987, pp. 368–393. [Online]. Available:<br>
+<a target="_blank" rel="noopener external nofollow noreferrer" href="https://doi.org/10.1007/978-1-4613-1971-912">https://doi.org/10.1007/978-1-4613-1971-912</a></p>
+<p>[2] V. G. Hansen and J. H. Sawyers, “Detectability loss due to ”greatest of”selection in a cell-averaging cfar,” IEEE Trans. Aerosp. Electron. Syst.,vol. AES-16, no. 1, pp. 115–118, Jan. 1980</p>
+<p>[3] G. V. Trunk, “Range resolution of targets using automatic detectors,”IEEE Trans. Aeros. Electron. Syst., vol. AES-14, no. 5, pp. 750–755,Sept. 1978.</p>
+<p>[4] J. T. Rickard and G. M. Dillard, “Adaptive detection algorithms formultiple-target situations,” IEEE Trans. Aeros. Electron. Syst., vol. AES-13, no. 4, pp. 338–343, July 1977.</p>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTU3NTEyMDQ0OF19
+--></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://vanillaholic.github.io">Zane</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://vanillaholic.github.io/2025/02/25/DL-CFAR%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/">https://vanillaholic.github.io/2025/02/25/DL-CFAR%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://vanillaholic.github.io" target="_blank">Zane's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E9%9B%B7%E8%BE%BE-%E5%A3%B0%E7%BA%B3/">雷达/声纳</a><a class="post-meta__tags" href="/tags/%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/">信号处理</a></div><div class="post-share"><div class="social-share" data-image="https://www.helloimg.com/i/2025/02/26/67be7bf9d8d64.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://jsd.012700.xyz/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://jsd.012700.xyz/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat_receive_payment.png" target="_blank"><img class="post-qr-code-img" src= "/img/loading.gif" data-lazy-src="/img/wechat_receive_payment.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li></ul></div></div><div class="ads-wrap"><ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-fb+5w+4e-db+86" data-ad-client="ca-pub-8919908724705274" data-ad-slot="5978969231"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/02/25/%E5%9B%9B%E7%A7%8D%E9%80%9A%E4%BF%A1%E5%BA%8F%E5%88%97/" title="四种通信序列"><img class="cover" src= "/img/loading.gif" data-lazy-src="https://www.helloimg.com/i/2025/02/26/67be7bdf6717b.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">四种通信序列</div></div><div class="info-2"><div class="info-item-1">一、Costas序列（常用在跳频中） 在数学中，Costas 数组可以在几何上视为 n 个点的集合，每个点位于 n×n 方块平铺中一个正方形的中心，使得每一行或每一列仅包含一个点，并且每对点之间的 n(n − 1)/2 个位移向量都是不同的。这导致了一个理想的“图钉”自模糊函数，使得这些数组在声纳和雷达等应用中非常有用。可以由对数Welch方法构建。[4] 下图是N=4的costas矩阵   这个代码老师没给，仿真时直接上网查输进去的QAQ，但是给了一本书《Radar Signals》(Nadav Leavnopn, Eli Mozaeeson)（这本书年龄比我爷爷都大……），本人用了，一堆报错，真服了……以下是修改改后的代码[10] 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748function positions = costas(N)% 修复后的函数，修正本原元判断逻辑positions = [];if isprime(N+1)...</div></div></div></a><a class="pagination-related" href="/2025/02/26/%E6%A8%A1%E7%B3%8A%E5%87%BD%E6%95%B0/" title="模糊函数"><img class="cover" src= "/img/loading.gif" data-lazy-src="https://img3.wallspic.com/crops/2/9/8/1/7/171892/171892-lu_xing-cheng_shi-li_cheng_bei-cheng_shi_jing_guan-3840x2160.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">模糊函数</div></div><div class="info-2"><div class="info-item-1">注意:本文章的模糊的糊为糊,渲染器是在改不过来了，所以将就看吧 介绍   窄带模糊函数 在脉冲雷达和声纳信号处理过程中，模糊函数是传播延迟τ\tauτ和多普勒频率fff, χ(τ,f)\chi(\tau,f)χ(τ,f)的二维函数。它表示由于接收机匹配滤波器[1] χ(τ,f)=∫−∞∞s(t)s∗(t−τ)ei2πftdt\chi(\tau,f)=\int_{-\infty}^{\infty}s(t)s^{*}(t - \tau)e^{i2\pi ft}dt χ(τ,f)=∫−∞∞​s(t)s∗(t−τ)ei2πftdt   宽带模糊函数给出的定义为[2] [6] WBss(τ,α)=∣α∣∫−∞∞s(t)s∗(α(t−τ))dtWB_{ss}(\tau,\alpha)=\sqrt{|\alpha|}\int_{-\infty}^{\infty}s(t)s^{*}(\alpha(t - \tau))dt  WBss​(τ,α)=∣α∣​∫−∞∞​s(t)s∗(α(t−τ))dt 其中...</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "/img/loading.gif" data-lazy-src="/img/liu13.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Zane</div><div class="author-info-description">我很丰富,无法简介</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/vanillaholic"><i class="fab fa-github"></i><span>GitHub 主页</span></a><div class="card-info-social-icons"><a class="social-icon" href="mailto:mrsingorxing@gmail.com" rel="external nofollow noreferrer" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="订阅"><i class="fas fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如果想联系我你可以留言，或者添加我的微信（扫码或者点击图片跳转） <div class="aside-qrcode" > <a href="https://u.wechat.com/MK52i9Top3CnpbBNLCHXzFQ?s=2" rel="external nofollow noreferrer" target="_blank"> <img src= "/img/loading.gif" data-lazy-src="/img/wechat.jpg" title="wechat 二维码"></a> <a href="https://t.me/zanesing" rel="external nofollow noreferrer" target="_blank"> <img src= "/img/loading.gif" data-lazy-src="/img/tg.jpg" title="Telegram 二维码"></a> </div></div></div><div class="card-widget card-docs card-categories"><div class="item-headline"><i class="fas fa-car-side"></i><span>文档目录</span></div><div class="item-content"><ul class=card-category-list>
+  <li class=card-category-list-item><a class=card-category-list-link href=/posts/4aa8abbe/ >📌 自我介绍</a></li>
+  <li class=card-category-list-item><a class=card-category-list-link href=/posts/dc584b87/ >📑 知识分享</a></li>
+  <li class=card-category-list-item><a class=card-category-list-link href=/posts/4aa8abbe/ >🛠 工具分享</a></li>
+  <li class=card-category-list-item><a class=card-category-list-link href=/posts/3574d402/ >🖋 文章投稿</a></li>
+  <li class=card-category-list-item><a class=card-category-list-link href=/posts/98d20436/ >❓ 问题互助</a></li>
+</ul>
+</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E9%9A%8F%E7%AC%94-%E5%88%A9%E7%94%A8%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%BF%9B%E8%A1%8C%E6%81%92%E8%99%9A%E8%AD%A6%E6%A3%80%E6%B5%8B"><span class="toc-number">1.</span> <span class="toc-text">论文随笔-利用深度学习进行恒虚警检测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">2.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%A4%8D%E4%B9%A0"><span class="toc-number">3.</span> <span class="toc-text">一、复习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-RDM%E7%9A%84%E8%8E%B7%E5%8F%96"><span class="toc-number">3.1.</span> <span class="toc-text">1.RDM的获取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-CFAR"><span class="toc-number">3.2.</span> <span class="toc-text">2.CFAR</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81DL-CFAR%E4%BB%8B%E7%BB%8D"><span class="toc-number">4.</span> <span class="toc-text">二、DL-CFAR介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B"><span class="toc-number">5.</span> <span class="toc-text">三、实现过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-number">5.1.</span> <span class="toc-text">1.数据预处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84"><span class="toc-number">5.2.</span> <span class="toc-text">2. 网络结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%AE%AD%E7%BB%83%E6%96%B9%E5%BC%8F"><span class="toc-number">5.3.</span> <span class="toc-text">3.训练方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%80%A7%E8%83%BD"><span class="toc-number">5.4.</span> <span class="toc-text">4.性能</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/02/26/%E6%A8%A1%E7%B3%8A%E5%87%BD%E6%95%B0/" title="模糊函数"><img src= "/img/loading.gif" data-lazy-src="https://img3.wallspic.com/crops/2/9/8/1/7/171892/171892-lu_xing-cheng_shi-li_cheng_bei-cheng_shi_jing_guan-3840x2160.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="模糊函数"/></a><div class="content"><a class="title" href="/2025/02/26/%E6%A8%A1%E7%B3%8A%E5%87%BD%E6%95%B0/" title="模糊函数">模糊函数</a><time datetime="2025-02-26T06:10:12.000Z" title="发表于 2025-02-26 14:10:12">2025-02-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/25/DL-CFAR%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/" title="DL-CFAR检测算法"><img src= "/img/loading.gif" data-lazy-src="https://www.helloimg.com/i/2025/02/26/67be7bf9d8d64.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DL-CFAR检测算法"/></a><div class="content"><a class="title" href="/2025/02/25/DL-CFAR%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/" title="DL-CFAR检测算法">DL-CFAR检测算法</a><time datetime="2025-02-25T09:54:06.000Z" title="发表于 2025-02-25 17:54:06">2025-02-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/25/%E5%9B%9B%E7%A7%8D%E9%80%9A%E4%BF%A1%E5%BA%8F%E5%88%97/" title="四种通信序列"><img src= "/img/loading.gif" data-lazy-src="https://www.helloimg.com/i/2025/02/26/67be7bdf6717b.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="四种通信序列"/></a><div class="content"><a class="title" href="/2025/02/25/%E5%9B%9B%E7%A7%8D%E9%80%9A%E4%BF%A1%E5%BA%8F%E5%88%97/" title="四种通信序列">四种通信序列</a><time datetime="2025-02-25T02:16:00.000Z" title="发表于 2025-02-25 10:16:00">2025-02-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/24/2D-CFAR%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/" title="2D-CFAR检测算法"><img src= "/img/loading.gif" data-lazy-src="https://www.helloimg.com/i/2025/02/26/67be7bf9bdf49.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2D-CFAR检测算法"/></a><div class="content"><a class="title" href="/2025/02/24/2D-CFAR%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/" title="2D-CFAR检测算法">2D-CFAR检测算法</a><time datetime="2025-02-24T11:26:50.000Z" title="发表于 2025-02-24 19:26:50">2025-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/24/%E6%81%92%E8%99%9A%E8%AD%A6%E6%A3%80%E6%B5%8B%E5%99%A8CFAR/" title="恒虚警检测器CFAR"><img src= "/img/loading.gif" data-lazy-src="https://www.helloimg.com/i/2025/02/26/67be7c0d1657b.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="恒虚警检测器CFAR"/></a><div class="content"><a class="title" href="/2025/02/24/%E6%81%92%E8%99%9A%E8%AD%A6%E6%A3%80%E6%B5%8B%E5%99%A8CFAR/" title="恒虚警检测器CFAR">恒虚警检测器CFAR</a><time datetime="2025-02-24T11:16:00.000Z" title="发表于 2025-02-24 19:16:00">2025-02-24</time></div></div></div></div><div class="card-widget ads-wrap"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8919908724705274" data-ad-slot="8108145410" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div></div></div></main><footer id="footer" style="background-image: url(https://img3.wallspic.com/crops/2/9/8/1/7/171892/171892-lu_xing-cheng_shi-li_cheng_bei-cheng_shi_jing_guan-3840x2160.jpg);"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By Zane</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.3</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://jsd.012700.xyz/npm/hexo-theme-butterfly/source/js/utils.min.js"></script><script src="https://jsd.012700.xyz/npm/hexo-theme-butterfly/source/js/main.min.js"></script><script src="https://jsd.012700.xyz/npm/hexo-theme-butterfly/source/js/tw_cn.min.js"></script><script src="https://jsd.012700.xyz/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://jsd.012700.xyz/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://jsd.012700.xyz/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://jsd.012700.xyz/npm/katex/dist/katex.min.css')
+    if (true) {
+      await btf.getScript('https://jsd.012700.xyz/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script><script>(() => {
+  const runMermaid = ele => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    ele.forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = `%%{init:{ 'theme':'${theme}'}}%%\n`
+      const mermaidID = `mermaid-${index}`
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+      const renderMermaid = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
+
+  const loadMermaid = () => {
+    if (true) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://jsd.012700.xyz/npm/mermaid/dist/mermaid.min.js').then(runMermaidFn)
+  }
+
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const applyThemeDefaultsConfig = theme => {
+    if (theme === 'dark-mode') {
+      Chart.defaults.color = "rgba(255, 255, 255, 0.8)"
+      Chart.defaults.borderColor = "rgba(255, 255, 255, 0.2)"
+      Chart.defaults.scale.ticks.backdropColor = "transparent"
+    } else {
+      Chart.defaults.color = "rgba(0, 0, 0, 0.8)"
+      Chart.defaults.borderColor = "rgba(0, 0, 0, 0.1)"
+      Chart.defaults.scale.ticks.backdropColor = "transparent"
+    }
+  }
+
+  // Recursively traverse the config object and automatically apply theme-specific color schemes
+  const applyThemeConfig = (obj, theme) => {
+    if (typeof obj !== 'object' || obj === null) return
+
+    Object.keys(obj).forEach(key => {
+      const value = obj[key]
+      // If the property is an object and has theme-specific options, apply them
+      if (typeof value === 'object' && value !== null) {
+        if (value[theme]) {
+          obj[key] = value[theme] // Apply the value for the current theme
+        } else {
+          // Recursively process child objects
+          applyThemeConfig(value, theme)
+        }
+      }
+    })
+  }
+
+  const runChartJS = ele => {
+    window.loadChartJS = true
+
+    Array.from(ele).forEach((item, index) => {
+      const chartSrc = item.firstElementChild
+      const chartID = item.getAttribute('data-chartjs-id') || ('chartjs-' + index) // Use custom ID or default ID
+      const width = item.getAttribute('data-width')
+      const existingCanvas = document.getElementById(chartID)
+
+      // If a canvas already exists, remove it to avoid rendering duplicates
+      if (existingCanvas) {
+          existingCanvas.parentNode.remove()
+      }
+
+      const chartDefinition = chartSrc.textContent
+      const canvas = document.createElement('canvas')
+      canvas.id = chartID
+
+      const div = document.createElement('div')
+      div.className = 'chartjs-wrap'
+
+      if (width) {
+        div.style.width = width
+      }
+
+      div.appendChild(canvas)
+      chartSrc.insertAdjacentElement('afterend', div)
+
+      const ctx = document.getElementById(chartID).getContext('2d')
+
+      const config = JSON.parse(chartDefinition)
+
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark-mode' : 'light-mode'
+
+      // Set default styles (initial setup)
+      applyThemeDefaultsConfig(theme)
+
+      // Automatically traverse the config and apply dual-mode color schemes
+      applyThemeConfig(config, theme)
+
+      new Chart(ctx, config)
+    })
+  }
+
+  const loadChartJS = () => {
+    const chartJSEle = document.querySelectorAll('#article-container .chartjs-container')
+    if (chartJSEle.length === 0) return
+
+    window.loadChartJS ? runChartJS(chartJSEle) : btf.getScript('https://jsd.012700.xyz/npm/chart.js/dist/chart.umd.min.js').then(() => runChartJS(chartJSEle))
+  }
+
+  // Listen for theme change events
+  btf.addGlobalFn('themeChange', loadChartJS, 'chartjs')
+  btf.addGlobalFn('encrypt', loadChartJS, 'chartjs')
+
+  window.pjax ? loadChartJS() : document.addEventListener('DOMContentLoaded', loadChartJS)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const getGiscusTheme = theme => theme === 'dark' ? 'dark' : 'light'
+
+  const createScriptElement = config => {
+    const ele = document.createElement('script')
+    Object.entries(config).forEach(([key, value]) => {
+      ele.setAttribute(key, value)
+    })
+    return ele
+  }
+
+  const loadGiscus = (el = document, key) => {
+    const mappingConfig = isShuoshuo
+      ? { 'data-mapping': 'specific', 'data-term': key }
+      : { 'data-mapping': (option && option['data-mapping']) || 'pathname' }
+
+    const giscusConfig = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'Vanillaholic/blog-comments',
+      'data-repo-id': 'R_kgDON_N0Jg',
+      'data-category-id': 'DIC_kwDON_N0Js4CnUEh',
+      'data-theme': getGiscusTheme(document.documentElement.getAttribute('data-theme')),
+      'data-reactions-enabled': '1',
+      crossorigin: 'anonymous',
+      async: true,
+      ...option,
+      ...mappingConfig
+    }
+
+    const scriptElement = createScriptElement(giscusConfig)
+
+    el.querySelector('#giscus-wrap').appendChild(scriptElement)
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGiscus = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const changeGiscusTheme = theme => {
+    const iframe = document.querySelector('#giscus-wrap iframe')
+    if (iframe) {
+      const message = {
+        giscus: {
+          setConfig: {
+            theme: getGiscusTheme(theme)
+          }
+        }
+      }
+      iframe.contentWindow.postMessage(message, 'https://giscus.app')
+    }
+  }
+
+  btf.addGlobalFn('themeChange', changeGiscusTheme, 'giscus')
+
+  if (isShuoshuo) {
+    'Giscus' === 'Giscus'
+      ? window.shuoshuoComment = { loadComment: loadGiscus }
+      : window.loadOtherComment = loadGiscus
+    return
+  }
+
+  if ('Giscus' === 'Giscus' || !true) {
+    if (true) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+    else loadGiscus()
+  } else {
+    window.loadOtherComment = loadGiscus
+  }
+})()</script></div><script data-pjax src="/self/btf.js"></script><canvas class="fireworks" mobile="true"></canvas><script src="https://jsd.012700.xyz/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://jsd.012700.xyz/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script src="https://jsd.012700.xyz/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:description\"]","link[rel=\"canonical\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script>(() => {
+  const option = null
+  const config = {"site_uv":true,"site_pv":true,"page_pv":true,"token":"qTvz1SkmPDt785fgh6BpiA5qiFFIVUwxj8Ft+rPW+cdN59v1hXjwRgSmy0+ji9m+oLlcxvo2NfDSMa6epVl3NTlsN3ejCIwWeP8Y51aEJ0Sbem4UexGmJLspB7AkOBId2SdtT6QWEBlGmFIIQgchQ2zAKYxTmc/kpBED5aLSr+3uvmQ9/G7FJQeVFpveDkK0xM1hu36xq4a6/FSeROxtoEp5zabzTWiYTlLsQzIl/NlELnCq3nxK+oo/vl3UQo/oM/rae/gJX/MaVKsgIUCd2ABJogNkx2KTenBIBpbPki5FzOgPh6/z4GPa4HvhNO51DDVG1SEQZooqEYmt/gnybLBWFbN+7liZWw=="}
+
+  const runTrack = () => {
+    umami.track(props => ({ ...props, url: window.location.pathname, title: GLOBAL_CONFIG_SITE.title }))
+  }
+
+  const loadUmamiJS = () => {
+    btf.getScript('https://umami.012700.xyz/script.js', {
+      'data-website-id': '2a796d6c-6499-42d8-8eb4-d9a2930b0ff3',
+      'data-auto-track': 'false',
+      ...option
+    }).then(runTrack)
+  }
+
+  const getData = async (isPost) => {
+    const now = Date.now()
+    const keyUrl = isPost ? `&url=${window.location.pathname}` : ''
+    const headerList = { 'Accept': 'application/json' }
+    if (true) headerList['Authorization'] = `Bearer ${config.token}`
+    else headerList['x-umami-api-key'] = config.token
+    const res = await fetch(`https://umami.012700.xyz/api/websites/2a796d6c-6499-42d8-8eb4-d9a2930b0ff3/stats?startAt=0000000000&endAt=${now}${keyUrl}`, {
+      method: "GET",
+      headers: headerList
+    })
+    return await res.json()
+  }
+
+  const insertData = async () => {
+    try {
+      if (GLOBAL_CONFIG_SITE.pageType === 'post' && config.page_pv) {
+        const pagePV = document.getElementById('umamiPV')
+        if (pagePV) {
+          const data = await getData(true)
+          pagePV.textContent = data.pageviews.value
+        }
+      } else {
+        const data = (config.site_uv || config.site_pv) && await getData()
+        if (config.site_uv) {
+          const siteUV = document.getElementById('umami-site-uv')
+          if (siteUV) siteUV.textContent = data.visitors.value
+        }
+        if (config.site_pv) {
+          const sitePV = document.getElementById('umami-site-pv')
+          if (sitePV) sitePV.textContent = data.pageviews.value
+        }
+      }
+    } catch (e) {
+      console.error('Failed to load Umami Analytics:', e)
+    }
+  }
+
+  btf.addGlobalFn('pjaxComplete', runTrack, 'umami_analytics_run_track')
+  btf.addGlobalFn('pjaxComplete', insertData, 'umami_analytics_insert')
+
+  loadUmamiJS()
+  insertData()
+})()</script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="https://jsd.012700.xyz/npm/hexo-theme-butterfly/source/js/search/local-search.min.js"></script></div></div></body></html>

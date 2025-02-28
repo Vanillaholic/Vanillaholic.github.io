@@ -1,0 +1,643 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>恒虚警检测器CFAR | Zane's Blog</title><meta name="author" content="Zane"><meta name="copyright" content="Zane"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1维的恒虚警检测器CFAR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="恒虚警检测器CFAR">
+<meta property="og:url" content="https://vanillaholic.github.io/2025/02/24/%E6%81%92%E8%99%9A%E8%AD%A6%E6%A3%80%E6%B5%8B%E5%99%A8CFAR/index.html">
+<meta property="og:site_name" content="Zane&#39;s Blog">
+<meta property="og:description" content="1维的恒虚警检测器CFAR">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.helloimg.com/i/2025/02/26/67be7c0d1657b.png">
+<meta property="article:published_time" content="2025-02-24T11:16:00.000Z">
+<meta property="article:modified_time" content="2025-02-28T18:25:23.777Z">
+<meta property="article:author" content="Zane">
+<meta property="article:tag" content="雷达&#x2F;声纳">
+<meta property="article:tag" content="信号处理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.helloimg.com/i/2025/02/26/67be7c0d1657b.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "恒虚警检测器CFAR",
+  "url": "https://vanillaholic.github.io/2025/02/24/%E6%81%92%E8%99%9A%E8%AD%A6%E6%A3%80%E6%B5%8B%E5%99%A8CFAR/",
+  "image": "https://www.helloimg.com/i/2025/02/26/67be7c0d1657b.png",
+  "datePublished": "2025-02-24T11:16:00.000Z",
+  "dateModified": "2025-02-28T18:25:23.777Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Zane",
+      "url": "https://vanillaholic.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/liu13.png"><link rel="canonical" href="https://vanillaholic.github.io/2025/02/24/%E6%81%92%E8%99%9A%E8%AD%A6%E6%A3%80%E6%B5%8B%E5%99%A8CFAR/index.html"><link rel="preconnect" href="https://jsd.012700.xyz"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><meta name="google-site-verification" content="NdIUXAOVyGnnBhcrip0ksCawbdAzT0hlBZDE9u4jx6k"/><meta name="msvalidate.01" content="567E47D75E8DCF1282B9623AD914701E"/><meta name="baidu-site-verification" content="code-pE5rnuxcfD"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://jsd.012700.xyz/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://jsd.012700.xyz/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+          
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            mediaQueryDark.addEventListener('change', () => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":1,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Zane","link":"链接: ","source":"来源: Zane's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://jsd.012700.xyz/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '恒虚警检测器CFAR',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="preconnect" href="https://jsd.012700.xyz"><link href="/self/btf.css" rel="stylesheet"><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Zane's Blog" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load', preloader.endLoading)
+
+  if (true) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "/img/loading.gif" data-lazy-src="/img/liu13.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-compass"></i><span> 页面</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/talking/"><i class="fa-fw fas fa-comment-dots"></i><span> 说说</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-thumbs-up"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 文档</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/posts/4aa8abbe/"><span> 📌自我介绍</span></a></li><li><a class="site-page child" href="/posts/dc584b87/"><span> 📑知识分享</span></a></li><li><a class="site-page child" href="/posts/4aa8abbe/"><span> 🛠工具分享</span></a></li><li><a class="site-page child" href="/posts/3574d402/"><span> 🖋文章投稿</span></a></li><li><a class="site-page child" href="/posts/98d20436/"><span> ❓问题互助</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-language"></i><span> 语言</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/en/"><i class="fa-fw fas fa-e"></i><span> English(in building...)</span></a></li><li><a class="site-page child" href="/"><i class="fa-fw fas fa-c"></i><span> 中文</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://img3.wallspic.com/crops/2/9/8/1/7/171892/171892-lu_xing-cheng_shi-li_cheng_bei-cheng_shi_jing_guan-3840x2160.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "/img/loading.gif" data-lazy-src="/./img/liu13.png" alt="Logo"><span class="site-name">Zane's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">恒虚警检测器CFAR</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-compass"></i><span> 页面</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/talking/"><i class="fa-fw fas fa-comment-dots"></i><span> 说说</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-thumbs-up"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 文档</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/posts/4aa8abbe/"><span> 📌自我介绍</span></a></li><li><a class="site-page child" href="/posts/dc584b87/"><span> 📑知识分享</span></a></li><li><a class="site-page child" href="/posts/4aa8abbe/"><span> 🛠工具分享</span></a></li><li><a class="site-page child" href="/posts/3574d402/"><span> 🖋文章投稿</span></a></li><li><a class="site-page child" href="/posts/98d20436/"><span> ❓问题互助</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-language"></i><span> 语言</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/en/"><i class="fa-fw fas fa-e"></i><span> English(in building...)</span></a></li><li><a class="site-page child" href="/"><i class="fa-fw fas fa-c"></i><span> 中文</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">恒虚警检测器CFAR<a class="post-edit-link" href="https://github.com/vanillaholic/Blog-demo/edit/main/source/_posts/恒虚警检测器CFAR.md" rel="external nofollow noreferrer" title="编辑" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2025-02-24T11:16:00.000Z" title="发表于 2025-02-24 19:16:00">2025-02-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/">信号处理</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/CFAR/">CFAR</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="umamiPV" data-path="/2025/02/24/%E6%81%92%E8%99%9A%E8%AD%A6%E6%A3%80%E6%B5%8B%E5%99%A8CFAR/"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="一、概述">一、概述</h2>
+<p>雷达的检测过程可用门限检测来描述。几乎所有的判断都是以接收机的输出与某个门限电平的比较为基础的，如果接收机输出的包络超过了某一设置门限，就认为出现了目标。<br>
+雷达在探测时会受到噪声、杂波和干扰的影响，因而采用固定门限进行目标检测时会产生一定的虚警，特别是当杂波背景起伏变化时虚警率会急剧上升，严重影响雷达的检测性能。因此，根据雷达杂波数据动态调整检测门限，在虚警概率保持不变的情况下实现目标检测概率最大化，这种方法称为<strong>恒虚警率（Constant False Alarm Rate，CFAR）检测技术</strong>。</p>
+<ul>
+<li>虚警：在没有目标时判断为有目标（没有-&gt;有）</li>
+<li>漏警：在有目标时判断为没有目标（有-&gt;没有）</li>
+</ul>
+<h2 id="二、CFAR检测算法">二、CFAR检测算法</h2>
+<h3 id="1-基本原理">1.基本原理</h3>
+<p>在实际工作过程中，将信号与阈值进行比较来判断信号的有无，这个阈值的计算就用到了检测概率和虚警概率、漏警概率。对于声纳系统的来说，<strong>阈值的选择目的在于保证最大化的检测概率以及虚警概率小于一定的量级。</strong></p>
+<p>在CFAR中，检测需要一个指定的距离单元，常被成为被，称为检测单元(CUT, cell under test)，噪声功率根据临近的距离单元得到。检测的阈值为T，有如下表达式：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>T</mi><mo>=</mo><mi>a</mi><msub><mi>P</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">T=aP_n
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord mathnormal">a</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p>P_n表示噪声功率估计，a是缩放因子，选取一个合适的因子，虚警概率就可以保持为一个常数，因此该方法称为CFAR。</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://www.helloimg.com/i/2025/02/26/67be7c0d1657b.png" alt="CFAR-TH.png"></p>
+<p>阈值随着信号的噪声功率增加，以保持恒定的虚警率。当信号水平超过阈值时，会发生检测。</p>
+<h3 id="2-典型的CFAR算法">2.典型的CFAR算法</h3>
+<h5 id="2-1-均值类CFAR-CA-CFAR-算法">2.1 均值类CFAＲ(CA-CFAＲ)算法</h5>
+<p>一维情况如下所示：</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://www.helloimg.com/i/2025/02/26/67be7c0c72f26.png" alt="CFAR.png"></p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://www.helloimg.com/i/2025/02/26/67be7bf9bdf49.png" alt="1d-cafr.png"></p>
+<p>最中间的检测单元，其次是守护单元(保护单元主要用在单目标情况下，防止目标能量泄漏到参考单元影响检测效果)，最外围是训练单元，噪声估计可以计算为：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>P</mi><mi>n</mi></msub><mo>=</mo><mfrac><mn>1</mn><mrow><mn>2</mn><mi>N</mi></mrow></mfrac><munderover><mo>∑</mo><mrow><mi>m</mi><mo>=</mo><mn>1</mn></mrow><mrow><mn>2</mn><mi>N</mi></mrow></munderover><msub><mi>x</mi><mi>m</mi></msub></mrow><annotation encoding="application/x-tex">P_n = \frac{1}{2N} \sum_{m=1}^{2N} x_m
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:3.0954em;vertical-align:-1.2671em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8283em;"><span style="top:-1.8829em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2671em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p>其中，训练单元的长度为2N，x是训练单元中的样本[1]</p>
+<blockquote>
+<p>With the above cell averaging CFAR detector, assuming the data passed into the detector is from a single pulse, i.e., no pulse integration involved, the threshold factor can be written as [1]<br>
+使用上述单元平均 CFAR 检测器，假设传入检测器的数据来自单个脉冲，即不涉及脉冲积分，阈值因子可以写为 [1]</p>
+</blockquote>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>α</mi><mo>=</mo><mn>2</mn><mi>N</mi><mo stretchy="false">(</mo><msubsup><mi>P</mi><mrow><mi>f</mi><mi>a</mi></mrow><mrow><mo>−</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn><mi>N</mi></mrow></msubsup><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\alpha = 2N( P_{fa}^{-1/2N} - 1)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.4822em;vertical-align:-0.4374em;"></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0448em;"><span style="top:-2.3987em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span><span class="mord mathnormal mtight">a</span></span></span></span><span style="top:-3.2198em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1/2</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4374em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span></span></p>
+<p>推导见[4]</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%% 距离测量 (Range Measurement)</span></span><br><span class="line"><span class="comment">% 将混频信号（Mix）重塑为 Nr x Nd 的矩阵</span></span><br><span class="line"><span class="comment">% Nr：距离维度（每个 Chirp 的采样点数）</span></span><br><span class="line"><span class="comment">% Nd：多普勒维度（Chirp 数量）</span></span><br><span class="line">sig = <span class="built_in">reshape</span>(Mix, [Nr, Nd]);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 在距离维度 (Nr) 上对打拍频信号进行 FFT 变换</span></span><br><span class="line">sig_fft1 = fft(sig, Nr); </span><br><span class="line"></span><br><span class="line"><span class="comment">% 对 FFT 结果进行归一化处理</span></span><br><span class="line">sig_fft1 = sig_fft1 ./ Nr;</span><br><span class="line"></span><br><span class="line"><span class="comment">% 取 FFT 结果的幅值（只关注频谱强度）</span></span><br><span class="line">sig_fft1 = <span class="built_in">abs</span>(sig_fft1);</span><br><span class="line"></span><br><span class="line"><span class="comment">% FFT 结果是双边谱，只保留单边谱（正频率部分）</span></span><br><span class="line">sig_fft1 = sig_fft1(<span class="number">1</span>:(Nr/<span class="number">2</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">% 绘制距离维度的 FFT 结果</span></span><br><span class="line"><span class="built_in">figure</span>(<span class="string">&#x27;Name&#x27;</span>,<span class="string">&#x27;Range from First FFT&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% 绘制 1D FFT 输出，展示距离信息</span></span><br><span class="line"><span class="built_in">plot</span>(sig_fft1, <span class="string">&quot;LineWidth&quot;</span>,<span class="number">2</span>);</span><br><span class="line">grid on;axis ([<span class="number">0</span> <span class="number">200</span> <span class="number">0</span> <span class="number">0.5</span>]);</span><br><span class="line">xlabel(<span class="string">&#x27;range&#x27;</span>);ylabel(<span class="string">&#x27;FFT output&#x27;</span>);title(<span class="string">&#x27;1D FFT&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="2-2-最大选择GO-Greatest-Of-CFAR-最小选择SO-Smallest-Of-CFAR">2.2 最大选择GO(Greatest Of)-CFAR &amp;最小选择SO(Smallest Of)-CFAR</h5>
+<p>最大选择就是选取前后n个训练单元之和进行对比，选取最大值作为噪声功率水平</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo fence="true">{</mo><mtable rowspacing="0.16em" columnalign="left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>Y</mi><mn>1</mn></msub><mo>=</mo><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><msub><mi>X</mi><mi>i</mi></msub></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>Y</mi><mn>2</mn></msub><mo>=</mo><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mi>n</mi><mo>+</mo><mn>1</mn></mrow><mrow><mn>2</mn><mi>n</mi></mrow></msubsup><msub><mi>X</mi><mi>i</mi></msub></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>G</mi><mi>O</mi><mo>:</mo><mi>max</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>Y</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>Y</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">\left\{
+\begin{array}{l}
+Y_1 = \sum_{i=1}^{n} X_i \\
+Y_2 = \sum_{i=n+1}^{2n} X_i \\
+GO: \max(Y_1, Y_2)
+\end{array}
+\right.
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.714em;vertical-align:-1.607em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-2.5em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎩</span></span></span><span style="top:-2.492em;"><span class="pstrut" style="height:3.15em;"></span><span style="height:0.016em;width:0.8889em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.8889em" height="0.016em" style="width:0.8889em" viewBox="0 0 888.89 16" preserveAspectRatio="xMinYMin"><path d="M384 0 H504 V16 H384z M384 0 H504 V16 H384z"/></svg></span></span><span style="top:-3.15em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎨</span></span></span><span style="top:-4.292em;"><span class="pstrut" style="height:3.15em;"></span><span style="height:0.016em;width:0.8889em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.8889em" height="0.016em" style="width:0.8889em" viewBox="0 0 888.89 16" preserveAspectRatio="xMinYMin"><path d="M384 0 H504 V16 H384z M384 0 H504 V16 H384z"/></svg></span></span><span style="top:-4.3em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎧</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.55em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.107em;"><span style="top:-4.267em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8043em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-2.953em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.954em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mathnormal mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.358em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-1.753em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">GO</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mop">max</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.607em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>最小选择就是选取最小选择</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo fence="true">{</mo><mtable rowspacing="0.16em" columnalign="left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>Y</mi><mn>1</mn></msub><mo>=</mo><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><msub><mi>X</mi><mi>i</mi></msub></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>Y</mi><mn>2</mn></msub><mo>=</mo><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mi>n</mi><mo>+</mo><mn>1</mn></mrow><mrow><mn>2</mn><mi>n</mi></mrow></msubsup><msub><mi>X</mi><mi>i</mi></msub></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>S</mi><mi>O</mi><mo>:</mo><mi>min</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>Y</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>Y</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">\left\{
+\begin{array}{l}
+Y_1 = \sum_{i=1}^{n} X_i \\
+Y_2 = \sum_{i=n+1}^{2n} X_i \\
+SO: \min(Y_1, Y_2)
+\end{array}
+\right.
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.714em;vertical-align:-1.607em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-2.5em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎩</span></span></span><span style="top:-2.492em;"><span class="pstrut" style="height:3.15em;"></span><span style="height:0.016em;width:0.8889em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.8889em" height="0.016em" style="width:0.8889em" viewBox="0 0 888.89 16" preserveAspectRatio="xMinYMin"><path d="M384 0 H504 V16 H384z M384 0 H504 V16 H384z"/></svg></span></span><span style="top:-3.15em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎨</span></span></span><span style="top:-4.292em;"><span class="pstrut" style="height:3.15em;"></span><span style="height:0.016em;width:0.8889em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.8889em" height="0.016em" style="width:0.8889em" viewBox="0 0 888.89 16" preserveAspectRatio="xMinYMin"><path d="M384 0 H504 V16 H384z M384 0 H504 V16 H384z"/></svg></span></span><span style="top:-4.3em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎧</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.55em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.107em;"><span style="top:-4.267em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8043em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-2.953em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.954em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mathnormal mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.358em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-1.753em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">SO</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mop">min</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.607em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<h5 id="2-3-有序统计类CFAR-OS-CFAR-算法">2.3 有序统计类CFAＲ(OS-CFAＲ)算法</h5>
+<p>OS(Order Statistic)CFAR的原理是先对参考单元从小到大排序</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>P</mi><mrow><mi>f</mi><mi>a</mi><mo separator="true">,</mo><mi>o</mi><mi>s</mi></mrow></msub><mo>=</mo><mi>k</mi><mrow><mo fence="true">(</mo><mfrac linethickness="0px"><mi>R</mi><mi>k</mi></mfrac><mo fence="true">)</mo></mrow><mfrac><mrow><mi mathvariant="normal">Γ</mi><mo stretchy="false">(</mo><mi>R</mi><mo>−</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo>+</mo><mi>T</mi><mo stretchy="false">)</mo><mi mathvariant="normal">Γ</mi><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow><mrow><mi mathvariant="normal">Γ</mi><mo stretchy="false">(</mo><mi>R</mi><mo>+</mo><mn>1</mn><mo>+</mo><mi>T</mi><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex"> P_{fa, os} = k \binom{R}{k} \frac{\Gamma(R-k+1+T) \Gamma(k)}{\Gamma(R+1+T)} 
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span><span class="mord mathnormal mtight">a</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">os</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mord"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">Γ</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">Γ</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mclose">)</span><span class="mord">Γ</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p><em>R</em>=2<em>n</em>，k  为OS-CFAR中的参数，其值的选取对算法的检测性能有较大影响[3]。</p>
+<h3 id="三、性能比较">三、性能比较</h3>
+<table>
+<thead>
+<tr>
+<th>CFAR 类型</th>
+<th>参考电平 Z</th>
+<th>适用场合</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CA-CFAR</td>
+<td>(X+Y)/2</td>
+<td>均匀杂波背景</td>
+<td>在杂波边缘会引起虚警率的上升；多目标环境中的检测性能较差。</td>
+</tr>
+<tr>
+<td>SO-CFAR</td>
+<td>min{X, Y}</td>
+<td>在干扰目标位于前沿或后沿滑窗之一的多目标环境中能分辨出主目标。</td>
+<td>杂波边缘和均匀杂波环境中的检测性能较差。</td>
+</tr>
+<tr>
+<td>GO-CFAR</td>
+<td>max{X, Y}</td>
+<td>在杂波边缘和均匀杂波环境能保持较好的检测性能。</td>
+<td>多目标环境中的检测性能较差。</td>
+</tr>
+<tr>
+<td>OS-CFAR</td>
+<td>(ascend_sort{X, Y})</td>
+<td>多目标检测性能较好。</td>
+<td>依赖于参考窗内的所有样本数据，且 k 的取值直接决定了检测结果的优劣。</td>
+</tr>
+</tbody>
+</table>
+<p><img src= "/img/loading.gif" data-lazy-src="https://www.helloimg.com/i/2025/02/26/67be7c0d00b60.jpg" alt="CFAR_performance.jpg"></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% ------ 程序功能：四类CFAR检测算法的检测概率与SNR的关系 %</span></span><br><span class="line">clc</span><br><span class="line">clear all;</span><br><span class="line">close all;</span><br><span class="line"></span><br><span class="line"><span class="comment">%% 参数设置</span></span><br><span class="line">R = <span class="number">24</span>;                     <span class="comment">% 参考单元长度</span></span><br><span class="line">n = R/<span class="number">2</span>;                    <span class="comment">% 半滑窗长度</span></span><br><span class="line">k = R*<span class="number">3</span>/<span class="number">4</span>;                  <span class="comment">% os-cfar的参数</span></span><br><span class="line">P_fa = <span class="number">1e-6</span>;                <span class="comment">% 虚警概率</span></span><br><span class="line">SNR_dB = (<span class="number">0</span>:<span class="number">30</span>);            <span class="comment">% 信噪比</span></span><br><span class="line">SNR = <span class="number">10.</span>^(SNR_dB./<span class="number">10</span>);     <span class="comment">% 信号功率与噪声功率的比值</span></span><br><span class="line">syms T;                     <span class="comment">% 门限因子的符号变量</span></span><br><span class="line"><span class="comment">%% CA-CFAR</span></span><br><span class="line">T_CA = P_fa^(<span class="number">-1</span>/R)<span class="number">-1</span>;           <span class="comment">% CA-CFAR的门限因子</span></span><br><span class="line">Pd_CA = (<span class="number">1</span>+T_CA./(<span class="number">1</span>+SNR)).^(-R);    <span class="comment">% CA-CFAR的检测概率</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%% SO-CFAR、GO-CFAR</span></span><br><span class="line">Pfa_SO = <span class="number">0</span>;</span><br><span class="line">syms T</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">0</span>:n<span class="number">-1</span></span><br><span class="line">    Pfa_SO = Pfa_SO+<span class="number">2</span>*<span class="built_in">nchoosek</span>(n+<span class="built_in">i</span><span class="number">-1</span>,<span class="built_in">i</span>)*(<span class="number">2</span>+T)^(-(n+<span class="built_in">i</span>));     <span class="comment">% SO-CFAR的虚警概率表达式</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">T1_SO = solve(Pfa_SO == P_fa, T);       <span class="comment">% 求解出虚警概率为P_fa时对应的门限因子T</span></span><br><span class="line">T2_SO = double(T1_SO);</span><br><span class="line">T_SO = T2_SO(T2_SO == <span class="built_in">abs</span>(T2_SO));      <span class="comment">% SO-CFAR的门限因子</span></span><br><span class="line"></span><br><span class="line">Pfa_GO = <span class="number">2</span>*(<span class="number">1</span>+T)^(-n)-Pfa_SO;           <span class="comment">% GO-CFAR的虚警概率表达式</span></span><br><span class="line">T1_GO = solve(Pfa_GO == P_fa, T);       <span class="comment">% 求解出虚警概率为P_fa时对应的门限因子T</span></span><br><span class="line">T2_GO = double(T1_GO);</span><br><span class="line">T_GO = T2_GO(T2_GO == <span class="built_in">abs</span>(T2_GO));      <span class="comment">% GO-CFAR的门限因子</span></span><br><span class="line"></span><br><span class="line">Pd_SO = <span class="number">0</span>;</span><br><span class="line">Pd_GO = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">0</span>:n<span class="number">-1</span></span><br><span class="line">    Pd_SO = Pd_SO+<span class="number">2</span>*<span class="built_in">nchoosek</span>(n+<span class="built_in">j</span><span class="number">-1</span>,<span class="built_in">j</span>).*(<span class="number">2</span>+T_SO./(<span class="number">1</span>+SNR)).^(-(n+<span class="built_in">j</span>));     <span class="comment">% SO-CFAR的检测概率</span></span><br><span class="line">    Pd_GO = Pd_GO+<span class="number">2</span>*<span class="built_in">nchoosek</span>(n+<span class="built_in">j</span><span class="number">-1</span>,<span class="built_in">j</span>).*(<span class="number">2</span>+T_GO./(<span class="number">1</span>+SNR)).^(-(n+<span class="built_in">j</span>));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">Pd_GO = <span class="number">2.</span>*(<span class="number">1</span>+T_GO./(<span class="number">1</span>+SNR)).^(-n)-Pd_GO;         <span class="comment">% GO-CFAR的检测概率</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%% OS-CFAR</span></span><br><span class="line">Pfa_OS = k*<span class="built_in">nchoosek</span>(R,k)*<span class="built_in">gamma</span>(R-k+<span class="number">1</span>+T)*<span class="built_in">gamma</span>(k)/<span class="built_in">gamma</span>(R+T+<span class="number">1</span>);           <span class="comment">% OS-CFAR的虚警概率表达式</span></span><br><span class="line">T1_OS = solve(Pfa_OS == P_fa, T);       <span class="comment">% 求解出虚警概率为P_fa时对应的门限因子T</span></span><br><span class="line">T2_OS = double(T1_OS);</span><br><span class="line">T_OS = T2_OS(T2_OS == <span class="built_in">abs</span>(T2_OS));      <span class="comment">% OS-CFAR的门限因子</span></span><br><span class="line">Pd_OS = k*<span class="built_in">nchoosek</span>(R,k)*<span class="built_in">gamma</span>(R-k+<span class="number">1</span>+T_OS./(<span class="number">1</span>+SNR))*<span class="built_in">gamma</span>(k)./<span class="built_in">gamma</span>(R+T_OS./(<span class="number">1</span>+SNR)+<span class="number">1</span>);      <span class="comment">% OS-CFAR的检测概率</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%% 画图</span></span><br><span class="line"><span class="built_in">figure</span>;</span><br><span class="line"><span class="built_in">plot</span>(SNR_dB,Pd_CA,<span class="string">&#x27;r-*&#x27;</span>);</span><br><span class="line"><span class="built_in">hold</span> on;</span><br><span class="line"><span class="built_in">plot</span>(SNR_dB,Pd_SO,<span class="string">&#x27;k-^&#x27;</span>);</span><br><span class="line"><span class="built_in">plot</span>(SNR_dB,Pd_GO,<span class="string">&#x27;b-o&#x27;</span>);</span><br><span class="line"><span class="built_in">plot</span>(SNR_dB,Pd_OS,<span class="string">&#x27;m-.&#x27;</span>);</span><br><span class="line">grid on;</span><br><span class="line">xlabel(<span class="string">&#x27;SNR&#x27;</span>,<span class="string">&#x27;FontName&#x27;</span>,<span class="string">&#x27;Time New Romans&#x27;</span>,<span class="string">&#x27;FontAngle&#x27;</span>,<span class="string">&#x27;italic&#x27;</span>);</span><br><span class="line">ylabel(<span class="string">&#x27;P_&#123;d&#125;&#x27;</span>,<span class="string">&#x27;FontName&#x27;</span>,<span class="string">&#x27;Time New Romans&#x27;</span>,<span class="string">&#x27;FontAngle&#x27;</span>,<span class="string">&#x27;italic&#x27;</span>);</span><br><span class="line">title([<span class="string">&#x27;恒虚警率 P_&#123;fa&#125;= &#x27;</span>,num2str(P_fa),<span class="string">&#x27;，参考单元 2n= &#x27;</span>,num2str(R)]);</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">&#x27;CA&#x27;</span>,<span class="string">&#x27;SO&#x27;</span>,<span class="string">&#x27;GO&#x27;</span>,<span class="string">&#x27;OS&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="参考文献">参考文献</h3>
+<p>[1] Mark Richards, <em>Fundamentals of Radar Signal Processing</em>, McGraw Hill, 2005</p>
+<p>[2] 王蓓. 基于杂波图的恒虚警处理技术研究[D]. 西安电子科技大学, 2018.</p>
+<p>[3] Detection loss due to interfering targets in ordered statistics CFAR.</p>
+<p>[4] P. P. Gandhi and S. A. Kassam, “Analysis of CFAR processors in nonhomogeneous background,” in IEEE Transactions on Aerospace and Electronic Systems, vol. 24, no. 4, pp. 427-445, July 1988, doi: 10.1109/7.7185.<br>
+keywords: {Detectors;Radar detection;Degradation;Radar clutter;Senior members;Statistical distributions;Process design;Performance analysis;Clouds;Noise level},</p>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbNTQwMTE0MjUwXX0=
+--></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://vanillaholic.github.io">Zane</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://vanillaholic.github.io/2025/02/24/%E6%81%92%E8%99%9A%E8%AD%A6%E6%A3%80%E6%B5%8B%E5%99%A8CFAR/">https://vanillaholic.github.io/2025/02/24/%E6%81%92%E8%99%9A%E8%AD%A6%E6%A3%80%E6%B5%8B%E5%99%A8CFAR/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://vanillaholic.github.io" target="_blank">Zane's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E9%9B%B7%E8%BE%BE-%E5%A3%B0%E7%BA%B3/">雷达/声纳</a><a class="post-meta__tags" href="/tags/%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/">信号处理</a></div><div class="post-share"><div class="social-share" data-image="https://www.helloimg.com/i/2025/02/26/67be7c0d1657b.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://jsd.012700.xyz/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://jsd.012700.xyz/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat_receive_payment.png" target="_blank"><img class="post-qr-code-img" src= "/img/loading.gif" data-lazy-src="/img/wechat_receive_payment.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li></ul></div></div><div class="ads-wrap"><ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-fb+5w+4e-db+86" data-ad-client="ca-pub-8919908724705274" data-ad-slot="5978969231"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2024/05/20/hello-world/" title="Hello World"><img class="cover" src= "/img/loading.gif" data-lazy-src="https://img3.wallspic.com/crops/2/9/8/1/7/171892/171892-lu_xing-cheng_shi-li_cheng_bei-cheng_shi_jing_guan-3840x2160.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Hello World</div></div><div class="info-2"><div class="info-item-1">这是我发的第一篇博客,以此证明我在这个世上存在过…… 如何发表文章 安装hexo渲染器 1npm install hexo-renderer-pug hexo-renderer-stylus 由于公式原因,需要更换渲染器里的东西,开启KaTeX 需要把 use 设置为 katex 123katex:  # Enable the copy KaTeX formula  copy_tex: false 你不需要添加 katex.min.js 來渲染数学方程。相应的你需要卸載你之前的 hexo 的 markdown 渲染器，然后安装其它插件。 12345npm un hexo-renderer-marked --save # 如果有安装这个的话，卸载npm un hexo-renderer-kramed --save # 如果有安装这个的话，卸载npm i hexo-renderer-markdown-it --save # 需要安装这个渲染插件npm install katex @renbaoshuo/markdown-it-katex #需要安装这个katex插件 在 hexo...</div></div></div></a><a class="pagination-related" href="/2025/02/24/2D-CFAR%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/" title="2D-CFAR检测算法"><img class="cover" src= "/img/loading.gif" data-lazy-src="https://www.helloimg.com/i/2025/02/26/67be7bf9bdf49.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">2D-CFAR检测算法</div></div><div class="info-2"><div class="info-item-1">一、内容复习 CFAR检测算法属于信号检测中的自动检测算法，在雷达信号处理中主要应用的有三种，即CA-CFAR、SO-CFAR、GO-CFAR，这三种也是初学者最常采用的算法，要求每一个雷达工程师必须掌握其基本原理，如表所示，其中OS-CFAR一般不常用。    CFAR 类型 参考电平 Z 适用场合 缺点     CA-CFAR (X+Y)/2 均匀杂波背景 在杂波边缘会引起虚警率的上升；多目标环境中的检测性能较差。   SO-CFAR min{X, Y} 在干扰目标位于前沿或后沿滑窗之一的多目标环境中能分辨出主目标。 杂波边缘和均匀杂波环境中的检测性能较差。   GO-CFAR max{X, Y} 在杂波边缘和均匀杂波环境能保持较好的检测性能。 多目标环境中的检测性能较差。   OS-CFAR (ascend_sort{X, Y}) 多目标检测性能较好。 依赖于参考窗内的所有样本数据，且 k 的取值直接决定了检测结果的优劣。    一维CFAR检测流程图如下所示  二、距离多普勒矩阵（Range-Doppler...</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "/img/loading.gif" data-lazy-src="/img/liu13.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Zane</div><div class="author-info-description">我很丰富,无法简介</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/vanillaholic"><i class="fab fa-github"></i><span>GitHub 主页</span></a><div class="card-info-social-icons"><a class="social-icon" href="mailto:mrsingorxing@gmail.com" rel="external nofollow noreferrer" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="订阅"><i class="fas fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如果想联系我你可以留言，或者添加我的微信（扫码或者点击图片跳转） <div class="aside-qrcode" > <a href="https://u.wechat.com/MK52i9Top3CnpbBNLCHXzFQ?s=2" rel="external nofollow noreferrer" target="_blank"> <img src= "/img/loading.gif" data-lazy-src="/img/wechat.jpg" title="wechat 二维码"></a> <a href="https://t.me/zanesing" rel="external nofollow noreferrer" target="_blank"> <img src= "/img/loading.gif" data-lazy-src="/img/tg.jpg" title="Telegram 二维码"></a> </div></div></div><div class="card-widget card-docs card-categories"><div class="item-headline"><i class="fas fa-car-side"></i><span>文档目录</span></div><div class="item-content"><ul class=card-category-list>
+  <li class=card-category-list-item><a class=card-category-list-link href=/posts/4aa8abbe/ >📌 自我介绍</a></li>
+  <li class=card-category-list-item><a class=card-category-list-link href=/posts/dc584b87/ >📑 知识分享</a></li>
+  <li class=card-category-list-item><a class=card-category-list-link href=/posts/4aa8abbe/ >🛠 工具分享</a></li>
+  <li class=card-category-list-item><a class=card-category-list-link href=/posts/3574d402/ >🖋 文章投稿</a></li>
+  <li class=card-category-list-item><a class=card-category-list-link href=/posts/98d20436/ >❓ 问题互助</a></li>
+</ul>
+</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">一、概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81CFAR%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">二、CFAR检测算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-number">2.1.</span> <span class="toc-text">1.基本原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%85%B8%E5%9E%8B%E7%9A%84CFAR%E7%AE%97%E6%B3%95"><span class="toc-number">2.2.</span> <span class="toc-text">2.典型的CFAR算法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-%E5%9D%87%E5%80%BC%E7%B1%BBCFAR-CA-CFAR-%E7%AE%97%E6%B3%95"><span class="toc-number">2.2.0.1.</span> <span class="toc-text">2.1 均值类CFAＲ(CA-CFAＲ)算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-%E6%9C%80%E5%A4%A7%E9%80%89%E6%8B%A9GO-Greatest-Of-CFAR-%E6%9C%80%E5%B0%8F%E9%80%89%E6%8B%A9SO-Smallest-Of-CFAR"><span class="toc-number">2.2.0.2.</span> <span class="toc-text">2.2 最大选择GO(Greatest Of)-CFAR &amp;最小选择SO(Smallest Of)-CFAR</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-%E6%9C%89%E5%BA%8F%E7%BB%9F%E8%AE%A1%E7%B1%BBCFAR-OS-CFAR-%E7%AE%97%E6%B3%95"><span class="toc-number">2.2.0.3.</span> <span class="toc-text">2.3 有序统计类CFAＲ(OS-CFAＲ)算法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%80%A7%E8%83%BD%E6%AF%94%E8%BE%83"><span class="toc-number">2.3.</span> <span class="toc-text">三、性能比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">2.4.</span> <span class="toc-text">参考文献</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/02/26/%E6%A8%A1%E7%B3%8A%E5%87%BD%E6%95%B0/" title="模糊函数"><img src= "/img/loading.gif" data-lazy-src="https://img3.wallspic.com/crops/2/9/8/1/7/171892/171892-lu_xing-cheng_shi-li_cheng_bei-cheng_shi_jing_guan-3840x2160.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="模糊函数"/></a><div class="content"><a class="title" href="/2025/02/26/%E6%A8%A1%E7%B3%8A%E5%87%BD%E6%95%B0/" title="模糊函数">模糊函数</a><time datetime="2025-02-26T06:10:12.000Z" title="发表于 2025-02-26 14:10:12">2025-02-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/25/DL-CFAR%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/" title="DL-CFAR检测算法"><img src= "/img/loading.gif" data-lazy-src="https://www.helloimg.com/i/2025/02/26/67be7bf9d8d64.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DL-CFAR检测算法"/></a><div class="content"><a class="title" href="/2025/02/25/DL-CFAR%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/" title="DL-CFAR检测算法">DL-CFAR检测算法</a><time datetime="2025-02-25T09:54:06.000Z" title="发表于 2025-02-25 17:54:06">2025-02-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/25/%E5%9B%9B%E7%A7%8D%E9%80%9A%E4%BF%A1%E5%BA%8F%E5%88%97/" title="四种通信序列"><img src= "/img/loading.gif" data-lazy-src="https://www.helloimg.com/i/2025/02/26/67be7bdf6717b.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="四种通信序列"/></a><div class="content"><a class="title" href="/2025/02/25/%E5%9B%9B%E7%A7%8D%E9%80%9A%E4%BF%A1%E5%BA%8F%E5%88%97/" title="四种通信序列">四种通信序列</a><time datetime="2025-02-25T02:16:00.000Z" title="发表于 2025-02-25 10:16:00">2025-02-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/24/2D-CFAR%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/" title="2D-CFAR检测算法"><img src= "/img/loading.gif" data-lazy-src="https://www.helloimg.com/i/2025/02/26/67be7bf9bdf49.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2D-CFAR检测算法"/></a><div class="content"><a class="title" href="/2025/02/24/2D-CFAR%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/" title="2D-CFAR检测算法">2D-CFAR检测算法</a><time datetime="2025-02-24T11:26:50.000Z" title="发表于 2025-02-24 19:26:50">2025-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/24/%E6%81%92%E8%99%9A%E8%AD%A6%E6%A3%80%E6%B5%8B%E5%99%A8CFAR/" title="恒虚警检测器CFAR"><img src= "/img/loading.gif" data-lazy-src="https://www.helloimg.com/i/2025/02/26/67be7c0d1657b.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="恒虚警检测器CFAR"/></a><div class="content"><a class="title" href="/2025/02/24/%E6%81%92%E8%99%9A%E8%AD%A6%E6%A3%80%E6%B5%8B%E5%99%A8CFAR/" title="恒虚警检测器CFAR">恒虚警检测器CFAR</a><time datetime="2025-02-24T11:16:00.000Z" title="发表于 2025-02-24 19:16:00">2025-02-24</time></div></div></div></div><div class="card-widget ads-wrap"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8919908724705274" data-ad-slot="8108145410" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div></div></div></main><footer id="footer" style="background-image: url(https://img3.wallspic.com/crops/2/9/8/1/7/171892/171892-lu_xing-cheng_shi-li_cheng_bei-cheng_shi_jing_guan-3840x2160.jpg);"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By Zane</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.3</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://jsd.012700.xyz/npm/hexo-theme-butterfly/source/js/utils.min.js"></script><script src="https://jsd.012700.xyz/npm/hexo-theme-butterfly/source/js/main.min.js"></script><script src="https://jsd.012700.xyz/npm/hexo-theme-butterfly/source/js/tw_cn.min.js"></script><script src="https://jsd.012700.xyz/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://jsd.012700.xyz/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://jsd.012700.xyz/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://jsd.012700.xyz/npm/katex/dist/katex.min.css')
+    if (true) {
+      await btf.getScript('https://jsd.012700.xyz/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script><script>(() => {
+  const runMermaid = ele => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    ele.forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = `%%{init:{ 'theme':'${theme}'}}%%\n`
+      const mermaidID = `mermaid-${index}`
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+      const renderMermaid = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
+
+  const loadMermaid = () => {
+    if (true) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://jsd.012700.xyz/npm/mermaid/dist/mermaid.min.js').then(runMermaidFn)
+  }
+
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const applyThemeDefaultsConfig = theme => {
+    if (theme === 'dark-mode') {
+      Chart.defaults.color = "rgba(255, 255, 255, 0.8)"
+      Chart.defaults.borderColor = "rgba(255, 255, 255, 0.2)"
+      Chart.defaults.scale.ticks.backdropColor = "transparent"
+    } else {
+      Chart.defaults.color = "rgba(0, 0, 0, 0.8)"
+      Chart.defaults.borderColor = "rgba(0, 0, 0, 0.1)"
+      Chart.defaults.scale.ticks.backdropColor = "transparent"
+    }
+  }
+
+  // Recursively traverse the config object and automatically apply theme-specific color schemes
+  const applyThemeConfig = (obj, theme) => {
+    if (typeof obj !== 'object' || obj === null) return
+
+    Object.keys(obj).forEach(key => {
+      const value = obj[key]
+      // If the property is an object and has theme-specific options, apply them
+      if (typeof value === 'object' && value !== null) {
+        if (value[theme]) {
+          obj[key] = value[theme] // Apply the value for the current theme
+        } else {
+          // Recursively process child objects
+          applyThemeConfig(value, theme)
+        }
+      }
+    })
+  }
+
+  const runChartJS = ele => {
+    window.loadChartJS = true
+
+    Array.from(ele).forEach((item, index) => {
+      const chartSrc = item.firstElementChild
+      const chartID = item.getAttribute('data-chartjs-id') || ('chartjs-' + index) // Use custom ID or default ID
+      const width = item.getAttribute('data-width')
+      const existingCanvas = document.getElementById(chartID)
+
+      // If a canvas already exists, remove it to avoid rendering duplicates
+      if (existingCanvas) {
+          existingCanvas.parentNode.remove()
+      }
+
+      const chartDefinition = chartSrc.textContent
+      const canvas = document.createElement('canvas')
+      canvas.id = chartID
+
+      const div = document.createElement('div')
+      div.className = 'chartjs-wrap'
+
+      if (width) {
+        div.style.width = width
+      }
+
+      div.appendChild(canvas)
+      chartSrc.insertAdjacentElement('afterend', div)
+
+      const ctx = document.getElementById(chartID).getContext('2d')
+
+      const config = JSON.parse(chartDefinition)
+
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark-mode' : 'light-mode'
+
+      // Set default styles (initial setup)
+      applyThemeDefaultsConfig(theme)
+
+      // Automatically traverse the config and apply dual-mode color schemes
+      applyThemeConfig(config, theme)
+
+      new Chart(ctx, config)
+    })
+  }
+
+  const loadChartJS = () => {
+    const chartJSEle = document.querySelectorAll('#article-container .chartjs-container')
+    if (chartJSEle.length === 0) return
+
+    window.loadChartJS ? runChartJS(chartJSEle) : btf.getScript('https://jsd.012700.xyz/npm/chart.js/dist/chart.umd.min.js').then(() => runChartJS(chartJSEle))
+  }
+
+  // Listen for theme change events
+  btf.addGlobalFn('themeChange', loadChartJS, 'chartjs')
+  btf.addGlobalFn('encrypt', loadChartJS, 'chartjs')
+
+  window.pjax ? loadChartJS() : document.addEventListener('DOMContentLoaded', loadChartJS)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const getGiscusTheme = theme => theme === 'dark' ? 'dark' : 'light'
+
+  const createScriptElement = config => {
+    const ele = document.createElement('script')
+    Object.entries(config).forEach(([key, value]) => {
+      ele.setAttribute(key, value)
+    })
+    return ele
+  }
+
+  const loadGiscus = (el = document, key) => {
+    const mappingConfig = isShuoshuo
+      ? { 'data-mapping': 'specific', 'data-term': key }
+      : { 'data-mapping': (option && option['data-mapping']) || 'pathname' }
+
+    const giscusConfig = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'Vanillaholic/blog-comments',
+      'data-repo-id': 'R_kgDON_N0Jg',
+      'data-category-id': 'DIC_kwDON_N0Js4CnUEh',
+      'data-theme': getGiscusTheme(document.documentElement.getAttribute('data-theme')),
+      'data-reactions-enabled': '1',
+      crossorigin: 'anonymous',
+      async: true,
+      ...option,
+      ...mappingConfig
+    }
+
+    const scriptElement = createScriptElement(giscusConfig)
+
+    el.querySelector('#giscus-wrap').appendChild(scriptElement)
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGiscus = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const changeGiscusTheme = theme => {
+    const iframe = document.querySelector('#giscus-wrap iframe')
+    if (iframe) {
+      const message = {
+        giscus: {
+          setConfig: {
+            theme: getGiscusTheme(theme)
+          }
+        }
+      }
+      iframe.contentWindow.postMessage(message, 'https://giscus.app')
+    }
+  }
+
+  btf.addGlobalFn('themeChange', changeGiscusTheme, 'giscus')
+
+  if (isShuoshuo) {
+    'Giscus' === 'Giscus'
+      ? window.shuoshuoComment = { loadComment: loadGiscus }
+      : window.loadOtherComment = loadGiscus
+    return
+  }
+
+  if ('Giscus' === 'Giscus' || !true) {
+    if (true) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+    else loadGiscus()
+  } else {
+    window.loadOtherComment = loadGiscus
+  }
+})()</script></div><script data-pjax src="/self/btf.js"></script><canvas class="fireworks" mobile="true"></canvas><script src="https://jsd.012700.xyz/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://jsd.012700.xyz/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script src="https://jsd.012700.xyz/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:description\"]","link[rel=\"canonical\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script>(() => {
+  const option = null
+  const config = {"site_uv":true,"site_pv":true,"page_pv":true,"token":"qTvz1SkmPDt785fgh6BpiA5qiFFIVUwxj8Ft+rPW+cdN59v1hXjwRgSmy0+ji9m+oLlcxvo2NfDSMa6epVl3NTlsN3ejCIwWeP8Y51aEJ0Sbem4UexGmJLspB7AkOBId2SdtT6QWEBlGmFIIQgchQ2zAKYxTmc/kpBED5aLSr+3uvmQ9/G7FJQeVFpveDkK0xM1hu36xq4a6/FSeROxtoEp5zabzTWiYTlLsQzIl/NlELnCq3nxK+oo/vl3UQo/oM/rae/gJX/MaVKsgIUCd2ABJogNkx2KTenBIBpbPki5FzOgPh6/z4GPa4HvhNO51DDVG1SEQZooqEYmt/gnybLBWFbN+7liZWw=="}
+
+  const runTrack = () => {
+    umami.track(props => ({ ...props, url: window.location.pathname, title: GLOBAL_CONFIG_SITE.title }))
+  }
+
+  const loadUmamiJS = () => {
+    btf.getScript('https://umami.012700.xyz/script.js', {
+      'data-website-id': '2a796d6c-6499-42d8-8eb4-d9a2930b0ff3',
+      'data-auto-track': 'false',
+      ...option
+    }).then(runTrack)
+  }
+
+  const getData = async (isPost) => {
+    const now = Date.now()
+    const keyUrl = isPost ? `&url=${window.location.pathname}` : ''
+    const headerList = { 'Accept': 'application/json' }
+    if (true) headerList['Authorization'] = `Bearer ${config.token}`
+    else headerList['x-umami-api-key'] = config.token
+    const res = await fetch(`https://umami.012700.xyz/api/websites/2a796d6c-6499-42d8-8eb4-d9a2930b0ff3/stats?startAt=0000000000&endAt=${now}${keyUrl}`, {
+      method: "GET",
+      headers: headerList
+    })
+    return await res.json()
+  }
+
+  const insertData = async () => {
+    try {
+      if (GLOBAL_CONFIG_SITE.pageType === 'post' && config.page_pv) {
+        const pagePV = document.getElementById('umamiPV')
+        if (pagePV) {
+          const data = await getData(true)
+          pagePV.textContent = data.pageviews.value
+        }
+      } else {
+        const data = (config.site_uv || config.site_pv) && await getData()
+        if (config.site_uv) {
+          const siteUV = document.getElementById('umami-site-uv')
+          if (siteUV) siteUV.textContent = data.visitors.value
+        }
+        if (config.site_pv) {
+          const sitePV = document.getElementById('umami-site-pv')
+          if (sitePV) sitePV.textContent = data.pageviews.value
+        }
+      }
+    } catch (e) {
+      console.error('Failed to load Umami Analytics:', e)
+    }
+  }
+
+  btf.addGlobalFn('pjaxComplete', runTrack, 'umami_analytics_run_track')
+  btf.addGlobalFn('pjaxComplete', insertData, 'umami_analytics_insert')
+
+  loadUmamiJS()
+  insertData()
+})()</script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="https://jsd.012700.xyz/npm/hexo-theme-butterfly/source/js/search/local-search.min.js"></script></div></div></body></html>
