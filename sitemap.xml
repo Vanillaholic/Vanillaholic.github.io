@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://vanillaholic.github.io/2025/03/02/%E6%89%B9%E9%87%8F%E5%BD%92%E4%B8%80%E5%8C%96/</loc>
+    
+    <lastmod>2025-03-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://vanillaholic.github.io/2025/03/03/Monte%20Carlo%E5%AE%9E%E9%AA%8C/</loc>
     
     <lastmod>2025-03-03</lastmod>
@@ -12,15 +21,6 @@
   
   <url>
     <loc>https://vanillaholic.github.io/2025/03/02/resnet/</loc>
-    
-    <lastmod>2025-03-03</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://vanillaholic.github.io/2025/03/02/%E6%89%B9%E9%87%8F%E5%BD%92%E4%B8%80%E5%8C%96/</loc>
     
     <lastmod>2025-03-03</lastmod>
     
