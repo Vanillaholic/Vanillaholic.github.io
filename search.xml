@@ -157,6 +157,32 @@ eyJoaXN0b3J5IjpbLTU3NTEyMDQ0OF19
       </tags>
   </entry>
   <entry>
+    <title>使用python进行Monte Carlo实验</title>
+    <url>/2025/03/03/Monte%20Carlo%E5%AE%9E%E9%AA%8C/</url>
+    <content><![CDATA[<h2 id="Monte-Carlo实验">Monte Carlo实验</h2>
+<h3 id="方法一：使用multiprocessing包">方法一：使用multiprocessing包</h3>
+<p>使用python进行monte carlo实验，如下图所示，有16个进程可以设置</p>
+<p><img src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/img/202503031157277.png" alt="img"></p>
+<p>使用模板：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool</span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">run_trial</span>(<span class="params">trial_idx</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">	此处填写实验内容，需要在之前global变量</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> <span class="keyword">if</span> success <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ ==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    total_epochs = </span><br><span class="line">    <span class="comment">#<span class="doctag">TODO:</span> 导入terminal参数</span></span><br><span class="line">    parser = argparse.ArgumentParser(description=<span class="string">&#x27;Process some arguments.&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--snr&#x27;</span>, <span class="built_in">type</span>=<span class="built_in">float</span>, default=-<span class="number">5</span>, <span class="built_in">help</span>=<span class="string">&#x27;set the signal-noise ratio&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;-o&#x27;</span>,<span class="string">&#x27;--output&#x27;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, default=<span class="string">&#x27;results.txt&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;保存结果的文件名&#x27;</span>)</span><br><span class="line">    <span class="comment"># 解析参数</span></span><br><span class="line">    args = parser.parse_args()</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">	<span class="keyword">with</span> Pool(processes=<span class="number">4</span>) <span class="keyword">as</span> pool:</span><br><span class="line">        <span class="comment"># 使用 tqdm 显示进度</span></span><br><span class="line">        results = <span class="built_in">list</span>(tqdm(pool.imap(run_trial, <span class="built_in">range</span>(total_epochs)),</span><br><span class="line">                            total=total_epochs, desc=<span class="string">&quot;Running CFAR experiments&quot;</span>))</span><br><span class="line">    </span><br><span class="line">    success_count = <span class="built_in">sum</span>(results)</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(args.output, <span class="string">&#x27;a&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(<span class="string">f&quot;虚警概率为: <span class="subst">&#123;P_f&#125;</span>\n&quot;</span>)</span><br><span class="line">        f.write(<span class="string">f&quot;SNR: <span class="subst">&#123;args.snr&#125;</span>\n&quot;</span>)</span><br><span class="line">        f.write(<span class="string">f&quot;蒙特卡洛实验次数: <span class="subst">&#123;total_epochs&#125;</span>\n&quot;</span>)</span><br><span class="line">        f.write(<span class="string">f&quot;检测成功次数: <span class="subst">&#123;success_count&#125;</span>\n&quot;</span>)</span><br><span class="line">        f.write(<span class="string">f&quot;检测成功率: <span class="subst">&#123;success_count / total_epochs * <span class="number">100</span>:<span class="number">.2</span>f&#125;</span>%\n&quot;</span>)</span><br><span class="line">        f.write(<span class="string">&quot;---------------------------------------------------------\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;结果已保存到 <span class="subst">&#123;args.output&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="方法二：使用cupy（推荐）">方法二：使用cupy（推荐）</h3>
+<p>这个不是默认的，需要额外安装，安装好后按如下步骤调试，即可看运算能力。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/img/202503031555578.png" alt="img"></p>
+<p>本人使用的是Nvidia-GeForce4060,运算能力是8.9，正好对应</p>
+<p><img src="https://i-blog.csdnimg.cn/blog_migrate/7ca8e73319822a38aa6cf5bd07f04863.png" alt=""></p>
+<p>此包和numpy是镜像的，所以许多函数是通用的，直接使用即可。cupy在默认情况下，所有的数组操作都是在 GPU 上进行的。CuPy 的设计理念是直接在 GPU 上创建和操作数组，因此不需要显式地将数据从 CPU 转移到 GPU。CuPy 的数组（<code>cupy.ndarray</code>）本身就是存储在 GPU 上的，而 NumPy 的数组（<code>numpy.ndarray</code>）是存储在 CPU 上的。输出：&lt;CUDA Device 0&gt;（表示在 GPU 上）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/img/202503031604436.png" alt="image-20250303160400374"></p>
+]]></content>
+      <categories>
+        <category>教学</category>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>教学</tag>
+        <tag>编程</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2024/05/20/hello-world/</url>
     <content><![CDATA[<h2 id="这是我发的第一篇博客-以此证明我在这个世上存在过……">这是我发的第一篇博客,以此证明我在这个世上存在过……</h2>
@@ -184,6 +210,36 @@ eyJoaXN0b3J5IjpbLTU3NTEyMDQ0OF19
 <!--stackedit_data:
 eyJoaXN0b3J5IjpbMTkyNDkxNjgxM119
 -->]]></content>
+  </entry>
+  <entry>
+    <title>Resnet残差网络</title>
+    <url>/2025/03/02/resnet/</url>
+    <content><![CDATA[<h2 id="思考">思考</h2>
+<p>模型越复杂,是不是带来的好处就越多呢?<br>
+<img src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/d2l/dI1pRe8l19TP1IXf.png" alt="输入图片说明"></p>
+<h2 id="结构">结构</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/d2l/z1J3qXEVllDkzTIm.png" alt="输入图片说明"></p>
+<p>残差块家族也有许多成员<br>
+<img src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/d2l/WqbWs8L80xqNc5pu.png" alt="输入图片说明"></p>
+<h3 id="Resnet块">Resnet块</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/d2l/d47qJCeyNyPB7i85.png" alt="输入图片说明"></p>
+<p>重复多次,就得到了resnet网络</p>
+<h2 id="总结">总结</h2>
+<ul>
+<li>残差块使得很深的网络更加容易训练
+<ul>
+<li>甚至可以训练一千层的网络</li>
+</ul>
+</li>
+<li>残差网络对随后的深层神经网络设计产生了深远影响，无论是卷积类网络还是全连接类网络</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+      </tags>
   </entry>
   <entry>
     <title>四种通信序列</title>
@@ -460,6 +516,59 @@ eyJoaXN0b3J5IjpbNTQwMTE0MjUwXX0=
       </tags>
   </entry>
   <entry>
+    <title>batch norm批量归一化</title>
+    <url>/2025/03/02/%E6%89%B9%E9%87%8F%E5%BD%92%E4%B8%80%E5%8C%96/</url>
+    <content><![CDATA[<h2 id="介绍">介绍</h2>
+<p>在训练模型的时候,对于一个网络来说:</p>
+<ul>
+<li>前部:数据集中在前部,网络前面的层变化,则会导致后面的层也跟着变化-&gt;收敛速度慢</li>
+<li>后部:损失是集中在网络后面的,所以往往后面的层训练较快<br>
+那有没有一种方式,使网络后面的层尽量保持不变呢?</li>
+</ul>
+<h2 id="批量归一化">批量归一化</h2>
+<h3 id="定义">定义</h3>
+<p>通过固定小批量数据的均值和方差，再引入可学习参数 γ 和 β 对数据进行调整，有助于加速模型的训练收敛，提高模型的稳定性 。<br>
+计算小批量均值和方差的公式：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>μ</mi><mi>B</mi></msub><mo>=</mo><mfrac><mn>1</mn><mrow><mi mathvariant="normal">∣</mi><mi>B</mi><mi mathvariant="normal">∣</mi></mrow></mfrac><munder><mo>∑</mo><mrow><mi>i</mi><mo>∈</mo><mi>B</mi></mrow></munder><msub><mi>x</mi><mi>i</mi></msub><mtext> and </mtext><msubsup><mi>σ</mi><mi>B</mi><mn>2</mn></msubsup><mo>=</mo><mfrac><mn>1</mn><mrow><mi mathvariant="normal">∣</mi><mi>B</mi><mi mathvariant="normal">∣</mi></mrow></mfrac><munder><mo>∑</mo><mrow><mi>i</mi><mo>∈</mo><mi>B</mi></mrow></munder><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo>−</mo><msub><mi>μ</mi><mi>B</mi></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo>+</mo><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">\mu_B = \frac{1}{|B|} \sum_{i\in B} x_i \text{ and } \sigma_B^2 = \frac{1}{|B|} \sum_{i\in B} (x_i - \mu_B)^2 + \epsilon
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">μ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.6431em;vertical-align:-1.3217em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mord">∣</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.05em;"><span style="top:-1.8557em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">∈</span><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.3217em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord text"><span class="mord"> and </span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-2.453em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.6431em;vertical-align:-1.3217em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mord">∣</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.05em;"><span style="top:-1.8557em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">∈</span><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.3217em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">μ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">ϵ</span></span></span></span></span></p>
+<p>然后对其做额外的调整:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>x</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mi>γ</mi><mfrac><mrow><msub><mi>x</mi><mi>i</mi></msub><mo>−</mo><msub><mi>μ</mi><mi>B</mi></msub></mrow><msub><mi>σ</mi><mi>B</mi></msub></mfrac><mo>+</mo><mi>β</mi></mrow><annotation encoding="application/x-tex">x_{i + 1} = \gamma \frac{x_i - \mu_B}{\sigma_B} + \beta
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6389em;vertical-align:-0.2083em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0963em;vertical-align:-0.836em;"></span><span class="mord mathnormal" style="margin-right:0.05556em;">γ</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.2603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal">μ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.836em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.05278em;">β</span></span></span></span></span></p>
+<p>不再学习均值和方差,转而学习参数 γ 和 β</p>
+<h3 id="作用位置">作用位置</h3>
+<ul>
+<li>作用在
+<ul>
+<li>全连接层和卷积层输出上，激活函数前</li>
+<li>全连接层和卷积层输入上</li>
+</ul>
+</li>
+<li>对全连接层，作用在特征维</li>
+<li>对于卷积层，作用在通道维</li>
+</ul>
+<h2 id="实现">实现</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">net = nn.Sequential(nn.Conv2d(<span class="number">1</span>, <span class="number">6</span>, kernel_size=<span class="number">5</span>), nn.BatchNorm2d(<span class="number">6</span>),</span><br><span class="line">                    nn.Sigmoid(), nn.MaxPool2d(kernel_size=<span class="number">2</span>, stride=<span class="number">2</span>),</span><br><span class="line">                    nn.Conv2d(<span class="number">6</span>, <span class="number">16</span>, kernel_size=<span class="number">5</span>), nn.BatchNorm2d(<span class="number">16</span>),</span><br><span class="line">                    nn.Sigmoid(), nn.MaxPool2d(kernel_size=<span class="number">2</span>, stride=<span class="number">2</span>),</span><br><span class="line">                    nn.Flatten(), nn.Linear(<span class="number">256</span>, <span class="number">120</span>), nn.BatchNorm1d(<span class="number">120</span>),</span><br><span class="line">                    nn.Sigmoid(), nn.Linear(<span class="number">120</span>, <span class="number">84</span>), nn.BatchNorm1d(<span class="number">84</span>),</span><br><span class="line">                    nn.Sigmoid(), nn.Linear(<span class="number">84</span>, <span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+<p>拉伸参数 <code>gamma</code> 和偏移参数 <code>beta</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">net[<span class="number">1</span>].gamma.reshape((-<span class="number">1</span>,)), net[<span class="number">1</span>].beta.reshape((-<span class="number">1</span>,))</span><br></pre></td></tr></table></figure>
+<p>(tensor([2.1534, 2.1612, 2.0096, 1.9473, 1.8451, 1.3328], device=‘cuda:0’,<br>
+grad_fn=<ViewBackward>),<br>
+tensor([ 0.0310, -2.4748,  0.5816,  0.5764, -1.6917, -0.6970], device=‘cuda:0’,<br>
+grad_fn=<ViewBackward>))<br>
+<img src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/d2l/VGo5TX7hmnmieEce.png" alt="输入图片说明"></p>
+<h2 id="总结">总结</h2>
+<ul>
+<li>批量归一化固定小批量中的均值和方差，然后学习出适合的偏移和缩放</li>
+<li><strong>可以加速收敛速度，但一般不改变模型精度</strong></li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>模糊函数</title>
     <url>/2025/02/26/%E6%A8%A1%E7%B3%8A%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<h2 id="介绍">介绍</h2>
@@ -530,8 +639,8 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
         <category>模糊函数</category>
       </categories>
       <tags>
-        <tag>docs文档</tag>
         <tag>教学</tag>
+        <tag>docs文档</tag>
       </tags>
   </entry>
 </search>
