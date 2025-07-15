@@ -301,8 +301,7 @@ eyJoaXN0b3J5IjpbLTU3NTEyMDQ0OF19
     <title>Hello World</title>
     <url>/2024/05/20/hello-world/</url>
     <content><![CDATA[<h2 id="这是我发的第一篇博客-以此证明我在这个世上存在过……"><a href="#这是我发的第一篇博客-以此证明我在这个世上存在过……" class="headerlink" title="这是我发的第一篇博客,以此证明我在这个世上存在过……"></a>这是我发的第一篇博客,以此证明我在这个世上存在过……</h2><h2 id="如何发表文章"><a href="#如何发表文章" class="headerlink" title="如何发表文章"></a>如何发表文章</h2><h3 id="安装hexo渲染器"><a href="#安装hexo渲染器" class="headerlink" title="安装hexo渲染器"></a>安装hexo渲染器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-renderer-pug hexo-renderer-stylus</span><br></pre></td></tr></table></figure>
-<p>由于公式原因,需要更换渲染器里的东西,开启KaTeX 需要把 use 设置为 katex<br><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">katex:</span></span><br><span class="line">  <span class="comment"># Enable the copy KaTeX formula</span></span><br><span class="line">  <span class="attr">copy_tex:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure><br>你不需要添加 katex.min.js 來渲染数学方程。相应的你需要卸載你之前的 hexo 的 markdown 渲染器，然后安装其它插件。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm un hexo-renderer-marked --save <span class="comment"># 如果有安装这个的话，卸载</span></span><br><span class="line">npm un hexo-renderer-kramed --save <span class="comment"># 如果有安装这个的话，卸载</span></span><br><span class="line"></span><br><span class="line">npm i hexo-renderer-markdown-it --save <span class="comment"># 需要安装这个渲染插件</span></span><br><span class="line">npm install katex @renbaoshuo/markdown-it-katex <span class="comment">#需要安装这个katex插件</span></span><br></pre></td></tr></table></figure><br>在 hexo 的根目录的 _config.yml 中配置<br><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">markdown:</span></span><br><span class="line">  <span class="attr">plugins:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&#x27;@renbaoshuo/markdown-it-katex&#x27;</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>关于公式渲染,参考这个链接:<a href="https://blog.luzy.top/posts/2968289947/">https://blog.luzy.top/posts/2968289947/</a><br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">### Create a new post</span><br><span class="line"></span><br><span class="line">``` bash</span><br><span class="line">$ hexo new &quot;My New Post&quot;</span><br></pre></td></tr></table></figure></p>
 <p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
@@ -313,6 +312,29 @@ eyJoaXN0b3J5IjpbLTU3NTEyMDQ0OF19
 eyJoaXN0b3J5IjpbMTkyNDkxNjgxM119
 --></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>Resnet残差网络</title>
+    <url>/2025/03/02/resnet/</url>
+    <content><![CDATA[<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>模型越复杂,是不是带来的好处就越多呢?<br><img src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/d2l/dI1pRe8l19TP1IXf.png" alt="输入图片说明"></p>
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p><img src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/d2l/z1J3qXEVllDkzTIm.png" alt="输入图片说明"></p>
+<p>残差块家族也有许多成员<br><img src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/d2l/WqbWs8L80xqNc5pu.png" alt="输入图片说明"></p>
+<h3 id="Resnet块"><a href="#Resnet块" class="headerlink" title="Resnet块"></a>Resnet块</h3><p><img src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/d2l/d47qJCeyNyPB7i85.png" alt="输入图片说明"></p>
+<p>重复多次,就得到了resnet网络</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>残差块使得很深的网络更加容易训练<ul>
+<li>甚至可以训练一千层的网络</li>
+</ul>
+</li>
+<li>残差网络对随后的深层神经网络设计产生了深远影响，无论是卷积类网络还是全连接类网络</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+      </tags>
   </entry>
   <entry>
     <title>四种通信序列</title>
@@ -454,29 +476,6 @@ eyJoaXN0b3J5IjpbLTg0NDk2NjQxXX0=
       <tags>
         <tag>雷达/声纳</tag>
         <tag>信号处理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Resnet残差网络</title>
-    <url>/2025/03/02/resnet/</url>
-    <content><![CDATA[<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>模型越复杂,是不是带来的好处就越多呢?<br><img src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/d2l/dI1pRe8l19TP1IXf.png" alt="输入图片说明"></p>
-<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p><img src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/d2l/z1J3qXEVllDkzTIm.png" alt="输入图片说明"></p>
-<p>残差块家族也有许多成员<br><img src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/d2l/WqbWs8L80xqNc5pu.png" alt="输入图片说明"></p>
-<h3 id="Resnet块"><a href="#Resnet块" class="headerlink" title="Resnet块"></a>Resnet块</h3><p><img src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/d2l/d47qJCeyNyPB7i85.png" alt="输入图片说明"></p>
-<p>重复多次,就得到了resnet网络</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li>残差块使得很深的网络更加容易训练<ul>
-<li>甚至可以训练一千层的网络</li>
-</ul>
-</li>
-<li>残差网络对随后的深层神经网络设计产生了深远影响，无论是卷积类网络还是全连接类网络</li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>笔记</tag>
       </tags>
   </entry>
   <entry>

@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://vanillaholic.github.io/2024/05/20/hello-world/</loc>
+    
+    <lastmod>2025-07-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://vanillaholic.github.io/2025/03/05/CFARnet/</loc>
     
     <lastmod>2025-07-15</lastmod>
@@ -86,15 +95,6 @@
     <loc>https://vanillaholic.github.io/2025/02/26/%E6%A8%A1%E7%B3%8A%E5%87%BD%E6%95%B0/</loc>
     
     <lastmod>2025-03-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://vanillaholic.github.io/2024/05/20/hello-world/</loc>
-    
-    <lastmod>2025-02-28</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -309,14 +309,14 @@
   </url>
   
   <url>
-    <loc>https://vanillaholic.github.io/categories/%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/%E7%BC%96%E7%A0%81/</loc>
+    <loc>https://vanillaholic.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2025-07-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://vanillaholic.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>https://vanillaholic.github.io/categories/%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/%E7%BC%96%E7%A0%81/</loc>
     <lastmod>2025-07-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
