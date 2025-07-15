@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img3.wallspic.com/crops/2/9/8/1/7/171892/171892-lu_xing-cheng_shi-li_cheng_bei-cheng_shi_jing_guan-3840x2160.jpg">
 <meta property="article:published_time" content="2025-07-03T05:24:12.000Z">
-<meta property="article:modified_time" content="2025-07-03T05:29:30.791Z">
+<meta property="article:modified_time" content="2025-07-15T23:27:25.795Z">
 <meta property="article:author" content="Zane">
 <meta property="article:tag" content="配置">
 <meta name="twitter:card" content="summary">
@@ -18,7 +18,7 @@
   "url": "https://vanillaholic.github.io/2025/07/03/Acoustic%20Toolbox%E5%92%8CArlpy%E9%85%8D%E7%BD%AE/",
   "image": "https://img3.wallspic.com/crops/2/9/8/1/7/171892/171892-lu_xing-cheng_shi-li_cheng_bei-cheng_shi_jing_guan-3840x2160.jpg",
   "datePublished": "2025-07-03T05:24:12.000Z",
-  "dateModified": "2025-07-03T05:29:30.791Z",
+  "dateModified": "2025-07-15T23:27:25.795Z",
   "author": [
     {
       "@type": "Person",
@@ -203,8 +203,8 @@
 <h3 id="下载acoustic-toolbox"><a class="markdownIt-Anchor" href="#下载acoustic-toolbox"></a> 下载Acoustic Toolbox</h3>
 <p>下载链接：</p>
 <ul>
-<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://oalib.hlsresearch.com/AcousticsToolbox/at_2024_12_25.zip%EF%BC%88Mac/Linux/Windows">http://oalib.hlsresearch.com/AcousticsToolbox/at_2024_12_25.zip（Mac/Linux/Windows</a> – 必须要手动进行编译）</li>
-<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://oalib.hlsresearch.com/AcousticsToolbox/atWin10_2020_11_4.zip%EF%BC%88%E6%97%A7%E7%89%88%E6%9C%AC%EF%BC%8C%E6%B6%B5%E7%9B%96%E4%BA%86MATLAB">http://oalib.hlsresearch.com/AcousticsToolbox/atWin10_2020_11_4.zip（旧版本，涵盖了MATLAB</a> I/O）</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://oalib.hlsresearch.com/AcousticsToolbox/at_2024_12_25.zip">http://oalib.hlsresearch.com/AcousticsToolbox/at_2024_12_25.zip</a>  （Mac/Linux/Windows – 必须要手动进行编译）</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://oalib.hlsresearch.com/AcousticsToolbox/atWin10_2020_11_4.zip">http://oalib.hlsresearch.com/AcousticsToolbox/atWin10_2020_11_4.zip</a>  （旧版本，涵盖了MATLAB I/O）</li>
 </ul>
 <h3 id="下载后将工具包解压打开命令行进行配置"><a class="markdownIt-Anchor" href="#下载后将工具包解压打开命令行进行配置"></a> 下载后，将工具包解压，打开命令行，进行配置</h3>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> at/at  			<span class="comment">#访问解压文件所在路径</span></span><br><span class="line">make clean 			<span class="comment">#清除之前的编译文件</span></span><br><span class="line">make all  			<span class="comment">#进行编译</span></span><br><span class="line"><span class="built_in">sudo</span> make install   <span class="comment">#安装</span></span><br></pre></td></tr></table></figure>
@@ -222,7 +222,7 @@
 <p><img src= "/img/loading.gif" data-lazy-src="http://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/202507031311006.png" alt="image-20250703131147956" /></p>
 <p>或者直接在终端中输入</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/Users/yourusername/Documents/Bellhop <span class="comment"># 这里设置at中Bellhop文件夹的路径</span></span><br></pre></td></tr></table></figure>
-<p>为了每次电脑启动后，都不用手动配置，可以将这条命令加入进zsh或者bash配置文件中</p>
+<p>为了每次电脑启动后，不用手动配置，可以将这条命令加入进zsh或者bash配置文件中</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;export PATH=$PATH:/Users/yourusername/Documents/Bellhop&#x27;</span> &gt;&gt; ~/.zshrc#如果时bash改成.bashrc</span><br><span class="line"><span class="built_in">source</span> ~/.zshrc#配置生效，如果时bash改成.bashrc</span><br></pre></td></tr></table></figure>
 <p>验证路径是否生效</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">which</span> bellhop.exe</span><br></pre></td></tr></table></figure>
@@ -230,7 +230,7 @@
 <h4 id="在jupyter中查看路径是否安装成功"><a class="markdownIt-Anchor" href="#在jupyter中查看路径是否安装成功"></a> 在jupyter中查看路径是否安装成功</h4>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.system(<span class="string">&quot;which bellhop.exe&quot;</span>)</span><br></pre></td></tr></table></figure>
 <p>如果没有返回正确路径，则每次使用前需要手动添加</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line">os.environ[<span class="string">&quot;PATH&quot;</span>] += <span class="string">&quot;:/Users/zanesing/Documents/at/Bellhop&quot;</span>     <span class="comment">#这里填写Bellhop文件夹路径(注意是文件夹路径，不是.exe路径)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.environ[<span class="string">&quot;PATH&quot;</span>] += <span class="string">&quot;:/Users/zanesing/Documents/at/Bellhop&quot;</span>     <span class="comment">#这里填写Bellhop文件夹路径(注意是文件夹路径，不是.exe路径)</span></span><br></pre></td></tr></table></figure>
 <h3 id="在python中设置arlpy"><a class="markdownIt-Anchor" href="#在python中设置arlpy"></a> 在python中设置Arlpy</h3>
 <p>在命令行输入以下命令，下载arlpy</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install arlpy</span><br></pre></td></tr></table></figure>

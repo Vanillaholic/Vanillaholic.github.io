@@ -98,8 +98,8 @@ eyJoaXN0b3J5IjpbMjc5NjAyMDE1XX0=
 <h3 id="下载acoustic-toolbox"><a class="markdownIt-Anchor" href="#下载acoustic-toolbox"></a> 下载Acoustic Toolbox</h3>
 <p>下载链接：</p>
 <ul>
-<li><a href="http://oalib.hlsresearch.com/AcousticsToolbox/at_2024_12_25.zip%EF%BC%88Mac/Linux/Windows">http://oalib.hlsresearch.com/AcousticsToolbox/at_2024_12_25.zip（Mac/Linux/Windows</a> – 必须要手动进行编译）</li>
-<li><a href="http://oalib.hlsresearch.com/AcousticsToolbox/atWin10_2020_11_4.zip%EF%BC%88%E6%97%A7%E7%89%88%E6%9C%AC%EF%BC%8C%E6%B6%B5%E7%9B%96%E4%BA%86MATLAB">http://oalib.hlsresearch.com/AcousticsToolbox/atWin10_2020_11_4.zip（旧版本，涵盖了MATLAB</a> I/O）</li>
+<li><a href="http://oalib.hlsresearch.com/AcousticsToolbox/at_2024_12_25.zip">http://oalib.hlsresearch.com/AcousticsToolbox/at_2024_12_25.zip</a>  （Mac/Linux/Windows – 必须要手动进行编译）</li>
+<li><a href="http://oalib.hlsresearch.com/AcousticsToolbox/atWin10_2020_11_4.zip">http://oalib.hlsresearch.com/AcousticsToolbox/atWin10_2020_11_4.zip</a>  （旧版本，涵盖了MATLAB I/O）</li>
 </ul>
 <h3 id="下载后将工具包解压打开命令行进行配置"><a class="markdownIt-Anchor" href="#下载后将工具包解压打开命令行进行配置"></a> 下载后，将工具包解压，打开命令行，进行配置</h3>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> at/at  			<span class="comment">#访问解压文件所在路径</span></span><br><span class="line">make clean 			<span class="comment">#清除之前的编译文件</span></span><br><span class="line">make all  			<span class="comment">#进行编译</span></span><br><span class="line"><span class="built_in">sudo</span> make install   <span class="comment">#安装</span></span><br></pre></td></tr></table></figure>
@@ -117,7 +117,7 @@ eyJoaXN0b3J5IjpbMjc5NjAyMDE1XX0=
 <p><img src="http://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/202507031311006.png" alt="image-20250703131147956" /></p>
 <p>或者直接在终端中输入</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/Users/yourusername/Documents/Bellhop <span class="comment"># 这里设置at中Bellhop文件夹的路径</span></span><br></pre></td></tr></table></figure>
-<p>为了每次电脑启动后，都不用手动配置，可以将这条命令加入进zsh或者bash配置文件中</p>
+<p>为了每次电脑启动后，不用手动配置，可以将这条命令加入进zsh或者bash配置文件中</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;export PATH=$PATH:/Users/yourusername/Documents/Bellhop&#x27;</span> &gt;&gt; ~/.zshrc#如果时bash改成.bashrc</span><br><span class="line"><span class="built_in">source</span> ~/.zshrc#配置生效，如果时bash改成.bashrc</span><br></pre></td></tr></table></figure>
 <p>验证路径是否生效</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">which</span> bellhop.exe</span><br></pre></td></tr></table></figure>
@@ -125,7 +125,7 @@ eyJoaXN0b3J5IjpbMjc5NjAyMDE1XX0=
 <h4 id="在jupyter中查看路径是否安装成功"><a class="markdownIt-Anchor" href="#在jupyter中查看路径是否安装成功"></a> 在jupyter中查看路径是否安装成功</h4>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.system(<span class="string">&quot;which bellhop.exe&quot;</span>)</span><br></pre></td></tr></table></figure>
 <p>如果没有返回正确路径，则每次使用前需要手动添加</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">import os</span><br><span class="line">os.environ[<span class="string">&quot;PATH&quot;</span>] += <span class="string">&quot;:/Users/zanesing/Documents/at/Bellhop&quot;</span>     <span class="comment">#这里填写Bellhop文件夹路径(注意是文件夹路径，不是.exe路径)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.environ[<span class="string">&quot;PATH&quot;</span>] += <span class="string">&quot;:/Users/zanesing/Documents/at/Bellhop&quot;</span>     <span class="comment">#这里填写Bellhop文件夹路径(注意是文件夹路径，不是.exe路径)</span></span><br></pre></td></tr></table></figure>
 <h3 id="在python中设置arlpy"><a class="markdownIt-Anchor" href="#在python中设置arlpy"></a> 在python中设置Arlpy</h3>
 <p>在命令行输入以下命令，下载arlpy</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install arlpy</span><br></pre></td></tr></table></figure>
@@ -189,10 +189,10 @@ eyJoaXN0b3J5IjpbMjc5NjAyMDE1XX0=
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">L</span><span class="mord mathnormal mtight" style="margin-right:0.00773em;">R</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mord boldsymbol">x</span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mord boldsymbol">x</span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∣</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.04398em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mord boldsymbol">x</span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∣</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.04398em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
 <p>（此处渲染器出问题了，看图片吧）</p>
 <p><img src="http://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/202503051629084.png" alt="" /></p>
-<p><s>似然比检验是一种统计检验方法，用于比较两个统计模型的拟合优度。在这个问题中，我们有一个统计量 $ T_{LRT}(\boldsymbol{x}) $</s></p>
-<p><s>$ p(\boldsymbol{x}; \boldsymbol z = \boldsymbol z_1) $ 是在参数 $ \boldsymbol z = \boldsymbol z_1 $ 下的似然函数值，而 $  p(\boldsymbol{x}; \boldsymbol z = \boldsymbol z_0) $ 是在参数 $ \boldsymbol z = \boldsymbol z_0 $ 下的似然函数值。这个统计量用于检验零假设 $ H_0: \boldsymbol z = \boldsymbol z_0 $ 还是对立假设 $ H_1: \boldsymbol z = \boldsymbol z_1 $</s></p>
-<p><s>似然比检验统计量 $ T_{LRT}(\boldsymbol{x}) $ 的值越大，表示在 $ \boldsymbol z = \boldsymbol z_1 $ 下的似然函数值比在 $ \boldsymbol z = \boldsymbol z_0 $ 下的似然函数值大得多，因此我们有更强的证据拒绝零假设 $ H_0 $。</s></p>
-<p><s>在实际应用中，我们通常会将 $T_{LRT}(\boldsymbol{x}) $ 与一个临界值进行比较，如果 $ T_{LRT}(\boldsymbol{x}) $ 大于这个临界值，我们就拒绝零假设 $ H_0 $ ,接收备择假设 $ H_1 $。</s></p>
+<p>似然比检验是一种统计检验方法，用于比较两个统计模型的拟合优度。在这个问题中，我们有一个统计量 $ T_{LRT}(\boldsymbol{x}) $</p>
+<p>$ p(\boldsymbol{x}; \boldsymbol z = \boldsymbol z_1) $ 是在参数 $ \boldsymbol z = \boldsymbol z_1 $ 下的似然函数值，而 $  p(\boldsymbol{x}; \boldsymbol z = \boldsymbol z_0) $ 是在参数 $ \boldsymbol z = \boldsymbol z_0 $ 下的似然函数值。这个统计量用于检验零假设 $ H_0: \boldsymbol z = \boldsymbol z_0 $ 还是对立假设 $ H_1: \boldsymbol z = \boldsymbol z_1 $</p>
+<p>似然比检验统计量 $ T_{LRT}(\boldsymbol{x}) $ 的值越大，表示在 $ \boldsymbol z = \boldsymbol z_1 $ 下的似然函数值比在 $ \boldsymbol z = \boldsymbol z_0 $ 下的似然函数值大得多，因此我们有更强的证据拒绝零假设 $ H_0 $。</p>
+<p>在实际应用中，我们通常会将 $T_{LRT}(\boldsymbol{x}) $ 与一个临界值进行比较，如果 $ T_{LRT}(\boldsymbol{x}) $ 大于这个临界值，我们就拒绝零假设 $ H_0 $ ,接收备择假设 $ H_1 $。</p>
 <p><strong>广义似然比检验</strong>(Generalized Likelihood Ratio Test,GLRT)[1]：</p>
 <p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>T</mi><mrow><mi mathvariant="normal">G</mi><mi mathvariant="normal">L</mi><mi mathvariant="normal">R</mi><mi mathvariant="normal">T</mi></mrow></msub><mo stretchy="false">(</mo><mi mathvariant="bold">x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>2</mn><mi>log</mi><mo>⁡</mo><mfrac><mrow><munder><mo><mi>max</mi><mo>⁡</mo></mo><mrow><mi mathvariant="bold">z</mi><mo>∈</mo><msub><mi mathvariant="script">Z</mi><mn>1</mn></msub></mrow></munder><mi>p</mi><mo stretchy="false">(</mo><mi mathvariant="bold">x</mi><mo separator="true">;</mo><mi mathvariant="bold">z</mi><mo stretchy="false">)</mo></mrow><mrow><munder><mo><mi>max</mi><mo>⁡</mo></mo><mrow><mi mathvariant="bold">z</mi><mo>∈</mo><msub><mi mathvariant="script">Z</mi><mn>0</mn></msub></mrow></munder><mi>p</mi><mo stretchy="false">(</mo><mi mathvariant="bold">x</mi><mo separator="true">;</mo><mi mathvariant="bold">z</mi><mo stretchy="false">)</mo></mrow></mfrac><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">T_{\mathrm{GLRT}}(\mathbf{x}) = 2\log \frac{\max_{\mathbf{z}\in\mathcal{Z}_1} p(\mathbf{x};\mathbf{z})}{\max_{\mathbf{z}\in\mathcal{Z}_0} p(\mathbf{x};\mathbf{z})}.
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">G</span><span class="mord mathrm mtight">L</span><span class="mord mathrm mtight">R</span><span class="mord mathrm mtight">T</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathbf">x</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.3631em;vertical-align:-0.9361em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop">max</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathbf mtight">z</span></span><span class="mrel mtight">∈</span><span class="mord mtight"><span class="mord mtight"><span class="mord mathcal mtight" style="margin-right:0.07944em;">Z</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2501em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord"><span class="mord mathbf">x</span></span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathbf">z</span></span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.6769999999999996em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop">max</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathbf mtight">z</span></span><span class="mrel mtight">∈</span><span class="mord mtight"><span class="mord mtight"><span class="mord mathcal mtight" style="margin-right:0.07944em;">Z</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2501em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord"><span class="mord mathbf">x</span></span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathbf">z</span></span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9361em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord">.</span></span></span></span></span></p>
@@ -420,6 +420,61 @@ eyJoaXN0b3J5IjpbMTkyNDkxNjgxM119
       </tags>
   </entry>
   <entry>
+    <title>图像增广</title>
+    <url>/2025/03/04/%E5%9B%BE%E5%83%8F%E5%A2%9E%E5%B9%BF/</url>
+    <content><![CDATA[<h2 id="介绍"><a class="markdownIt-Anchor" href="#介绍"></a> 介绍</h2>
+<p>在不同场景下,图片很可能环境中其他因素干扰,比如噪声</p>
+<p>如果在训练数据时引入噪声,模型往往有更好的鲁棒性</p>
+<h2 id="数据增强"><a class="markdownIt-Anchor" href="#数据增强"></a> 数据增强</h2>
+<ul>
+<li>增加一个已有数据集，使得有更多的多样性
+<ul>
+<li>在语言里面加入各种不同的背景噪音</li>
+<li>改变图片的颜色和形状</li>
+</ul>
+</li>
+</ul>
+<h3 id="翻转"><a class="markdownIt-Anchor" href="#翻转"></a> 翻转:</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/img/%E6%88%AA%E5%B1%8F2025-03-04%2015.28.02.png" alt="截屏2025-03-04 15.28.02" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/img/%E6%88%AA%E5%B1%8F2025-03-04%2015.37.01.png" alt="截屏2025-03-04 15.37.01" /></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torchvision</span><br><span class="line">         <span class="comment">#图片,图片增广的办法,生成结果两行四列,scale图片画多大</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">apply</span>(<span class="params">img, aug, num_rows=<span class="number">2</span>, num_cols=<span class="number">4</span>, scale=<span class="number">1.5</span></span>):</span><br><span class="line">    Y = [aug(img) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(num_rows * num_cols)]</span><br><span class="line">    d2l.show_images(Y, num_rows, num_cols, scale=scale)</span><br><span class="line"></span><br><span class="line">apply(img, torchvision.transforms.RandomVerticalFlip())   <span class="comment">#上下翻转</span></span><br><span class="line">apply(img, torchvision.transforms.RandomHorizontalFlip())  <span class="comment">#左右翻转</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/img/%E6%88%AA%E5%B1%8F2025-03-04%2015.38.15.png" alt="截屏2025-03-04 15.38.15" /></p>
+<h3 id="切割"><a class="markdownIt-Anchor" href="#切割"></a> 切割:</h3>
+<ul>
+<li>从图片中切割一块，然后变形到固定形状
+<ul>
+<li>随机高宽比 （e.g.［3/4,4/3］）</li>
+<li>随机大小（e.g.［8%，100%］</li>
+<li>随机位</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/img/%E6%88%AA%E5%B1%8F2025-03-04%2015.30.00.png" alt="截屏2025-03-04 15.30.00" /></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">shape_aug = torchvision.transforms.RandomResizedCrop(</span><br><span class="line">    (<span class="number">200</span>, <span class="number">200</span>), scale=(<span class="number">0.1</span>, <span class="number">1</span>), ratio=(<span class="number">0.5</span>, <span class="number">2</span>))</span><br><span class="line"><span class="comment">#resize到(200,200)  scale:位原始图片的0.1~1倍。ratio:高宽比</span></span><br><span class="line">apply(img, shape_aug)</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/img/%E6%88%AA%E5%B1%8F2025-03-04%2015.42.08.png" alt="截屏2025-03-04 15.42.08" /></p>
+<h3 id="颜色"><a class="markdownIt-Anchor" href="#颜色"></a> 颜色</h3>
+<p>•改变色调，饱和度，明亮度（e.g.［0.5,1.5］)</p>
+<p><img src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/img/%E6%88%AA%E5%B1%8F2025-03-04%2015.31.58.png" alt="截屏2025-03-04 15.31.58" /></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">apply(img,  <span class="comment">#改变亮度</span></span><br><span class="line">    torchvision.transforms.ColorJitter(brightness=<span class="number">0.5</span>, contrast=<span class="number">0</span>,</span><br><span class="line">                                       saturation=<span class="number">0</span>, hue=<span class="number">0</span>))</span><br><span class="line">apply(img,  <span class="comment">#改变色调</span></span><br><span class="line">    torchvision.transforms.ColorJitter(brightness=<span class="number">0</span>, contrast=<span class="number">0</span>, saturation=<span class="number">0</span>,</span><br><span class="line">                                       hue=<span class="number">0.5</span>))</span><br><span class="line"><span class="comment">#随机更改图像的亮度（brightness）、对比度（contrast）、饱和度（saturation）和色调（hue）</span></span><br><span class="line">color_aug = torchvision.transforms.ColorJitter(brightness=<span class="number">0.5</span>, contrast=<span class="number">0.5</span>,</span><br><span class="line">                                               saturation=<span class="number">0.5</span>, hue=<span class="number">0.5</span>)</span><br><span class="line">apply(img, color_aug)</span><br></pre></td></tr></table></figure>
+<p>还有许多其他的方法……</p>
+<p>只使用最简单的随机左右翻转</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">train_augs = torchvision.transforms.Compose([</span><br><span class="line">    torchvision.transforms.RandomHorizontalFlip(),</span><br><span class="line">    torchvision.transforms.ToTensor()])</span><br><span class="line"></span><br><span class="line">test_augs = torchvision.transforms.Compose([</span><br><span class="line">    torchvision.transforms.ToTensor()])</span><br></pre></td></tr></table></figure>
+<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
+<p><a href="https://courses.d2l.ai/zh-v2/assets/notebooks/chapter_computer-vision/image-augmentation.slides.html">https://courses.d2l.ai/zh-v2/assets/notebooks/chapter_computer-vision/image-augmentation.slides.html</a></p>
+<h2 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h2>
+<ul>
+<li>数据增广通过变形数据来获取多样性从而使得模型泛化性能更好</li>
+<li>常见图片增广包括翻转、切割、变色</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>四种通信序列</title>
     <url>/2025/02/25/%E5%9B%9B%E7%A7%8D%E9%80%9A%E4%BF%A1%E5%BA%8F%E5%88%97/</url>
     <content><![CDATA[<h2 id="一-costas序列常用在跳频中"><a class="markdownIt-Anchor" href="#一-costas序列常用在跳频中"></a> 一、Costas序列（常用在跳频中）</h2>
@@ -574,61 +629,6 @@ eyJoaXN0b3J5IjpbLTg0NDk2NjQxXX0=
       <tags>
         <tag>雷达/声纳</tag>
         <tag>信号处理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>图像增广</title>
-    <url>/2025/03/04/%E5%9B%BE%E5%83%8F%E5%A2%9E%E5%B9%BF/</url>
-    <content><![CDATA[<h2 id="介绍"><a class="markdownIt-Anchor" href="#介绍"></a> 介绍</h2>
-<p>在不同场景下,图片很可能环境中其他因素干扰,比如噪声</p>
-<p>如果在训练数据时引入噪声,模型往往有更好的鲁棒性</p>
-<h2 id="数据增强"><a class="markdownIt-Anchor" href="#数据增强"></a> 数据增强</h2>
-<ul>
-<li>增加一个已有数据集，使得有更多的多样性
-<ul>
-<li>在语言里面加入各种不同的背景噪音</li>
-<li>改变图片的颜色和形状</li>
-</ul>
-</li>
-</ul>
-<h3 id="翻转"><a class="markdownIt-Anchor" href="#翻转"></a> 翻转:</h3>
-<p><img src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/img/%E6%88%AA%E5%B1%8F2025-03-04%2015.28.02.png" alt="截屏2025-03-04 15.28.02" /></p>
-<p><img src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/img/%E6%88%AA%E5%B1%8F2025-03-04%2015.37.01.png" alt="截屏2025-03-04 15.37.01" /></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torchvision</span><br><span class="line">         <span class="comment">#图片,图片增广的办法,生成结果两行四列,scale图片画多大</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">apply</span>(<span class="params">img, aug, num_rows=<span class="number">2</span>, num_cols=<span class="number">4</span>, scale=<span class="number">1.5</span></span>):</span><br><span class="line">    Y = [aug(img) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(num_rows * num_cols)]</span><br><span class="line">    d2l.show_images(Y, num_rows, num_cols, scale=scale)</span><br><span class="line"></span><br><span class="line">apply(img, torchvision.transforms.RandomVerticalFlip())   <span class="comment">#上下翻转</span></span><br><span class="line">apply(img, torchvision.transforms.RandomHorizontalFlip())  <span class="comment">#左右翻转</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/img/%E6%88%AA%E5%B1%8F2025-03-04%2015.38.15.png" alt="截屏2025-03-04 15.38.15" /></p>
-<h3 id="切割"><a class="markdownIt-Anchor" href="#切割"></a> 切割:</h3>
-<ul>
-<li>从图片中切割一块，然后变形到固定形状
-<ul>
-<li>随机高宽比 （e.g.［3/4,4/3］）</li>
-<li>随机大小（e.g.［8%，100%］</li>
-<li>随机位</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/img/%E6%88%AA%E5%B1%8F2025-03-04%2015.30.00.png" alt="截屏2025-03-04 15.30.00" /></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">shape_aug = torchvision.transforms.RandomResizedCrop(</span><br><span class="line">    (<span class="number">200</span>, <span class="number">200</span>), scale=(<span class="number">0.1</span>, <span class="number">1</span>), ratio=(<span class="number">0.5</span>, <span class="number">2</span>))</span><br><span class="line"><span class="comment">#resize到(200,200)  scale:位原始图片的0.1~1倍。ratio:高宽比</span></span><br><span class="line">apply(img, shape_aug)</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/img/%E6%88%AA%E5%B1%8F2025-03-04%2015.42.08.png" alt="截屏2025-03-04 15.42.08" /></p>
-<h3 id="颜色"><a class="markdownIt-Anchor" href="#颜色"></a> 颜色</h3>
-<p>•改变色调，饱和度，明亮度（e.g.［0.5,1.5］)</p>
-<p><img src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/img/%E6%88%AA%E5%B1%8F2025-03-04%2015.31.58.png" alt="截屏2025-03-04 15.31.58" /></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">apply(img,  <span class="comment">#改变亮度</span></span><br><span class="line">    torchvision.transforms.ColorJitter(brightness=<span class="number">0.5</span>, contrast=<span class="number">0</span>,</span><br><span class="line">                                       saturation=<span class="number">0</span>, hue=<span class="number">0</span>))</span><br><span class="line">apply(img,  <span class="comment">#改变色调</span></span><br><span class="line">    torchvision.transforms.ColorJitter(brightness=<span class="number">0</span>, contrast=<span class="number">0</span>, saturation=<span class="number">0</span>,</span><br><span class="line">                                       hue=<span class="number">0.5</span>))</span><br><span class="line"><span class="comment">#随机更改图像的亮度（brightness）、对比度（contrast）、饱和度（saturation）和色调（hue）</span></span><br><span class="line">color_aug = torchvision.transforms.ColorJitter(brightness=<span class="number">0.5</span>, contrast=<span class="number">0.5</span>,</span><br><span class="line">                                               saturation=<span class="number">0.5</span>, hue=<span class="number">0.5</span>)</span><br><span class="line">apply(img, color_aug)</span><br></pre></td></tr></table></figure>
-<p>还有许多其他的方法……</p>
-<p>只使用最简单的随机左右翻转</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">train_augs = torchvision.transforms.Compose([</span><br><span class="line">    torchvision.transforms.RandomHorizontalFlip(),</span><br><span class="line">    torchvision.transforms.ToTensor()])</span><br><span class="line"></span><br><span class="line">test_augs = torchvision.transforms.Compose([</span><br><span class="line">    torchvision.transforms.ToTensor()])</span><br></pre></td></tr></table></figure>
-<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
-<p><a href="https://courses.d2l.ai/zh-v2/assets/notebooks/chapter_computer-vision/image-augmentation.slides.html">https://courses.d2l.ai/zh-v2/assets/notebooks/chapter_computer-vision/image-augmentation.slides.html</a></p>
-<h2 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h2>
-<ul>
-<li>数据增广通过变形数据来获取多样性从而使得模型泛化性能更好</li>
-<li>常见图片增广包括翻转、切割、变色</li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
       </tags>
   </entry>
   <entry>
