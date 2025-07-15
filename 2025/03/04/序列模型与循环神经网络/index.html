@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/img/IMG_0719.jpg">
 <meta property="article:published_time" content="2025-03-04T11:54:06.000Z">
-<meta property="article:modified_time" content="2025-03-05T08:17:18.943Z">
+<meta property="article:modified_time" content="2025-07-15T23:51:17.846Z">
 <meta property="article:author" content="Zane">
 <meta property="article:tag" content="深度学习">
 <meta name="twitter:card" content="summary">
@@ -18,7 +18,7 @@
   "url": "https://vanillaholic.github.io/2025/03/04/%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/",
   "image": "http://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/img/IMG_0719.jpg",
   "datePublished": "2025-03-04T11:54:06.000Z",
-  "dateModified": "2025-03-05T08:17:18.943Z",
+  "dateModified": "2025-07-15T23:51:17.846Z",
   "author": [
     {
       "@type": "Person",
@@ -209,12 +209,12 @@
 </ul>
 <h3 id="如何对序列进行统计"><a href="#如何对序列进行统计" class="headerlink" title="如何对序列进行统计"></a>如何对序列进行统计</h3><p>上述提到了信息量,而信息量这个词往往就和概率相关了</p>
 <ul>
-<li><p>在时间$t$观察到$x_t$，那么得到$T$个不独立的随机变量$(x_1,…x_T) - p(\bold x)$</p>
+<li><p>在时间$t$观察到$x_t$，那么得到$T$个不独立的随机变量$(x_1,…x_T) - p(\boldsymbol x)$</p>
 </li>
 <li><p>使用条件概率展开$p(a,b)=p(a)p(b|a)=p(b)p(a|b)$</p>
 </li>
 </ul>
-<p>所以$p(\bold x)$就可以写为条件概率的乘积,如下图所示</p>
+<p>所以$p(\boldsymbol x)$就可以写为条件概率的乘积,如下图所示</p>
 <p><img src= "/img/loading.gif" data-lazy-src="http://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/img/%E6%88%AA%E5%B1%8F2025-03-04%2016.50.52.png" alt="截屏2025-03-04 16.50.52" style="zoom: 50%;" /></p>
 <p>$f(\cdot)$表示训练的模型</p>
 <h4 id="A-马尔可夫"><a href="#A-马尔可夫" class="headerlink" title="A.马尔可夫"></a>A.马尔可夫</h4><p>当前数据只跟过去有限个数据相关(概率论学过,此处不再赘述)</p>

@@ -93,7 +93,7 @@ eyJoaXN0b3J5IjpbMjc5NjAyMDE1XX0=
   <entry>
     <title>Acoustic Toolbox和Arlpy配置</title>
     <url>/2025/07/03/Acoustic%20Toolbox%E5%92%8CArlpy%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<p>python的arlpy包是调用Acoustic Toolbox中的fortran进行仿真计算，首先需要下载Acoustic Toolbox</p>
+    <content><![CDATA[<p>python的arlpy包是调用Acoustic Toolbox,利用fortran进行仿真计算，首先需要下载Acoustic Toolbox</p>
 <h3 id="下载Acoustic-Toolbox"><a href="#下载Acoustic-Toolbox" class="headerlink" title="下载Acoustic Toolbox"></a>下载Acoustic Toolbox</h3><p>下载链接：</p>
 <ul>
 <li><a href="http://oalib.hlsresearch.com/AcousticsToolbox/at_2024_12_25.zip">http://oalib.hlsresearch.com/AcousticsToolbox/at_2024_12_25.zip</a>  （Mac/Linux/Windows – 必须要手动进行编译）</li>
@@ -119,7 +119,7 @@ eyJoaXN0b3J5IjpbMjc5NjAyMDE1XX0=
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">which</span> bellhop.exe</span><br></pre></td></tr></table></figure>
 <p>如果返回了bellhop.exe的路径，说明配置成功</p>
 <h4 id="在jupyter中查看路径是否安装成功"><a href="#在jupyter中查看路径是否安装成功" class="headerlink" title="在jupyter中查看路径是否安装成功"></a>在jupyter中查看路径是否安装成功</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.system(<span class="string">&quot;which bellhop.exe&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p>如果没有返回正确路径，则每次使用前需要手动添加</p>
+<p>如果没有返回路径，则每次使用前需要手动添加路径</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.environ[<span class="string">&quot;PATH&quot;</span>] += <span class="string">&quot;:/Users/zanesing/Documents/at/Bellhop&quot;</span>     <span class="comment">#这里填写Bellhop文件夹路径(注意是文件夹路径，不是.exe路径)</span></span><br></pre></td></tr></table></figure>
 <h3 id="在python中设置Arlpy"><a href="#在python中设置Arlpy" class="headerlink" title="在python中设置Arlpy"></a>在python中设置Arlpy</h3><p>在命令行输入以下命令，下载arlpy</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install arlpy</span><br></pre></td></tr></table></figure>
@@ -167,9 +167,7 @@ eyJoaXN0b3J5IjpbMjc5NjAyMDE1XX0=
 </ul>
 <h2 id="检测器"><a href="#检测器" class="headerlink" title="检测器"></a>检测器</h2><h3 id="经典检测器"><a href="#经典检测器" class="headerlink" title="经典检测器"></a>经典检测器</h3><p><strong>似然比检验</strong>（Likelihood Ratio Test,LRT)[1]： </p>
 <script type="math/tex; mode=display">
-T_{LRT}(\boldsymbol{x}) = 2 \log \frac{p(\boldsymbol{x} \mid z = z_1)}{p(\boldsymbol{x} \mid z = z_0)}</script><p>（此处渲染器出问题了，看图片吧）</p>
-<p><img src="http://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/202503051629084.png" alt=""></p>
-<p>似然比检验是一种统计检验方法，用于比较两个统计模型的拟合优度。在这个问题中，我们有一个统计量 $ T_{LRT}(\boldsymbol{x}) $</p>
+T_{LRT}(\boldsymbol{x}) = 2 \log \frac{p(\boldsymbol{x} \mid z = z_1)}{p(\boldsymbol{x} \mid z = z_0)}</script><p>似然比检验是一种统计检验方法，用于比较两个统计模型的拟合优度。在这个问题中，我们有一个统计量 $ T_{LRT}(\boldsymbol{x}) $</p>
 <p>$ p(\boldsymbol{x}; \boldsymbol z = \boldsymbol z_1) $ 是在参数 $ \boldsymbol z = \boldsymbol z_1 $ 下的似然函数值，而 $  p(\boldsymbol{x}; \boldsymbol z = \boldsymbol z_0) $ 是在参数 $ \boldsymbol z = \boldsymbol z_0 $ 下的似然函数值。这个统计量用于检验零假设 $ H_0: \boldsymbol z = \boldsymbol z_0 $ 还是对立假设 $ H_1: \boldsymbol z = \boldsymbol z_1 $</p>
 <p>似然比检验统计量 $ T_{LRT}(\boldsymbol{x}) $ 的值越大，表示在 $ \boldsymbol z = \boldsymbol z_1 $ 下的似然函数值比在 $ \boldsymbol z = \boldsymbol z_0 $ 下的似然函数值大得多，因此我们有更强的证据拒绝零假设 $ H_0 $。</p>
 <p>在实际应用中，我们通常会将 $T_{LRT}(\boldsymbol{x}) $ 与一个临界值进行比较，如果 $ T_{LRT}(\boldsymbol{x}) $ 大于这个临界值，我们就拒绝零假设 $ H_0 $ ,接收备择假设 $ H_1 $。</p>
@@ -201,13 +199,13 @@ y=1: z_{r}\neq z_{r_0},z_n</script><p>在没有复杂的参数干扰时，BLRT�
 p(x;z_r,z _n)=∏_{i=1}^N p(x_i;z_r,z_n),N→∞</script></li>
 <li><p>信号是弱的：</p>
 <script type="math/tex; mode=display">
-∥\bold z_{r_1}− \bold z_{r_0}∥= \frac {s}{\sqrt{N}}</script></li>
+∥\boldsymbol z_{r_1}− \boldsymbol z_{r_0}∥= \frac {s}{\sqrt{N}}</script></li>
 <li><p>未知参数的最大似然估计量（ML estimators）是统计有效的，并达到它们的渐近性能</p>
 </li>
 </ul>
 <p>有两个发现：</p>
 <script type="math/tex; mode=display">
-T_{BLRT}(\bold x)\to T_{GLRT}(\bold x)+func(\bold z_{r_0},\bold z_n)</script><p>GLRT是CLRT的一种变形[3]</p>
+T_{BLRT}(\boldsymbol x)\to T_{GLRT}(\boldsymbol x)+func(\boldsymbol z_{r_0},\boldsymbol z_n)</script><p>GLRT是CLRT的一种变形[3]</p>
 <h2 id="基于学习的检测器"><a href="#基于学习的检测器" class="headerlink" title="基于学习的检测器"></a>基于学习的检测器</h2><p><img src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/img/202503051149496.png" alt="image-20250305114947231"></p>
 <p>我们决定将理论用于实际，提出一个机器学习框架，使其性能近似于上述理论</p>
 <p><img src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/img/202503051150230.png" alt="image-20250305115004112"></p>
@@ -300,14 +298,13 @@ eyJoaXN0b3J5IjpbLTU3NTEyMDQ0OF19
   <entry>
     <title>Hello World</title>
     <url>/2024/05/20/hello-world/</url>
-    <content><![CDATA[<h2 id="这是我发的第一篇博客-以此证明我在这个世上存在过……"><a href="#这是我发的第一篇博客-以此证明我在这个世上存在过……" class="headerlink" title="这是我发的第一篇博客,以此证明我在这个世上存在过……"></a>这是我发的第一篇博客,以此证明我在这个世上存在过……</h2><h2 id="如何发表文章"><a href="#如何发表文章" class="headerlink" title="如何发表文章"></a>如何发表文章</h2><h3 id="安装hexo渲染器"><a href="#安装hexo渲染器" class="headerlink" title="安装hexo渲染器"></a>安装hexo渲染器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-renderer-pug hexo-renderer-stylus</span><br></pre></td></tr></table></figure>
-<p>关于公式渲染,参考这个链接:<a href="https://blog.luzy.top/posts/2968289947/">https://blog.luzy.top/posts/2968289947/</a><br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">### Create a new post</span><br><span class="line"></span><br><span class="line">``` bash</span><br><span class="line">$ hexo new &quot;My New Post&quot;</span><br></pre></td></tr></table></figure></p>
+    <content><![CDATA[<h2 id="这是我发的第一篇博客-以此证明我在这个世上存在过……"><a href="#这是我发的第一篇博客-以此证明我在这个世上存在过……" class="headerlink" title="这是我发的第一篇博客,以此证明我在这个世上存在过……"></a>这是我发的第一篇博客,以此证明我在这个世上存在过……</h2><h2 id="如何发表文章"><a href="#如何发表文章" class="headerlink" title="如何发表文章"></a>如何发表文章</h2><h3 id="安装hexo渲染器"><a href="#安装hexo渲染器" class="headerlink" title="安装hexo渲染器"></a>安装hexo渲染器</h3><p>cd到hexo根目录，通过npm安装<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-renderer-pug hexo-renderer-stylus</span><br></pre></td></tr></table></figure><br>hexo默认的渲染器无法渲染数学公式,所以要更换渲染器:<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked --save <span class="comment">#删除默认的公式渲染器</span></span><br><span class="line">npm install hexo-renderer-kramed --save     <span class="comment">#安装这个渲染器 </span></span><br></pre></td></tr></table></figure><br>更换引擎后行间公式可以正确渲染了，但是这样还没有完全解决问题，行内公式的渲染还是有问题，因为hexo-renderer-kramed引擎也有语义冲突的问题。接下来到博客根目录下，找到<code>node_modules\kramed\lib\rules\inline.js</code>，把第11行和第20行做如下修改：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"># line <span class="number">11</span></span><br><span class="line">-  <span class="attr">escape</span>: <span class="regexp">/^\\([\\`*&#123;&#125;\[\]()#$+\-.!_&gt;])/</span>,</span><br><span class="line">+  <span class="attr">escape</span>: <span class="regexp">/^\\([`*\[\]()#$+\-.!_&gt;])/</span></span><br><span class="line"># line <span class="number">20</span></span><br><span class="line">-  <span class="attr">em</span>: <span class="regexp">/^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span>,</span><br><span class="line">+  <span class="attr">em</span>: <span class="regexp">/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span></span><br><span class="line"><span class="string">``</span></span><br><span class="line"></span><br><span class="line">### 创建一个新博客</span><br><span class="line"></span><br><span class="line"><span class="string">``</span><span class="string">` bash</span></span><br><span class="line"><span class="string">$ hexo new &quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure></p>
 <p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h3 id="展示示例"><a href="#展示示例" class="headerlink" title="展示示例"></a>展示示例</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<h3 id="部署到远端"><a href="#部署到远端" class="headerlink" title="部署到远端"></a>部署到远端</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a><br><!--stackedit_data:
 eyJoaXN0b3J5IjpbMTkyNDkxNjgxM119
 --></p>
@@ -537,12 +534,12 @@ eyJoaXN0b3J5IjpbLTg0NDk2NjQxXX0=
 </ul>
 <h3 id="如何对序列进行统计"><a href="#如何对序列进行统计" class="headerlink" title="如何对序列进行统计"></a>如何对序列进行统计</h3><p>上述提到了信息量,而信息量这个词往往就和概率相关了</p>
 <ul>
-<li><p>在时间$t$观察到$x_t$，那么得到$T$个不独立的随机变量$(x_1,…x_T) - p(\bold x)$</p>
+<li><p>在时间$t$观察到$x_t$，那么得到$T$个不独立的随机变量$(x_1,…x_T) - p(\boldsymbol x)$</p>
 </li>
 <li><p>使用条件概率展开$p(a,b)=p(a)p(b|a)=p(b)p(a|b)$</p>
 </li>
 </ul>
-<p>所以$p(\bold x)$就可以写为条件概率的乘积,如下图所示</p>
+<p>所以$p(\boldsymbol x)$就可以写为条件概率的乘积,如下图所示</p>
 <p><img src="http://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/img/%E6%88%AA%E5%B1%8F2025-03-04%2016.50.52.png" alt="截屏2025-03-04 16.50.52" style="zoom: 50%;" /></p>
 <p>$f(\cdot)$表示训练的模型</p>
 <h4 id="A-马尔可夫"><a href="#A-马尔可夫" class="headerlink" title="A.马尔可夫"></a>A.马尔可夫</h4><p>当前数据只跟过去有限个数据相关(概率论学过,此处不再赘述)</p>
