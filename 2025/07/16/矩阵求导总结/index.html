@@ -1,0 +1,681 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>矩阵求导总结 | 邢子晗's Blog</title><meta name="author" content="Zane"><meta name="copyright" content="Zane"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="关于矩阵求导的教程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="矩阵求导总结">
+<meta property="og:url" content="https://vanillaholic.github.io/2025/07/16/%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="邢子晗&#39;s Blog">
+<meta property="og:description" content="关于矩阵求导的教程">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190319153939980.png">
+<meta property="article:published_time" content="2025-07-16T11:29:12.000Z">
+<meta property="article:modified_time" content="2025-07-16T11:32:16.398Z">
+<meta property="article:author" content="Zane">
+<meta property="article:tag" content="数学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190319153939980.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "矩阵求导总结",
+  "url": "https://vanillaholic.github.io/2025/07/16/%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E6%80%BB%E7%BB%93/",
+  "image": "https://img-blog.csdnimg.cn/20190319153939980.png",
+  "datePublished": "2025-07-16T11:29:12.000Z",
+  "dateModified": "2025-07-16T11:32:16.398Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Zane",
+      "url": "https://vanillaholic.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/liu13.png"><link rel="canonical" href="https://vanillaholic.github.io/2025/07/16/%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E6%80%BB%E7%BB%93/index.html"><link rel="preconnect" href="https://jsd.012700.xyz"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><meta name="google-site-verification" content="NdIUXAOVyGnnBhcrip0ksCawbdAzT0hlBZDE9u4jx6k"/><meta name="msvalidate.01" content="567E47D75E8DCF1282B9623AD914701E"/><meta name="baidu-site-verification" content="code-pE5rnuxcfD"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://jsd.012700.xyz/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://jsd.012700.xyz/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+          
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            mediaQueryDark.addEventListener('change', () => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":1,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Zane","link":"链接: ","source":"来源: 邢子晗's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://jsd.012700.xyz/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '矩阵求导总结',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="preconnect" href="https://jsd.012700.xyz"><link href="/self/btf.css" rel="stylesheet"><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="邢子晗's Blog" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load', preloader.endLoading)
+
+  if (true) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "/img/loading.gif" data-lazy-src="/img/liu13.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-compass"></i><span> 页面</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/talking/"><i class="fa-fw fas fa-comment-dots"></i><span> 说说</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-thumbs-up"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 文档</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/posts/4aa8abbe/"><span> 📌自我介绍</span></a></li><li><a class="site-page child" href="/posts/dc584b87/"><span> 📑知识分享</span></a></li><li><a class="site-page child" href="/posts/4aa8abbe/"><span> 🛠工具分享</span></a></li><li><a class="site-page child" href="/posts/3574d402/"><span> 🖋文章投稿</span></a></li><li><a class="site-page child" href="/posts/98d20436/"><span> ❓问题互助</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-language"></i><span> 语言</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/en/"><i class="fa-fw fas fa-e"></i><span> English(in building...)</span></a></li><li><a class="site-page child" href="/"><i class="fa-fw fas fa-c"></i><span> 中文</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://img3.wallspic.com/crops/2/9/8/1/7/171892/171892-lu_xing-cheng_shi-li_cheng_bei-cheng_shi_jing_guan-3840x2160.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "/img/loading.gif" data-lazy-src="/./img/liu13.png" alt="Logo"><span class="site-name">邢子晗's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">矩阵求导总结</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-compass"></i><span> 页面</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/talking/"><i class="fa-fw fas fa-comment-dots"></i><span> 说说</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-thumbs-up"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 文档</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/posts/4aa8abbe/"><span> 📌自我介绍</span></a></li><li><a class="site-page child" href="/posts/dc584b87/"><span> 📑知识分享</span></a></li><li><a class="site-page child" href="/posts/4aa8abbe/"><span> 🛠工具分享</span></a></li><li><a class="site-page child" href="/posts/3574d402/"><span> 🖋文章投稿</span></a></li><li><a class="site-page child" href="/posts/98d20436/"><span> ❓问题互助</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-language"></i><span> 语言</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/en/"><i class="fa-fw fas fa-e"></i><span> English(in building...)</span></a></li><li><a class="site-page child" href="/"><i class="fa-fw fas fa-c"></i><span> 中文</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">矩阵求导总结<a class="post-edit-link" href="https://github.com/vanillaholic/Blog-demo/edit/main/source/_posts/矩阵求导总结.md" rel="external nofollow noreferrer" title="编辑" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2025-07-16T11:29:12.000Z" title="发表于 2025-07-16 19:29:12">2025-07-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>12分钟</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="umamiPV" data-path="/2025/07/16/%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E6%80%BB%E7%BB%93/"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="基础部分"><a href="#基础部分" class="headerlink" title="基础部分"></a>基础部分</h2><h3 id="基本法则"><a href="#基本法则" class="headerlink" title="基本法则"></a>基本法则</h3><p>根据$df=f’(x)dx$,我们定义向量微分和矩阵微分</p>
+<script type="math/tex; mode=display">
+df=\sum_{i=1}^n\frac{\partial f}{\partial x_i}dx_i=\frac{\partial f}{\partial\mathbf{x}}^Td\mathbf{x}=\frac{\partial f}{\partial \mathbf{x}}\cdot d\mathbf{x}</script><script type="math/tex; mode=display">
+df=\sum_{i=1}^{m}\sum_{j=1}^{n}\frac{\partial f}{\partial X_{ij}}dX_{ij}=\mathrm{tr}\left(\frac{\partial f}{\partial \mathbf{X}}^{T}d\mathbf{X}\right)=\mathbf{X}\cdot \mathbf{X}=\|\mathbf{X}\|_F^2</script><p>此外,定义两个矩阵的内积</p>
+<script type="math/tex; mode=display">
+\mathbf{A}\cdot\mathbf{B}=\mathrm{tr}(\mathbf{A}^T\mathbf{B})=\Sigma_{i,j}A_{i,j}B_{i,j}</script><p><del>罗辑就是在此基础上发现了黑暗森林法则,bushi</del></p>
+<h3 id="运算法则"><a href="#运算法则" class="headerlink" title="运算法则"></a>运算法则</h3><ol>
+<li>加减法: $d(\mathbf{X \pm Y}) = d\mathbf{X} \pm d\mathbf{Y}$; 矩阵乘法: $d(\mathbf{XY}) = (d\mathbf{X})\mathbf{Y}+ \mathbf{X}d\mathbf{Y}$; 转置: $d(\mathbf{X}^T) = (d\mathbf{X})^T$; 迹: $d\text{tr}(\mathbf{X}) = \text{tr}(d\mathbf{X})$。</li>
+<li>逆: $d\mathbf{X}^{-1} = -\mathbf{X}^{-1}d\mathbf{XX}^{-1}$。此式可在$\mathbf{XX}^{-1} = I$两侧求微分来证明。</li>
+<li>行列式: $d|\mathbf{X}| = \text{tr}(\mathbf{X}^#d\mathbf{X})$, 其中$X^#$表示X的伴随矩阵*, 在X可逆时又可以写作$d|\mathbf{X}| = |\mathbf{X}|\text{tr}(\mathbf{X}^{-1}d\mathbf{X})$。</li>
+<li>逐元素乘法: $d(\mathbf{X} \odot \mathbf{Y}) = d\mathbf{X} \odot \mathbf{Y} + \mathbf{X} \odot d\mathbf{Y}$, $\odot$表示尺寸相同的矩阵$\mathbf{X},\mathbf{Y}$逐元素相乘。</li>
+<li>逐元素函数: $d\sigma(\mathbf{X}) = \sigma’(\mathbf{X}) \odot d\mathbf{X}$, $\sigma(X) = [\sigma(X_{ij})]$是逐元素标量函数运算, $\sigma’(\mathbf{X}) = [\sigma’(X_{ij})]$是逐元素求导数。例如$\mathbf{X} = \left[\begin{matrix} X_{11} &amp; X_{12} \\ X_{21} &amp; X_{22} \end{matrix}\right]$, $d|\sin \mathbf{X}| = \left[\begin{matrix} \cos X_{11} dX_{11} &amp; \cos X_{12} dX_{12} \\ \cos X_{21} dX_{21} &amp; \cos X_{22} dX_{22} \end{matrix}\right] = |\cos \mathbf{X}| \odot d\mathbf{X}$。</li>
+</ol>
+<h3 id="矩阵计算基础"><a href="#矩阵计算基础" class="headerlink" title="矩阵计算基础"></a>矩阵计算基础</h3><p>1.标量套上迹：$a=\operatorname{tr}(a)$</p>
+<p>2.转置：tr$(\mathbf{A}^T)=$tr$(\mathbf{A})$。</p>
+<p>3.线性：$\operatorname{tr}(\mathbf{A}\pm \mathbf{B})=\operatorname{tr}(\mathbf{A})\pm\operatorname{tr}(\mathbf{B})$。</p>
+<p>4.矩阵乘法交换：$\operatorname{tr}(\mathbf{AB})=\operatorname{tr}(\mathbf{BA})$,$\mathbf{A}$与$\mathbf{B}^T$尺寸相同。两侧都等于$\sum_{i,j}A_{ij}B_{ji}$。</p>
+<p>5.矩阵乘法/逐元素乘法交换：<strong>$\operatorname{tr}(\mathbf{A}^T(\mathbf{B}\odot \mathbf{C}))=\operatorname{tr}((\mathbf{A}\odot \mathbf{B})^TC)$</strong>,其中$\mathbf{A,B,C}$尺寸相同。两侧都等于$\sum_{i,j}A_{ij}B_{ij}{C}_{ij}$。</p>
+<h2 id="针对向量求导"><a href="#针对向量求导" class="headerlink" title="针对向量求导"></a>针对向量求导</h2><p>由实际统计中,代价函数往往是标量函数,对其他高维函数不再深究</p>
+<ul>
+<li>$\frac{\partial \mathbf{x}^T \mathbf{a}}{\partial \mathbf{x}} = \frac{\partial \mathbf{a}^T \mathbf{x}}{\partial \mathbf{x}} = \mathbf{a}$</li>
+<li>$\frac{\partial}{\partial \mathbf{x}} |\mathbf{x} - \mathbf{a}|_2 = \frac{\mathbf{x} - \mathbf{a}}{|\mathbf{x} - \mathbf{a}|_2}$</li>
+<li><p>$\frac{\partial |\mathbf{x}|_2^2}{\partial \mathbf{x}} = \frac{\partial |\mathbf{x}^T \mathbf{x}|_2}{\partial \mathbf{x}} = 2\mathbf{x}$</p>
+</li>
+<li><p>$\frac{\partial \mathbf{x}^T \mathbf{B} \mathbf{x}}{\partial \mathbf{x}} = (\mathbf{B} + \mathbf{B}^T) \mathbf{x}$</p>
+</li>
+</ul>
+<h2 id="针对矩阵求导"><a href="#针对矩阵求导" class="headerlink" title="针对矩阵求导"></a>针对矩阵求导</h2><h3 id="标量对矩阵求导"><a href="#标量对矩阵求导" class="headerlink" title="标量对矩阵求导"></a>标量对矩阵求导</h3><ul>
+<li><p>$f=\boldsymbol{a}^TX\boldsymbol{b} \Rightarrow \nabla f = \mathbf{ab}^T$ (其中$\mathbf{a}$是mx1列向量，$\mathbf{X}$是$m\times n$矩阵，$\mathbf{b}$是$n\times 1$列向量，$f$是标量)</p>
+</li>
+<li><p>$f(\mathbf{A})=\operatorname{tr}(\mathbf{A})  \Rightarrow \nabla f = I$</p>
+</li>
+<li>$f(\mathbf{A})=|\mathbf{A}|\Rightarrow \nabla f = \mathbf{A}/|\mathbf{A}|$</li>
+<li>$f(\mathbf{A})=|\mathbf{A}|\Rightarrow \nabla f = |\mathbf{A}|(\mathbf{A}^{-1})^{T} = adj( \mathbf{A})^T$</li>
+</ul>
+<h3 id="矩阵对矩阵的求导"><a href="#矩阵对矩阵的求导" class="headerlink" title="矩阵对矩阵的求导"></a>矩阵对矩阵的求导</h3><p> 在此引入Kronecker积,待补充……</p>
+<h2 id="高阶示例"><a href="#高阶示例" class="headerlink" title="高阶示例"></a>高阶示例</h2><h3 id="逐元素函数"><a href="#逐元素函数" class="headerlink" title="逐元素函数"></a>逐元素函数</h3><p><strong>向量逐元素</strong>:</p>
+<p>$f = \mathbf{a}^\top \exp(Xb)$，求 $\frac{\partial f}{\partial X}$。其中 $\mathbf{a}$ 是 $\mathbf{m}\times 1$ 列向量，$X$ 是 $\mathbf{m}\times \mathbf{n}$ 矩阵，$b$ 是 $\mathbf{n}\times 1$ 列向量，exp表示逐元素求指数，$f$ 是标量。</p>
+<p><strong>解：</strong></p>
+<p>先使用矩阵乘法、逐元素函数法则求微分：</p>
+<script type="math/tex; mode=display">
+df = \mathbf{a}^\top (\exp(\mathbf{Xb}) \odot (d\mathbf{Xb}))</script><p>再套上述并做交换：</p>
+<script type="math/tex; mode=display">
+df = \text{tr}(\mathbf{a}^\top (\exp(\mathbf{Xb} \odot (d\mathbf{Xb}))) 
+= \text{tr}((\mathbf{a} \odot \exp(\mathbf{Xb}))^T d\mathbf{Xb}) \\= \text{tr}(b(\mathbf{a} \odot \exp(\mathbf{Xb}))^T d\mathbf{X}) = \text{tr}(((\mathbf{a} \odot \exp(\mathbf{Xb}))\mathbf{b}^T)^T d\mathbf{X})</script><p>注意这里我们先根据 $\text{tr}(\mathbf{A}^T(\mathbf{B} \odot \mathbf{C})) = \text{tr}((\mathbf{A} \odot \mathbf{B})^T \mathbf{C})$ 交换了 $\mathbf{a}$、$\exp(Xb)$ 与 $dX\mathbf{b}$，再根据 $\text{tr}(AB) = \text{tr}(BA)$ 交换了 $(\mathbf{a} \odot \exp(\mathbf{Xb}))^T d\mathbf{X}$ 与 $b$。对照导数与微分的联系 $df = \text{tr}\left(\frac{\partial f}{\partial \mathbf{X}}^\top d\mathbf{X}\right)$，得到 </p>
+<script type="math/tex; mode=display">
+\frac{\partial f}{\partial \mathbf{X}} = (\mathbf{a} \odot \exp(\mathbf{Xb}))\mathbf{b}^T</script><p><strong>矩阵逐元素</strong>:</p>
+<p>$f = \text{tr}(\mathbf{Y}^\top \mathbf{M}\mathbf{Y}), \mathbf{Y} = \sigma(\mathbf{W}\mathbf{X})$，求 $\frac{\partial f}{\partial \mathbf{X}}$。其中 $\mathbf{W}$ 是 $l\times m$ 矩阵，$\mathbf{X}$ 是 $m\times n$ 矩阵，$\mathbf{Y}$ 是 $l\times n$ 矩阵，$\mathbf{M}$ 是 $l\times l$ 对称矩阵，$\sigma$ 是逐元素函数，$f$ 是标量。</p>
+<p><strong>解：</strong></p>
+<p>先求 $\frac{\partial f}{\partial \mathbf{Y}}$，求微分，使用矩阵乘法、转置法则：</p>
+<script type="math/tex; mode=display">
+df = \text{tr}((d\mathbf{Y})^\top \mathbf{M}\mathbf{Y}) + \text{tr}(\mathbf{Y}^\top \mathbf{M}d\mathbf{Y}) = \text{tr}(\mathbf{Y}^\top \mathbf{M}^T d\mathbf{Y}) + \text{tr}(\mathbf{Y}^\top \mathbf{M}d\mathbf{Y}) = \text{tr}(\mathbf{Y}^\top (\mathbf{M} + \mathbf{M}^T)d\mathbf{Y})</script><p>对照导数与微分的联系，得到 $\frac{\partial f}{\partial \mathbf{Y}} = (\mathbf{M} + \mathbf{M}^T)\mathbf{Y} = 2\mathbf{M}\mathbf{Y}$，注意这里 $\mathbf{M}$ 是对称矩阵。为求 $\frac{\partial f}{\partial \mathbf{X}}$，写出 $df = \text{tr}\left(\frac{\partial f}{\partial \mathbf{Y}}^\top d\mathbf{Y}\right)$，再将 $d\mathbf{Y}$ 用 $d\mathbf{X}$ 表示出来代入，并使用矩阵乘法/逐元素乘法交换：</p>
+<script type="math/tex; mode=display">
+df = \text{tr}\left(\frac{\partial f}{\partial \mathbf{Y}}^\top (\sigma'(\mathbf{W}\mathbf{X}) \odot (\mathbf{W}d\mathbf{X}))\right) = \text{tr}\left(\left(\frac{\partial f}{\partial \mathbf{Y}} \odot \sigma'(\mathbf{W}\mathbf{X})\right)^\top \mathbf{W}d\mathbf{X}\right)，</script><p>对照导数与微分的联系，得到</p>
+<script type="math/tex; mode=display">
+\frac{\partial f}{\partial \mathbf{X}} = \mathbf{W}^T \left(\frac{\partial f}{\partial \mathbf{Y}} \odot \sigma'(\mathbf{W}\mathbf{X})\right) = \mathbf{W}^T (2\mathbf{M}\sigma(\mathbf{W}\mathbf{X})) \odot \sigma'(\mathbf{W}\mathbf{X})。</script><h3 id="回归代价函数"><a href="#回归代价函数" class="headerlink" title="回归代价函数"></a>回归代价函数</h3><p><strong>线性回归</strong>：<br>设损失函数为  </p>
+<script type="math/tex; mode=display">
+\ell = \| \mathbf{Xw - y} \|^2</script><p>求 $w$ 的最小二乘估计，即求 $\ell$ 对 $w$ 的零点。其中  $y$ 是 $m\times 1$ 列向量,  $X$ 是 $m\times n$ 矩阵 , $w$ 是 $n\times 1$ 列向量,  $\ell$ 为标量  </p>
+<p><strong>解</strong>：<br>这是标量对向量的导数，不过可以把向量看作矩阵的特例。先将向量模平方改写成向量与自身的内积：  </p>
+<script type="math/tex; mode=display">
+\ell = (\mathbf{Xw - y})^\top(\mathbf{Xw - y})</script><p>求微分，使用矩阵乘法、转置等法则：  </p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+d\ell &= \mathbf{X}\,d\mathbf{w}^\top(\mathbf{Xw - y}) + (\mathbf{Xw - y})^\top(\mathbf{X}\,d\mathbf{w}) \\
+&= 2\,(\mathbf{Xw - y})^\top \mathbf{X}\,d\mathbf{w}
+\end{aligned}</script><p>（注意：$X\,dw$ 与 $Xw - y$ 均为向量，两个向量的内积满足 $u^\top v = v^\top u$。）</p>
+<p>对照导数与微分的联系  </p>
+<script type="math/tex; mode=display">
+d\ell = \left(\frac{\partial \ell}{\partial \mathbf{w}} \right)^\top d\mathbf{w}</script><p>得到梯度  </p>
+<script type="math/tex; mode=display">
+\frac{\partial \ell}{\partial \mathbf{w}} = 2 \mathbf{X}^\top (\mathbf{Xw - y})</script><p>令梯度为零，解得最小二乘估计：  </p>
+<script type="math/tex; mode=display">
+\boxed{w = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y}}</script><p><strong>Logistic回归</strong>：</p>
+<p>$l = -\mathbf{y}^\top \log \text{softmax}(\mathbf{Wx})$，求 $\frac{\partial l}{\partial \mathbf{W}}$。</p>
+<p>其中 $\mathbf{y}$ 是除一个元素为1外其它元素为0的 $\mathbf{m}\times 1$ 列向量，$\mathbf{W}$ 是 $\mathbf{m}\times \mathbf{n}$ 矩阵，$\mathbf{x}$ 是 $\mathbf{n}\times 1$ 列向量，$l$ 是标量；log表示自然对数，softmax($\mathbf{a}$) = $\frac{\exp(\mathbf{a})}{\mathbf{1}^\top \exp(\mathbf{a})}$，其中exp($\mathbf{a}$)表示逐元素求指数，$\mathbf{1}$代表全1向量。</p>
+<p><strong>解</strong>：  </p>
+<p>解1：首先将softmax函数代入并写成</p>
+<script type="math/tex; mode=display">
+l = -\mathbf{y}^\top \left( \log \exp(\mathbf{Wx}) - \log \left( \exp(\mathbf{Wx})^\top \exp(\mathbf{x}) \right) \right) = -\mathbf{y}^\top \mathbf{Wx} + \log \left( \exp(\mathbf{Wx})^\top \exp(\mathbf{Wx}) \right)，</script><p>这里要注意逐元素log满足等式 $\log(u/c) = \log(u) - \log(c)$，以及 $\mathbf{y}$ 满足 $\mathbf{y}^\top \mathbf{1} = 1$。求微分，使用矩阵乘法、逐元素函数等法则：</p>
+<script type="math/tex; mode=display">
+dl = -\mathbf{y}^\top d\mathbf{Wx} + \frac{1^\top \exp(\mathbf{Wx}) \odot (d\mathbf{Wx})}{1^\top \exp(\mathbf{Wx})}。</script><p>再套上述并做变换，注意可化简 $1^\top (\exp(\mathbf{Wx}) \odot (d\mathbf{Wx})) = \exp(\mathbf{Wx})^\top d\mathbf{Wx}$，这是根据等式 $1^\top (u \odot v) = u^\top v$，故</p>
+<script type="math/tex; mode=display">
+dl = \text{tr}\left( -\mathbf{y}^\top d\mathbf{Wx} + \frac{\exp(\mathbf{Wx})^\top d\mathbf{Wx}}{\exp(\mathbf{Wx})^\top \exp(\mathbf{x})} \right) = \text{tr}\left( -\mathbf{y}^\top d\mathbf{Wx} + \text{softmax}(\mathbf{Wx})^\top d\mathbf{Wx} \right) = \text{tr}(\text{softmax}(\mathbf{Wx})^\top d\mathbf{W} - \mathbf{y}^\top d\mathbf{W})。</script><p>对照导数与微分的联系，得到</p>
+<script type="math/tex; mode=display">
+\frac{\partial l}{\partial \mathbf{W}} = (\text{softmax}(\mathbf{Wx}) - \mathbf{y}) \mathbf{x}^\top。</script><h3 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h3><p>$l = -\mathbf{y}^\top \log \text{softmax}(\mathbf{W}_2 \sigma(\mathbf{W}_1 \mathbf{x}))$，求 $\frac{\partial l}{\partial \mathbf{W}_1}$ 和 $\frac{\partial l}{\partial \mathbf{W}_2}$?</p>
+<p>$\mathbf{y}$ 是一个元素为 1、其余元素为 0 的 $m!\times!1$ 列向量；  $\mathbf{W}_2$ 是 $m!\times!p$ 矩阵；  $\mathbf{W}_1$ 是 $p!\times!n$ 矩阵；  sigmoid 函数定义$\sigma(a)=\frac{1}{1+\exp(-a)}.$</p>
+<p><strong>解</strong>：  </p>
+<p>定义：$\mathbf{a}_1 = \mathbf{W}_1 \mathbf{x}$,$\mathbf{h}_1 = \sigma(\mathbf{a}_1)$,$\mathbf{a}_2 = \mathbf{W}_2 \mathbf{h}_1$.</p>
+<p>则 $l = -\mathbf{y}^\top \log \text{softmax}(\mathbf{a}_2)$。在前例Logistic回归中中已求出</p>
+<script type="math/tex; mode=display">
+\frac{\partial l}{\partial \mathbf{a}_2} = \text{softmax}(\mathbf{a}_2) - \mathbf{y}.</script><p>使用复合法则，</p>
+<script type="math/tex; mode=display">
+dl = \text{tr}\left(\frac{\partial l}{\partial \mathbf{a}_2}^\top d\mathbf{a}_2\right) = \text{tr}\left(\frac{\partial l}{\partial \mathbf{a}_2}^\top d\mathbf{W}_2 \mathbf{h}_1\right) + \text{tr}\left(\frac{\partial l}{\partial \mathbf{a}_2}^\top \mathbf{W}_2 d\mathbf{h}_1\right),</script><p>使用矩阵乘法交换的迹技巧从第一项得到</p>
+<script type="math/tex; mode=display">
+\frac{\partial l}{\partial \mathbf{W}_2} = \frac{\partial l}{\partial \mathbf{a}_2} \mathbf{h}_1^\top,</script><p>从第二项得到</p>
+<script type="math/tex; mode=display">
+\frac{\partial l}{\partial \mathbf{h}_1} = \mathbf{W}_2^\top \frac{\partial l}{\partial \mathbf{a}_2}.</script><p>接下来对第二项继续使用复合法则来求 $\frac{\partial l}{\partial \mathbf{a}_1}$，并利用矩阵乘法和逐元素乘法交换的迹技巧：</p>
+<script type="math/tex; mode=display">
+dl_2 = \text{tr}\left(\frac{\partial l}{\partial \mathbf{h}_1}^\top d\mathbf{h}_1\right) = \text{tr}\left(\frac{\partial l}{\partial \mathbf{h}_1}^\top (\sigma'(\mathbf{a}_1) \odot da_1)\right) = \text{tr}\left(\left(\frac{\partial l}{\partial \mathbf{h}_1} \odot \sigma'(\mathbf{a}_1)\right)^\top da_1\right),</script><p>得到</p>
+<script type="math/tex; mode=display">
+\frac{\partial l}{\partial \mathbf{a}_1} = \frac{\partial l}{\partial \mathbf{h}_1} \odot \sigma'(\mathbf{a}_1).</script><p>为求 $\frac{\partial l}{\partial \mathbf{W}_1}$，再用一次复合法则：</p>
+<script type="math/tex; mode=display">
+dl_2 = \text{tr}\left(\frac{\partial l}{\partial \mathbf{a}_1}^\top da_1\right) = \text{tr}\left(\frac{\partial l}{\partial \mathbf{a}_1}^\top d\mathbf{W}_1 \mathbf{x}\right) = \text{tr}\left(\mathbf{x} \frac{\partial l}{\partial \mathbf{a}_1}^\top d\mathbf{W}_1\right),</script><p>得到</p>
+<script type="math/tex; mode=display">
+\frac{\partial l}{\partial \mathbf{W}_1} = \frac{\partial l}{\partial \mathbf{a}_1} \mathbf{x}^\top.</script><h2 id="资源分享"><a href="#资源分享" class="headerlink" title="资源分享"></a>资源分享</h2><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.matrixcalculus.org">https://www.matrixcalculus.org</a> (在线计算器)</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf">https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf</a>   (Matrix Cookbook)</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mitmath/matrixcalc">https://github.com/mitmath/matrixcalc</a> (MIT的在线课程)</li>
+</ul>
+<p>参考文献:</p>
+<p>[1] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://zhuanlan.zhihu.com/p/24709748">https://zhuanlan.zhihu.com/p/24709748</a></p>
+<p>[2]<a target="_blank" rel="noopener external nofollow noreferrer" href="https://zhuanlan.zhihu.com/p/24863977">https://zhuanlan.zhihu.com/p/24863977</a></p>
+<p>[3]<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mitmath/matrixcalc">https://github.com/mitmath/matrixcalc</a></p>
+<p>[4]matrixcookbook</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://vanillaholic.github.io">Zane</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://vanillaholic.github.io/2025/07/16/%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E6%80%BB%E7%BB%93/">https://vanillaholic.github.io/2025/07/16/%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E6%80%BB%E7%BB%93/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://vanillaholic.github.io" target="_blank">邢子晗's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%B0%E5%AD%A6/">数学</a></div><div class="post-share"><div class="social-share" data-image="https://img-blog.csdnimg.cn/20190319153939980.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://jsd.012700.xyz/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://jsd.012700.xyz/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat_receive_payment.png" target="_blank"><img class="post-qr-code-img" src= "/img/loading.gif" data-lazy-src="/img/wechat_receive_payment.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li></ul></div></div><div class="ads-wrap"><ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-fb+5w+4e-db+86" data-ad-client="ca-pub-8919908724705274" data-ad-slot="5978969231"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/07/03/Acoustic%20Toolbox%E5%92%8CArlpy%E9%85%8D%E7%BD%AE/" title="Acoustic Toolbox和Arlpy配置"><img class="cover" src= "/img/loading.gif" data-lazy-src="https://img3.wallspic.com/crops/2/9/8/1/7/171892/171892-lu_xing-cheng_shi-li_cheng_bei-cheng_shi_jing_guan-3840x2160.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Acoustic Toolbox和Arlpy配置</div></div><div class="info-2"><div class="info-item-1">python的arlpy包是调用Acoustic Toolbox,利用fortran进行仿真计算，首先需要下载Acoustic Toolbox 下载Acoustic Toolbox下载链接：  http://oalib.hlsresearch.com/AcousticsToolbox/at_2024_12_25.zip  （Mac/Linux/Windows – 必须要手动进行编译） http://oalib.hlsresearch.com/AcousticsToolbox/atWin10_2020_11_4.zip  （旧版本，涵盖了MATLAB I/O）  下载后，将工具包解压，打开命令行，进行配置1234cd at/at  			#访问解压文件所在路径make clean 			#清除之前的编译文件make all  			#进行编译sudo make install  ...</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "/img/loading.gif" data-lazy-src="/img/liu13.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Zane</div><div class="author-info-description">我很丰富,无法简介</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/vanillaholic"><i class="fab fa-github"></i><span>GitHub 主页</span></a><div class="card-info-social-icons"><a class="social-icon" href="mailto:mrsingorxing@gmail.com" rel="external nofollow noreferrer" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="订阅"><i class="fas fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如果想联系我你可以留言，或者添加我的微信（扫码或者点击图片跳转） <div class="aside-qrcode" > <a href="https://u.wechat.com/MK52i9Top3CnpbBNLCHXzFQ?s=2" rel="external nofollow noreferrer" target="_blank"> <img src= "/img/loading.gif" data-lazy-src="/img/wechat.jpg" title="wechat 二维码"></a> <a href="https://t.me/zanesing" rel="external nofollow noreferrer" target="_blank"> <img src= "/img/loading.gif" data-lazy-src="/img/tg.jpg" title="Telegram 二维码"></a> </div></div></div><div class="card-widget card-docs card-categories"><div class="item-headline"><i class="fas fa-car-side"></i><span>文档目录</span></div><div class="item-content"><ul class=card-category-list>
+  <li class=card-category-list-item><a class=card-category-list-link href=/posts/4aa8abbe/ >📌 自我介绍</a></li>
+  <li class=card-category-list-item><a class=card-category-list-link href=/posts/dc584b87/ >📑 知识分享</a></li>
+  <li class=card-category-list-item><a class=card-category-list-link href=/posts/4aa8abbe/ >🛠 工具分享</a></li>
+  <li class=card-category-list-item><a class=card-category-list-link href=/posts/3574d402/ >🖋 文章投稿</a></li>
+  <li class=card-category-list-item><a class=card-category-list-link href=/posts/98d20436/ >❓ 问题互助</a></li>
+</ul>
+</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86"><span class="toc-number">1.</span> <span class="toc-text">基础部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%B3%95%E5%88%99"><span class="toc-number">1.1.</span> <span class="toc-text">基本法则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E6%B3%95%E5%88%99"><span class="toc-number">1.2.</span> <span class="toc-text">运算法则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80"><span class="toc-number">1.3.</span> <span class="toc-text">矩阵计算基础</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%92%88%E5%AF%B9%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC"><span class="toc-number">2.</span> <span class="toc-text">针对向量求导</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%92%88%E5%AF%B9%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC"><span class="toc-number">3.</span> <span class="toc-text">针对矩阵求导</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E9%87%8F%E5%AF%B9%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC"><span class="toc-number">3.1.</span> <span class="toc-text">标量对矩阵求导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E5%AF%B9%E7%9F%A9%E9%98%B5%E7%9A%84%E6%B1%82%E5%AF%BC"><span class="toc-number">3.2.</span> <span class="toc-text">矩阵对矩阵的求导</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E9%98%B6%E7%A4%BA%E4%BE%8B"><span class="toc-number">4.</span> <span class="toc-text">高阶示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%90%E5%85%83%E7%B4%A0%E5%87%BD%E6%95%B0"><span class="toc-number">4.1.</span> <span class="toc-text">逐元素函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E5%BD%92%E4%BB%A3%E4%BB%B7%E5%87%BD%E6%95%B0"><span class="toc-number">4.2.</span> <span class="toc-text">回归代价函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-number">4.3.</span> <span class="toc-text">神经网络</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB"><span class="toc-number">5.</span> <span class="toc-text">资源分享</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/07/16/%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E6%80%BB%E7%BB%93/" title="矩阵求导总结"><img src= "/img/loading.gif" data-lazy-src="https://img-blog.csdnimg.cn/20190319153939980.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="矩阵求导总结"/></a><div class="content"><a class="title" href="/2025/07/16/%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E6%80%BB%E7%BB%93/" title="矩阵求导总结">矩阵求导总结</a><time datetime="2025-07-16T11:29:12.000Z" title="发表于 2025-07-16 19:29:12">2025-07-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/07/03/Acoustic%20Toolbox%E5%92%8CArlpy%E9%85%8D%E7%BD%AE/" title="Acoustic Toolbox和Arlpy配置"><img src= "/img/loading.gif" data-lazy-src="https://img3.wallspic.com/crops/2/9/8/1/7/171892/171892-lu_xing-cheng_shi-li_cheng_bei-cheng_shi_jing_guan-3840x2160.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Acoustic Toolbox和Arlpy配置"/></a><div class="content"><a class="title" href="/2025/07/03/Acoustic%20Toolbox%E5%92%8CArlpy%E9%85%8D%E7%BD%AE/" title="Acoustic Toolbox和Arlpy配置">Acoustic Toolbox和Arlpy配置</a><time datetime="2025-07-03T05:24:12.000Z" title="发表于 2025-07-03 13:24:12">2025-07-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/05/CFARnet/" title="论文随笔-CFARnet"><img src= "/img/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/img/202503051159957.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="论文随笔-CFARnet"/></a><div class="content"><a class="title" href="/2025/03/05/CFARnet/" title="论文随笔-CFARnet">论文随笔-CFARnet</a><time datetime="2025-03-05T05:53:12.000Z" title="发表于 2025-03-05 13:53:12">2025-03-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/04/%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" title="序列模型与循环神经网络"><img src= "/img/loading.gif" data-lazy-src="http://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/img/IMG_0719.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="序列模型与循环神经网络"/></a><div class="content"><a class="title" href="/2025/03/04/%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" title="序列模型与循环神经网络">序列模型与循环神经网络</a><time datetime="2025-03-04T11:54:06.000Z" title="发表于 2025-03-04 19:54:06">2025-03-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/04/%E5%BE%AE%E8%B0%83/" title="微调"><img src= "/img/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/vanillaholic/image-bed@main/img/%E6%88%AA%E5%B1%8F2025-03-04%2016.11.20.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="微调"/></a><div class="content"><a class="title" href="/2025/03/04/%E5%BE%AE%E8%B0%83/" title="微调">微调</a><time datetime="2025-03-04T10:54:06.000Z" title="发表于 2025-03-04 18:54:06">2025-03-04</time></div></div></div></div><div class="card-widget ads-wrap"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8919908724705274" data-ad-slot="8108145410" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div></div></div></main><footer id="footer" style="background-image: url(https://img3.wallspic.com/crops/2/9/8/1/7/171892/171892-lu_xing-cheng_shi-li_cheng_bei-cheng_shi_jing_guan-3840x2160.jpg);"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By Zane</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.3</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://jsd.012700.xyz/npm/hexo-theme-butterfly/source/js/utils.min.js"></script><script src="https://jsd.012700.xyz/npm/hexo-theme-butterfly/source/js/main.min.js"></script><script src="https://jsd.012700.xyz/npm/hexo-theme-butterfly/source/js/tw_cn.min.js"></script><script src="https://jsd.012700.xyz/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://jsd.012700.xyz/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://jsd.012700.xyz/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://jsd.012700.xyz/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const runMermaid = ele => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    ele.forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = `%%{init:{ 'theme':'${theme}'}}%%\n`
+      const mermaidID = `mermaid-${index}`
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+      const renderMermaid = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
+
+  const loadMermaid = () => {
+    if (true) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://jsd.012700.xyz/npm/mermaid/dist/mermaid.min.js').then(runMermaidFn)
+  }
+
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const applyThemeDefaultsConfig = theme => {
+    if (theme === 'dark-mode') {
+      Chart.defaults.color = "rgba(255, 255, 255, 0.8)"
+      Chart.defaults.borderColor = "rgba(255, 255, 255, 0.2)"
+      Chart.defaults.scale.ticks.backdropColor = "transparent"
+    } else {
+      Chart.defaults.color = "rgba(0, 0, 0, 0.8)"
+      Chart.defaults.borderColor = "rgba(0, 0, 0, 0.1)"
+      Chart.defaults.scale.ticks.backdropColor = "transparent"
+    }
+  }
+
+  // Recursively traverse the config object and automatically apply theme-specific color schemes
+  const applyThemeConfig = (obj, theme) => {
+    if (typeof obj !== 'object' || obj === null) return
+
+    Object.keys(obj).forEach(key => {
+      const value = obj[key]
+      // If the property is an object and has theme-specific options, apply them
+      if (typeof value === 'object' && value !== null) {
+        if (value[theme]) {
+          obj[key] = value[theme] // Apply the value for the current theme
+        } else {
+          // Recursively process child objects
+          applyThemeConfig(value, theme)
+        }
+      }
+    })
+  }
+
+  const runChartJS = ele => {
+    window.loadChartJS = true
+
+    Array.from(ele).forEach((item, index) => {
+      const chartSrc = item.firstElementChild
+      const chartID = item.getAttribute('data-chartjs-id') || ('chartjs-' + index) // Use custom ID or default ID
+      const width = item.getAttribute('data-width')
+      const existingCanvas = document.getElementById(chartID)
+
+      // If a canvas already exists, remove it to avoid rendering duplicates
+      if (existingCanvas) {
+          existingCanvas.parentNode.remove()
+      }
+
+      const chartDefinition = chartSrc.textContent
+      const canvas = document.createElement('canvas')
+      canvas.id = chartID
+
+      const div = document.createElement('div')
+      div.className = 'chartjs-wrap'
+
+      if (width) {
+        div.style.width = width
+      }
+
+      div.appendChild(canvas)
+      chartSrc.insertAdjacentElement('afterend', div)
+
+      const ctx = document.getElementById(chartID).getContext('2d')
+
+      const config = JSON.parse(chartDefinition)
+
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark-mode' : 'light-mode'
+
+      // Set default styles (initial setup)
+      applyThemeDefaultsConfig(theme)
+
+      // Automatically traverse the config and apply dual-mode color schemes
+      applyThemeConfig(config, theme)
+
+      new Chart(ctx, config)
+    })
+  }
+
+  const loadChartJS = () => {
+    const chartJSEle = document.querySelectorAll('#article-container .chartjs-container')
+    if (chartJSEle.length === 0) return
+
+    window.loadChartJS ? runChartJS(chartJSEle) : btf.getScript('https://jsd.012700.xyz/npm/chart.js/dist/chart.umd.min.js').then(() => runChartJS(chartJSEle))
+  }
+
+  // Listen for theme change events
+  btf.addGlobalFn('themeChange', loadChartJS, 'chartjs')
+  btf.addGlobalFn('encrypt', loadChartJS, 'chartjs')
+
+  window.pjax ? loadChartJS() : document.addEventListener('DOMContentLoaded', loadChartJS)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const getGiscusTheme = theme => theme === 'dark' ? 'dark' : 'light'
+
+  const createScriptElement = config => {
+    const ele = document.createElement('script')
+    Object.entries(config).forEach(([key, value]) => {
+      ele.setAttribute(key, value)
+    })
+    return ele
+  }
+
+  const loadGiscus = (el = document, key) => {
+    const mappingConfig = isShuoshuo
+      ? { 'data-mapping': 'specific', 'data-term': key }
+      : { 'data-mapping': (option && option['data-mapping']) || 'pathname' }
+
+    const giscusConfig = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'Vanillaholic/blog-comments',
+      'data-repo-id': 'R_kgDON_N0Jg',
+      'data-category-id': 'DIC_kwDON_N0Js4CnUEh',
+      'data-theme': getGiscusTheme(document.documentElement.getAttribute('data-theme')),
+      'data-reactions-enabled': '1',
+      crossorigin: 'anonymous',
+      async: true,
+      ...option,
+      ...mappingConfig
+    }
+
+    const scriptElement = createScriptElement(giscusConfig)
+
+    el.querySelector('#giscus-wrap').appendChild(scriptElement)
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGiscus = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const changeGiscusTheme = theme => {
+    const iframe = document.querySelector('#giscus-wrap iframe')
+    if (iframe) {
+      const message = {
+        giscus: {
+          setConfig: {
+            theme: getGiscusTheme(theme)
+          }
+        }
+      }
+      iframe.contentWindow.postMessage(message, 'https://giscus.app')
+    }
+  }
+
+  btf.addGlobalFn('themeChange', changeGiscusTheme, 'giscus')
+
+  if (isShuoshuo) {
+    'Giscus' === 'Giscus'
+      ? window.shuoshuoComment = { loadComment: loadGiscus }
+      : window.loadOtherComment = loadGiscus
+    return
+  }
+
+  if ('Giscus' === 'Giscus' || !true) {
+    if (true) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+    else loadGiscus()
+  } else {
+    window.loadOtherComment = loadGiscus
+  }
+})()</script></div><script data-pjax src="/self/btf.js"></script><canvas class="fireworks" mobile="true"></canvas><script src="https://jsd.012700.xyz/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://jsd.012700.xyz/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script src="https://jsd.012700.xyz/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:description\"]","link[rel=\"canonical\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script>(() => {
+  const option = null
+  const config = {"site_uv":true,"site_pv":true,"page_pv":true,"token":"qTvz1SkmPDt785fgh6BpiA5qiFFIVUwxj8Ft+rPW+cdN59v1hXjwRgSmy0+ji9m+oLlcxvo2NfDSMa6epVl3NTlsN3ejCIwWeP8Y51aEJ0Sbem4UexGmJLspB7AkOBId2SdtT6QWEBlGmFIIQgchQ2zAKYxTmc/kpBED5aLSr+3uvmQ9/G7FJQeVFpveDkK0xM1hu36xq4a6/FSeROxtoEp5zabzTWiYTlLsQzIl/NlELnCq3nxK+oo/vl3UQo/oM/rae/gJX/MaVKsgIUCd2ABJogNkx2KTenBIBpbPki5FzOgPh6/z4GPa4HvhNO51DDVG1SEQZooqEYmt/gnybLBWFbN+7liZWw=="}
+
+  const runTrack = () => {
+    umami.track(props => ({ ...props, url: window.location.pathname, title: GLOBAL_CONFIG_SITE.title }))
+  }
+
+  const loadUmamiJS = () => {
+    btf.getScript('https://umami.012700.xyz/script.js', {
+      'data-website-id': '2a796d6c-6499-42d8-8eb4-d9a2930b0ff3',
+      'data-auto-track': 'false',
+      ...option
+    }).then(runTrack)
+  }
+
+  const getData = async (isPost) => {
+    const now = Date.now()
+    const keyUrl = isPost ? `&url=${window.location.pathname}` : ''
+    const headerList = { 'Accept': 'application/json' }
+    if (true) headerList['Authorization'] = `Bearer ${config.token}`
+    else headerList['x-umami-api-key'] = config.token
+    const res = await fetch(`https://umami.012700.xyz/api/websites/2a796d6c-6499-42d8-8eb4-d9a2930b0ff3/stats?startAt=0000000000&endAt=${now}${keyUrl}`, {
+      method: "GET",
+      headers: headerList
+    })
+    return await res.json()
+  }
+
+  const insertData = async () => {
+    try {
+      if (GLOBAL_CONFIG_SITE.pageType === 'post' && config.page_pv) {
+        const pagePV = document.getElementById('umamiPV')
+        if (pagePV) {
+          const data = await getData(true)
+          pagePV.textContent = data.pageviews.value
+        }
+      } else {
+        const data = (config.site_uv || config.site_pv) && await getData()
+        if (config.site_uv) {
+          const siteUV = document.getElementById('umami-site-uv')
+          if (siteUV) siteUV.textContent = data.visitors.value
+        }
+        if (config.site_pv) {
+          const sitePV = document.getElementById('umami-site-pv')
+          if (sitePV) sitePV.textContent = data.pageviews.value
+        }
+      }
+    } catch (e) {
+      console.error('Failed to load Umami Analytics:', e)
+    }
+  }
+
+  btf.addGlobalFn('pjaxComplete', runTrack, 'umami_analytics_run_track')
+  btf.addGlobalFn('pjaxComplete', insertData, 'umami_analytics_insert')
+
+  loadUmamiJS()
+  insertData()
+})()</script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="https://jsd.012700.xyz/npm/hexo-theme-butterfly/source/js/search/local-search.min.js"></script></div></div></body></html>
