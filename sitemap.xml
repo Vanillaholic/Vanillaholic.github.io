@@ -182,15 +182,6 @@
   </url>
   
   <url>
-    <loc>https://vanillaholic.github.io/Gallery/index.html</loc>
-    
-    <lastmod>2025-02-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://vanillaholic.github.io/Gallery/marvel/index.html</loc>
     
     <lastmod>2025-02-28</lastmod>
@@ -201,6 +192,15 @@
   
   <url>
     <loc>https://vanillaholic.github.io/Gallery/wallpaper/index.html</loc>
+    
+    <lastmod>2025-02-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://vanillaholic.github.io/Gallery/index.html</loc>
     
     <lastmod>2025-02-28</lastmod>
     

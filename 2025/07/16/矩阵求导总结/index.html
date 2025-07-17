@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.helloimg.com/i/2025/02/26/67be7bdf6717b.png">
 <meta property="article:published_time" content="2025-07-16T11:29:12.000Z">
-<meta property="article:modified_time" content="2025-07-17T06:49:40.915Z">
+<meta property="article:modified_time" content="2025-07-17T06:55:19.139Z">
 <meta property="article:author" content="Zane">
 <meta property="article:tag" content="数学">
 <meta name="twitter:card" content="summary">
@@ -18,7 +18,7 @@
   "url": "https://vanillaholic.github.io/2025/07/16/%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E6%80%BB%E7%BB%93/",
   "image": "https://www.helloimg.com/i/2025/02/26/67be7bdf6717b.png",
   "datePublished": "2025-07-16T11:29:12.000Z",
-  "dateModified": "2025-07-17T06:49:40.915Z",
+  "dateModified": "2025-07-17T06:55:19.139Z",
   "author": [
     {
       "@type": "Person",
@@ -244,7 +244,7 @@ df = \mathbf{a}^\top (\exp(\mathbf{Xb}) \odot (d\mathbf{Xb}))</script><p>再套�
 <script type="math/tex; mode=display">
 df = \text{tr}(\mathbf{a}^\top (\exp(\mathbf{Xb} \odot (d\mathbf{Xb}))) 
 = \text{tr}((\mathbf{a} \odot \exp(\mathbf{Xb}))^T d\mathbf{Xb}) \\
-&= \text{tr}(b(\mathbf{a} \odot \exp(\mathbf{Xb}))^T d\mathbf{X}) = \text{tr}(((\mathbf{a} \odot \exp(\mathbf{Xb}))\mathbf{b}^T)^T d\mathbf{X})</script><p>注意这里我们先根据 $\text{tr}(\mathbf{A}^T(\mathbf{B} \odot \mathbf{C})) = \text{tr}((\mathbf{A} \odot \mathbf{B})^T \mathbf{C})$ 交换了 $\mathbf{a}$、$\exp(Xb)$ 与 $dX\mathbf{b}$，再根据 $\text{tr}(AB) = \text{tr}(BA)$ 交换了 $(\mathbf{a} \odot \exp(\mathbf{Xb}))^T d\mathbf{X}$ 与 $b$。对照导数与微分的联系 $df = \text{tr}\left(\frac{\partial f}{\partial \mathbf{X}}^\top d\mathbf{X}\right)$，得到 </p>
+= \text{tr}(b(\mathbf{a} \odot \exp(\mathbf{Xb}))^T d\mathbf{X}) = \text{tr}(((\mathbf{a} \odot \exp(\mathbf{Xb}))\mathbf{b}^T)^T d\mathbf{X})</script><p>注意这里我们先根据 $\text{tr}(\mathbf{A}^T(\mathbf{B} \odot \mathbf{C})) = \text{tr}((\mathbf{A} \odot \mathbf{B})^T \mathbf{C})$ 交换了 $\mathbf{a}$、$\exp(Xb)$ 与 $dX\mathbf{b}$，再根据 $\text{tr}(AB) = \text{tr}(BA)$ 交换了 $(\mathbf{a} \odot \exp(\mathbf{Xb}))^T d\mathbf{X}$ 与 $b$。对照导数与微分的联系 $df = \text{tr}\left(\frac{\partial f}{\partial \mathbf{X}}^\top d\mathbf{X}\right)$，得到 </p>
 <script type="math/tex; mode=display">
 \frac{\partial f}{\partial \mathbf{X}} = (\mathbf{a} \odot \exp(\mathbf{Xb}))\mathbf{b}^T</script><p><strong>矩阵逐元素</strong>:</p>
 <p>$f = \text{tr}(\mathbf{Y}^\top \mathbf{M}\mathbf{Y}), \mathbf{Y} = \sigma(\mathbf{W}\mathbf{X})$，求 $\frac{\partial f}{\partial \mathbf{X}}$。其中 $\mathbf{W}$ 是 $l\times m$ 矩阵，$\mathbf{X}$ 是 $m\times n$ 矩阵，$\mathbf{Y}$ 是 $l\times n$ 矩阵，$\mathbf{M}$ 是 $l\times l$ 对称矩阵，$\sigma$ 是逐元素函数，$f$ 是标量。</p>
@@ -252,8 +252,8 @@ df = \text{tr}(\mathbf{a}^\top (\exp(\mathbf{Xb} \odot (d\mathbf{Xb})))
 <p>先求 $\frac{\partial f}{\partial \mathbf{Y}}$，求微分，使用矩阵乘法、转置法则：</p>
 <script type="math/tex; mode=display">
 df = \text{tr}((d\mathbf{Y})^\top \mathbf{M}\mathbf{Y}) + \text{tr}(\mathbf{Y}^\top \mathbf{M}d\mathbf{Y}) \\
-&= \text{tr}(\mathbf{Y}^\top \mathbf{M}^T d\mathbf{Y}) + \text{tr}(\mathbf{Y}^\top \mathbf{M}d\mathbf{Y}) \\
-&= \text{tr}(\mathbf{Y}^\top (\mathbf{M} + \mathbf{M}^T)d\mathbf{Y})</script><p>对照导数与微分的联系，得到 $\frac{\partial f}{\partial \mathbf{Y}} = (\mathbf{M} + \mathbf{M}^T)\mathbf{Y} = 2\mathbf{M}\mathbf{Y}$，注意这里 $\mathbf{M}$ 是对称矩阵。为求 $\frac{\partial f}{\partial \mathbf{X}}$，写出 $df = \text{tr}\left(\frac{\partial f}{\partial \mathbf{Y}}^\top d\mathbf{Y}\right)$，再将 $d\mathbf{Y}$ 用 $d\mathbf{X}$ 表示出来代入，并使用矩阵乘法/逐元素乘法交换：</p>
+= \text{tr}(\mathbf{Y}^\top \mathbf{M}^T d\mathbf{Y}) + \text{tr}(\mathbf{Y}^\top \mathbf{M}d\mathbf{Y}) \\
+= \text{tr}(\mathbf{Y}^\top (\mathbf{M} + \mathbf{M}^T)d\mathbf{Y})</script><p>对照导数与微分的联系，得到 $\frac{\partial f}{\partial \mathbf{Y}} = (\mathbf{M} + \mathbf{M}^T)\mathbf{Y} = 2\mathbf{M}\mathbf{Y}$，注意这里 $\mathbf{M}$ 是对称矩阵。为求 $\frac{\partial f}{\partial \mathbf{X}}$，写出 $df = \text{tr}\left(\frac{\partial f}{\partial \mathbf{Y}}^\top d\mathbf{Y}\right)$，再将 $d\mathbf{Y}$ 用 $d\mathbf{X}$ 表示出来代入，并使用矩阵乘法/逐元素乘法交换：</p>
 <script type="math/tex; mode=display">
 df = \text{tr}\left(\frac{\partial f}{\partial \mathbf{Y}}^\top (\sigma'(\mathbf{W}\mathbf{X}) \odot (\mathbf{W}d\mathbf{X}))\right) = \text{tr}\left(\left(\frac{\partial f}{\partial \mathbf{Y}} \odot \sigma'(\mathbf{W}\mathbf{X})\right)^\top \mathbf{W}d\mathbf{X}\right)，</script><p>对照导数与微分的联系，得到</p>
 <script type="math/tex; mode=display">
