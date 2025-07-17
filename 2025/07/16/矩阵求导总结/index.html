@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.helloimg.com/i/2025/02/26/67be7bdf6717b.png">
 <meta property="article:published_time" content="2025-07-16T11:29:12.000Z">
-<meta property="article:modified_time" content="2025-07-17T06:55:19.139Z">
+<meta property="article:modified_time" content="2025-07-17T06:59:44.904Z">
 <meta property="article:author" content="Zane">
 <meta property="article:tag" content="数学">
 <meta name="twitter:card" content="summary">
@@ -18,7 +18,7 @@
   "url": "https://vanillaholic.github.io/2025/07/16/%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E6%80%BB%E7%BB%93/",
   "image": "https://www.helloimg.com/i/2025/02/26/67be7bdf6717b.png",
   "datePublished": "2025-07-16T11:29:12.000Z",
-  "dateModified": "2025-07-17T06:55:19.139Z",
+  "dateModified": "2025-07-17T06:59:44.904Z",
   "author": [
     {
       "@type": "Person",
@@ -208,7 +208,7 @@ df=\sum_{i=1}^{m}\sum_{j=1}^{n}\frac{\partial f}{\partial X_{ij}}dX_{ij}=\mathrm
 <h3 id="运算法则"><a href="#运算法则" class="headerlink" title="运算法则"></a>运算法则</h3><ol>
 <li>加减法: $d(\mathbf{X \pm Y}) = d\mathbf{X} \pm d\mathbf{Y}$; 矩阵乘法: $d(\mathbf{XY}) = (d\mathbf{X})\mathbf{Y}+ \mathbf{X}d\mathbf{Y}$; 转置: $d(\mathbf{X}^T) = (d\mathbf{X})^T$; 迹: $d\text{tr}(\mathbf{X}) = \text{tr}(d\mathbf{X})$。</li>
 <li>逆: $d\mathbf{X}^{-1} = -\mathbf{X}^{-1}d\mathbf{XX}^{-1}$。此式可在$\mathbf{XX}^{-1} = I$两侧求微分来证明。</li>
-<li>行列式: $d|\mathbf{X}| = \text{tr}((\mathbf{X}^<em>)^Td\mathbf{X})$, 其中$X^</em>$表示X的伴随矩阵, 在X可逆时又可以写作$d|\mathbf{X}| = |\mathbf{X}|\text{tr}(\mathbf{X}^{-1}d\mathbf{X})$。</li>
+<li>行列式: $d|\mathbf{X}| = \operatorname{tr} ((\mathbf{X}^<em>)^T d\mathbf{X})$, 其中$X^</em>$表示X的伴随矩阵, 在X可逆时又可以写作$d|\mathbf{X}| = |\mathbf{X}|\operatorname{tr}(\mathbf{X}^{-1}d\mathbf{X})$。</li>
 <li>逐元素乘法: $d(\mathbf{X} \odot \mathbf{Y}) = d\mathbf{X} \odot \mathbf{Y} + \mathbf{X} \odot d\mathbf{Y}$, $\odot$表示尺寸相同的矩阵$\mathbf{X},\mathbf{Y}$逐元素相乘。</li>
 <li>逐元素函数: $d\sigma(\mathbf{X}) = \sigma’(\mathbf{X}) \odot d\mathbf{X}$, $\sigma(X) = [\sigma(X_{ij})]$是逐元素标量函数运算, $\sigma’(\mathbf{X}) = [\sigma’(X_{ij})]$是逐元素求导数。例如$\mathbf{X} = \left[\begin{matrix} X_{11} &amp; X_{12} \\ X_{21} &amp; X_{22} \end{matrix}\right]$, $d|\sin \mathbf{X}| = \left[\begin{matrix} \cos X_{11} dX_{11} &amp; \cos X_{12} dX_{12} \\ \cos X_{21} dX_{21} &amp; \cos X_{22} dX_{22} \end{matrix}\right] = |\cos \mathbf{X}| \odot d\mathbf{X}$。</li>
 </ol>
